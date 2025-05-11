@@ -86,6 +86,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'users.Usuario' #Indicamos el modelo que usara para la creacion de usuarios
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
