@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class Prueba2Config(AppConfig):
+class HomeConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'prueba2'
+    name = 'applications.home'
