@@ -1,0 +1,7 @@
+nombre bd:
+    greenstay
+usuario:
+    green
+contraseña:
+    green4567
+
