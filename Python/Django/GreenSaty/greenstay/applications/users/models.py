@@ -9,6 +9,7 @@ class Usuarios(AbstractBaseUser,PermissionsMixin):
     correo = models.EmailField(unique=True)
 
     is_staff = models.BooleanField(default=False)
+    is_admin_pagina = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'correo'
     REQUIRED_FIELDS = ['nombres', 'apellidos']
