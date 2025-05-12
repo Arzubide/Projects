@@ -42,9 +42,18 @@ class LoginUsuario(FormView):
     success_url = reverse_lazy('urls_home:inicioUser')
 
     def form_valid(self, form):
-        usuario = authenticate(
-            correo = form.cleaned_data['correo'],
-            contrasenia = form.cleaned_data['contrasenia'],
-        )
-        login(self.request, usuario)
-        return super(LoginUsuario,self).form_valid(form)
+        correo = form.cleaned_data.get('correo')
+        password = form.cleaned_data.get('password')
+
+        print(f"Vista - Correo: {correo}, Password: {password}")
+
+        usuario = authenticate(correo=correo, password=password)
+        if usuario:
+            print("Autenticación exitosa")
+            login(self.request, usuario)
+        else:
+            print("Autenticación fallida")
+            form.add_error(None, "Los datos de usuario no son correctos")
+            return self.form_invalid(form)
+
+        return super().form_valid(form)

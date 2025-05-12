@@ -88,24 +88,23 @@ class LoginUsuarios(forms.Form):
         )
     )
 
-    contrasenia = forms.CharField(
-        label = 'Contrasenia',
-        required = True,
-        widget = forms.PasswordInput(
-            attrs = {
-                'placeholder':'Ingresa tu contrasenia'
-            }
-        ) 
+    password = forms.CharField(
+        label='Contraseña',
+        required=True,
+        widget=forms.PasswordInput(attrs={'placeholder': 'Ingresa tu contraseña'})
     )
 
-    def clean(self): #creamos validacion a mas de un campo
-        '''Creamos la validacion para ver si los datos que ingreso son correctos para un inicio de sesion'''
-        cleaned_data = super(LoginUsuarios, self).clean() #obtienes el diccionario cleaned_data que contiene los datos ya validados de todos los campos del formulario.
-        correo = self.cleaned_data['correo'] #extraemos los datos que le usuario ingreso al formulario
-        contrasenia = self.cleaned_data['contrasenia']
+    def clean(self):
+        cleaned_data = super().clean()
+        correo = cleaned_data.get('correo')
+        password = cleaned_data.get('password')
 
-        if not authenticate(correo = correo, contrasenia = contrasenia): #verificar si el nombre de usuario y la contraseña son válidos y corresponden a un usuario activo.
-            raise forms.ValidationError('Los datos de usuario no son correctos')
-        
-        return  self.cleaned_data
+        print(f"Formulario - Correo: {correo}, Password: {password}")
+
+        if correo and password:
+            usuario = authenticate(correo=correo, password=password)
+            if not usuario:
+                raise forms.ValidationError('Los datos de usuario no son correctos')
+
+        return cleaned_data
 
