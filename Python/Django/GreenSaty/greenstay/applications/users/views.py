@@ -1,11 +1,13 @@
 from django.views.generic.edit import FormView
-from .forms import FormularioRegistro, FormularioRegistroAdmin
+from .forms import FormularioRegistro, FormularioRegistroAdmin, LoginUsuarios
 from .models import Usuarios
+from django.urls import reverse_lazy
+from django.contrib.auth import authenticate, login, logout
 
 class RegistroUsuario(FormView):
     template_name = 'users/registroUsuario.html'
     form_class = FormularioRegistro
-    success_url = '/' #Debe mandar al login
+    success_url = 'Inicio/' #Debe mandar al login
 
     def form_valid(self, form):
 
@@ -22,7 +24,7 @@ class RegistroUsuario(FormView):
 class RegistroAdmin(FormView):
     template_name = 'users/registroAdmin.html'
     form_class = FormularioRegistroAdmin
-    success_url = '/' #Debe mandar al login
+    success_url = 'Administrador/' #Debe mandar al login
 
     def form_valid(self, form):
         Usuarios.objects.create_admin_pagina(
@@ -33,3 +35,16 @@ class RegistroAdmin(FormView):
         )
 
         return super(RegistroAdmin, self).form_valid(form)
+
+class LoginUsuario(FormView):
+    template_name = 'users/loginUser.html'
+    form_class = LoginUsuarios
+    success_url = reverse_lazy('urls_home:inicioUser')
+
+    def form_valid(self, form):
+        usuario = authenticate(
+            correo = form.cleaned_data['correo'],
+            contrasenia = form.cleaned_data['contrasenia'],
+        )
+        login(self.request, usuario)
+        return super(LoginUsuario,self).form_valid(form)

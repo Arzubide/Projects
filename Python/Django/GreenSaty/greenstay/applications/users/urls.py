@@ -13,5 +13,10 @@ urlpatterns = [
         'registro/admin/',
         views.RegistroAdmin.as_view(),
         name='registroAdmin',
+    ),
+    path(
+        'LoginUser/',
+        views.LoginUsuario.as_view(),
+        name='login',
     )
 ]
