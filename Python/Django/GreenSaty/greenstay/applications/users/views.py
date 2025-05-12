@@ -1,8 +1,10 @@
+from django.views.generic import View
 from django.views.generic.edit import FormView
 from .forms import FormularioRegistro, FormularioRegistroAdmin, LoginUsuarios
 from .models import Usuarios
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
 
 class RegistroUsuario(FormView):
     template_name = 'users/registroUsuario.html'
@@ -36,6 +38,7 @@ class RegistroAdmin(FormView):
 
         return super(RegistroAdmin, self).form_valid(form)
 
+
 class LoginUsuario(FormView):
     template_name = 'users/loginUser.html'
     form_class = LoginUsuarios
@@ -53,3 +56,15 @@ class LoginUsuario(FormView):
             return self.form_invalid(form)
 
         return super().form_valid(form)
+    
+
+class Logout(View):
+    def get(self, request,*args, **kargs):
+        logout(request)
+
+        return HttpResponseRedirect(
+            reverse(
+                #Dentro de aqui indicamos a traves de nombres la rediccion a donde queramos que vaya
+                'urls_home:indexHome'
+            )
+        )
