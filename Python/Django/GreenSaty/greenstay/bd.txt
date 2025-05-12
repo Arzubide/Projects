@@ -1,0 +1,6 @@
+nombre de base de datos:
+    greenstay
+usuraio:
+    green
+contraseña:
+    green6734
