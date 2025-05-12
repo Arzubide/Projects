@@ -5,7 +5,7 @@ from .models import Usuarios
 class RegistroUsuario(FormView):
     template_name = 'users/registroUsuario.html'
     form_class = FormularioRegistro
-    success_url = 'users/inicioUsuario.html'
+    success_url = '/' #Debe mandar al login
 
     def form_valid(self, form):
 
@@ -22,7 +22,7 @@ class RegistroUsuario(FormView):
 class RegistroAdmin(FormView):
     template_name = 'users/registroAdmin.html'
     form_class = FormularioRegistroAdmin
-    success_url = 'users/inicioAdministrador.html'
+    success_url = '/' #Debe mandar al login
 
     def form_valid(self, form):
         Usuarios.objects.create_admin_pagina(
