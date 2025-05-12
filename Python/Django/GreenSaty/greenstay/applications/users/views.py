@@ -45,14 +45,10 @@ class LoginUsuario(FormView):
         correo = form.cleaned_data.get('correo')
         password = form.cleaned_data.get('password')
 
-        print(f"Vista - Correo: {correo}, Password: {password}")
-
-        usuario = authenticate(correo=correo, password=password)
+        usuario = authenticate(correo=correo, password=password)# Django espera un campo password para el backend de autenticación.
         if usuario:
-            print("Autenticación exitosa")
             login(self.request, usuario)
         else:
-            print("Autenticación fallida")
             form.add_error(None, "Los datos de usuario no son correctos")
             return self.form_invalid(form)
 
