@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager
 
-class UserManager(BaseUserManager, models.Model):
+class UserManager(BaseUserManager, models.Manager):
     
     #Funcion base para la creacion de usuarios
     def _create_user(self, nombres, apellidos, correo, contrasenia, is_staff, is_superuser, **extra_fields):

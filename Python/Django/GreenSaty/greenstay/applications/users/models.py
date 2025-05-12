@@ -11,6 +11,7 @@ class Usuarios(AbstractBaseUser,PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'correo'
-    REQUIRED_FIELDS = ['nombres,apellidos']
+    REQUIRED_FIELDS = ['nombres', 'apellidos']
+
 
     objects = UserManager()
