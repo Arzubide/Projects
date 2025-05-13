@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 class RegistroUsuario(FormView):
     template_name = 'users/registroUsuario.html'
     form_class = FormularioRegistro
-    success_url = 'Inicio/' #Debe mandar al login
+    success_url = reverse_lazy('urls_users:login')
 
     def form_valid(self, form):
 
@@ -26,7 +26,7 @@ class RegistroUsuario(FormView):
 class RegistroAdmin(FormView):
     template_name = 'users/registroAdmin.html'
     form_class = FormularioRegistroAdmin
-    success_url = reverse_lazy('urls_home:inicioAdmin') #Debe mandar al login
+    success_url = reverse_lazy('urls_users:login-admin') #Debe mandar al login
 
     def form_valid(self, form):
         Usuarios.objects.create_admin_pagina(
