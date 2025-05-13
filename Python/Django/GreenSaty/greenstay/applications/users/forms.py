@@ -99,12 +99,47 @@ class LoginUsuarios(forms.Form):
         correo = cleaned_data.get('correo')
         password = cleaned_data.get('password')
 
-        print(f"Formulario - Correo: {correo}, Password: {password}")
-
         if correo and password:
             usuario = authenticate(correo=correo, password=password)
             if not usuario:
                 raise forms.ValidationError('Los datos de usuario no son correctos')
 
         return cleaned_data
+
+
+class LoginAdmin(forms.Form):
+    
+    correo = forms.CharField(
+        label='Correo',
+        required=True,
+        widget=forms.EmailInput(
+            attrs={
+                'placeholder':'Ingrese su correo'
+            }
+        )
+    )
+
+    password = forms.CharField(
+        label='Contraseña',
+        required=True,
+        widget=forms.PasswordInput(attrs={'placeholder': 'Ingresa tu contraseña'})
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        correo = cleaned_data.get('correo')
+        password = cleaned_data.get('password')
+
+        dominio = '@greenstay.com'
+
+        if dominio not in correo:
+            raise forms.ValidationError('No es dominio de correo de administrador')
+        else:
+            if correo and password:
+                usuario = authenticate(correo=correo, password=password)
+                if not usuario:
+                    raise forms.ValidationError('Los datos de usuario no son correctos')
+
+            return cleaned_data
+
 

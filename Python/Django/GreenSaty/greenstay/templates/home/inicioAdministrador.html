@@ -6,4 +6,5 @@
 
 {% block body %}
     <h1>Pantalla Administrador, Bienvenido {{user}}</h1>
+    <a href="{% url 'urls_users:logout' %}">Cerrar sesion</a>
 {% endblock body %}

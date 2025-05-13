@@ -15,7 +15,7 @@ urlpatterns = [
         name='registroAdmin',
     ),
     path(
-        'LoginUser/',
+        'login/User/',
         views.LoginUsuario.as_view(),
         name='login',
     ),
@@ -23,5 +23,10 @@ urlpatterns = [
         'logout/',
         views.Logout.as_view(),
         name = 'logout'
+    ),
+    path(
+        'login/administrador/',
+        views.LoginAdministradores.as_view(),
+        name='login-admin'
     ),
 ]

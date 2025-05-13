@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Administrador
+{% endblock title %}
+
+{% block body %}
+    <h1>Login como Administrador</h1>
+    <form method="post">{% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Iniciar sesion</button>
+    </form>
+{% endblock body %}
