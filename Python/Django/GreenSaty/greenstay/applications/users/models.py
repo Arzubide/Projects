@@ -5,7 +5,7 @@ from .managers import UserManager
 class Usuarios(AbstractBaseUser,PermissionsMixin):
     
     nombres = models.CharField(max_length=25) 
-    apellidos = models.CharField(max_length=25,unique=True)
+    apellidos = models.CharField(max_length=25)
     correo = models.EmailField(unique=True)
 
     is_staff = models.BooleanField(default=False)

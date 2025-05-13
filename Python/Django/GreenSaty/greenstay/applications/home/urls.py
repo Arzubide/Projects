@@ -14,4 +14,9 @@ urlpatterns = [
         views.InicioUsuario.as_view(),
         name= 'inicioUser'
     ),
+    path(
+        'Administrador',
+        views.InicioAdministrador.as_view(),
+        name='inicioAdmin'
+    ),
 ]
