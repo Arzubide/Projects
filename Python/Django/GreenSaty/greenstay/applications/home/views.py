@@ -1,13 +1,14 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
+from .mixins import VistaAdministrador, VistaUsuario
+
 
 class VistaPrincipal(TemplateView):
     template_name = 'home/index.html'
 
 
-class InicioUsuario(TemplateView):
+class InicioUsuario(VistaUsuario,TemplateView):
     template_name = 'home/inicioUsuario.html'
 
 
-class InicioAdministrador(TemplateView):
+class InicioAdministrador(VistaAdministrador,TemplateView):
     template_name = 'home/inicioAdministrador.html'
