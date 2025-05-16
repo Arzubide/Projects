@@ -1,7 +1,13 @@
 from django.urls import path
 from . import views
 
+app_name = 'urls_administrador'
+
 urlpatterns = [
     #Se le agrego el dominio Administrador/ antes de la url mostrada
-    path('Registro-Empleados/', views.RegistroDelPerosnal.as_view()),
+    path(
+        'Registro-Empleados/', 
+        views.RegistroDelPerosnal.as_view(),
+        name='RegistroEmpleado'
+    ),
 ]
