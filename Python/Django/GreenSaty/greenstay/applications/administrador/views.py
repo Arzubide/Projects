@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from .models import RegistroPersonal
+from django.views.generic import CreateView
+from .forms import ModeloRegistroPersonal
+from django.urls import reverse_lazy
 
-# Create your views here.
+class RegistroDelPerosnal(CreateView):
+    model = RegistroPersonal
+    template_name = 'administrador/RegistroPersonal.html'
+    form_class = ModeloRegistroPersonal
+    success_url = reverse_lazy('')
