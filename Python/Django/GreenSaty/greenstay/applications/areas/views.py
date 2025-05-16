@@ -1,3 +1,18 @@
 from django.shortcuts import render
+from django.views.generic import FormView
+from .forms import Registro
+from django.urls import reverse_lazy
+from .models import AreasHotel
 
-# Create your views here.
+class RegistroArea(FormView):
+    template_name = 'areas/RegistroArea.html'
+    form_class = Registro
+    success_url = reverse_lazy('urls_home:inicioAdmin')##
+    
+    def form_valid(self, form):
+        areaCreada = AreasHotel(
+            nombreArea = form.cleaned_data['nombreArea'],
+            horarioFuncionamiento = form.cleaned_data['horarioFuncionamiento']
+        )
+        areaCreada.save()
+        return super(RegistroArea, self).form_valid(form)
