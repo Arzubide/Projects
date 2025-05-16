@@ -5,7 +5,6 @@ class RegistroPersonal(models.Model):
     area = models.ForeignKey(
         AreasHotel,
         on_delete= models.CASCADE,
-        related_name='empleados'
     )
     nombres = models.CharField(max_length=25)
     apellidos = models.CharField(max_length=25)

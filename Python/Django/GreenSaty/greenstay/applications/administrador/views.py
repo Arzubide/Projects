@@ -8,4 +8,4 @@ class RegistroDelPerosnal(CreateView):
     model = RegistroPersonal
     template_name = 'administrador/RegistroPersonal.html'
     form_class = ModeloRegistroPersonal
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('urls_home:inicioAdmin')
