@@ -17,14 +17,17 @@
 
     <div class="login-box">
     <h3 class="text-center mb-4">Inicio de sesion como administrador</h3>
-    <form id="loginForm">
+    <!-- Formulario para el inicio de sesion -->
+    <form method="post" id="loginForm">{% csrf_token %}
       <div class="mb-3">
         <label for="email" class="form-label">Correo electrónico</label>
-        <input type="email" class="form-control" id="email" required />
+        {{form.correo}}
+        <!-- <input type="email" class="form-control" id="email" required /> -->
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="password" required />
+        {{form.password}}
+        <!-- <input type="password" class="form-control" id="password" required /> -->
       </div>
       <div class="d-grid gap-2">
         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
@@ -33,6 +36,7 @@
         <small><a href="#">¿Olvidaste tu contraseña?</a></small>
       </div>
     </form>
+    <!-- Fin de formulario -->
   </div>
 
 {% endblock body %}
