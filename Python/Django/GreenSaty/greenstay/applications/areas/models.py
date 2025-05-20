@@ -16,4 +16,4 @@ class AreasHotel(models.Model):
     # )
 
     def __str__(self):
-        return (f'Area: {self.nombreArea} - Estado: {self.estado}')
+        return (f'{self.nombreArea}')
