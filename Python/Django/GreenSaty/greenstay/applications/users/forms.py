@@ -110,19 +110,23 @@ class LoginUsuarios(forms.Form):
 class LoginAdmin(forms.Form):
     
     correo = forms.CharField(
-        label='Correo',
         required=True,
         widget=forms.EmailInput(
             attrs={
-                'placeholder':'Ingrese su correo'
+                'placeholder':'Ingrese su correo',
+                'class' : 'form-control',
             }
         )
     )
 
     password = forms.CharField(
-        label='Contraseña',
         required=True,
-        widget=forms.PasswordInput(attrs={'placeholder': 'Ingresa tu contraseña'})
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Ingresa tu contraseña',
+                'class' : 'form-control',
+            }
+        )
     )
 
     def clean(self):
