@@ -5,10 +5,17 @@
 
 {% block body %}
     <h1>Listado de empleados</h1>
-    {% for i in object_list %}
-        {{i.id}}
-        {{i.area}}
-        {{i.nombres}}
-        {{i.apellidos}}
-    {% endfor %}
+    <ul>
+        {% for i in object_list %}
+        <li>
+            {{i.id}}
+            {{i.area}}
+            {{i.nombres}}
+            {{i.apellidos}}
+        </li>
+        {% endfor %}
+    </ul>
+    
+        
+    
 {% endblock body %}
