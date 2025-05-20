@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load static %} <!-- Importamos la carpeta static -->
 
 {% block title %}
     Administrador
 {% endblock title %}
 
 {% block direccionCSS %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}" /> <!--  accedemos a los archivos estaticos, y accedemos al css que le corresponde a esta pagina -->
+  <link rel="stylesheet" href="{% static 'css/login.css' %}" /> <!-- accedemos a la carpeta static -->
 {% endblock direccionCSS %}
 
 {% block body %}
