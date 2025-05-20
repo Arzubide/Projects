@@ -1,22 +1,16 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio de Sesión - Hotel Manager</title>
 
-{% block title %}
-    Administrador
-{% endblock title %}
+  <link rel="stylesheet" href="../css/login.css" />
+</head>
+<body>
 
-{% block direccionCSS %}
-    <link rel="stylesheet" href="../../static/css/login.css" />
-{% endblock direccionCSS %}
-
-{% block body %}
-    <!-- <h1>Login como Administrador</h1>
-    <form method="post">{% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Iniciar sesion</button>
-    </form> -->
-
-    <div class="login-box">
-    <h3 class="text-center mb-4">Inicio de sesion como administrador</h3>
+  <div class="login-box">
+    <h3 class="text-center mb-4">GreenStay</h3>
     <form id="loginForm">
       <div class="mb-3">
         <label for="email" class="form-label">Correo electrónico</label>
@@ -35,4 +29,6 @@
     </form>
   </div>
 
-{% endblock body %}
+
+</body>
+</html>
