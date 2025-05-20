@@ -12,8 +12,8 @@ class RegistroPersonal(models.Model):
     gerenteArea = models.BooleanField(default=False)
     
 
-    def __str__(self):
-        return f'{self.nombres} {self.apellidos}'
+    # def __str__(self):
+    #     return f'{self.nombres} {self.apellidos}'
 
     def es_supervisor(self):
         """Verifica si este empleado es supervisor de alguna área."""

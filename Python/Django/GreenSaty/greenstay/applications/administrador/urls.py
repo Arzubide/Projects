@@ -10,4 +10,9 @@ urlpatterns = [
         views.RegistroDelPerosnal.as_view(),
         name='RegistroEmpleado'
     ),
+    path(
+        'Lista-Empleados/',
+        views.ListadoPersonal.as_view(),
+        name = 'ListadoEmpleados',
+    ),
 ]
