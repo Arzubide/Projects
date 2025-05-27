@@ -4,3 +4,66 @@ usuraio:
     green
 contraseña:
     green6734
+
+
+HABITACIONES
+
+-- Standart
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('101', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('102', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('103', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('104', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('105', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('106', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('107', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('108', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('109', '1', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('110', '1', '1');
+
+-- Deluxe
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('201', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('202', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('203', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('204', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('205', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('206', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('207', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('208', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('209', '2', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('210', '2', '1');
+
+-- Ejecutiva
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('301', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('302', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('303', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('304', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('305', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('306', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('307', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('308', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('309', '3', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('310', '3', '1');
+
+-- Suite
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('401', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('402', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('403', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('404', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('405', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('406', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('407', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('408', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('409', '4', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('410', '4', '1');
+
+-- Presidencial
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('501', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('502', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('503', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('504', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('505', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('506', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('507', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('508', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('509', '5', '1');
+INSERT INTO habitaciones_habitacion ("numeroHabitacion", "nivelHabitacion", "estadoHabitacion") VALUES ('510', '5', '1');
