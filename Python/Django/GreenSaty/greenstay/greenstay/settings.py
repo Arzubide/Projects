@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'applications.users',
     'applications.administrador',
     'applications.areas',
+    'applications.habitaciones',
 ]
 
 MIDDLEWARE = [
