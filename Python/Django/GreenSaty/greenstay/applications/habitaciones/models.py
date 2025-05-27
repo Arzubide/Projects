@@ -22,7 +22,6 @@ class Habitacion(models.Model):
         'Categoria',
         max_length=20,
         choices=NIVELES,
-        default='STANDART'
     )
     estadoHabitacion = models.CharField(
         'Estado',
