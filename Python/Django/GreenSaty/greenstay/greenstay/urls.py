@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('applications.home.urls')),
     path('Administrador/', include('applications.areas.urls')),
     path('Administrador/', include('applications.administrador.urls')),
+    path('', include('applications.habitaciones.urls')),
 ]
