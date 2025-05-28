@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 from .models import Habitacion
+from django.urls import reverse_lazy
 
 class Habitaciones(ListView): #Administrador
     template_name = 'habitaciones/ListaHabitaciones.html'
@@ -18,3 +19,11 @@ class HabitacionesDisponibles(ListView):  # Cliente
     def get_queryset(self):
         diponibilidad = 'DISPONIBLE'  
         return Habitacion.objects.filter(estadoHabitacion=diponibilidad)
+    
+
+class ActualizarDatosHabitacion(UpdateView):
+    template_name = 'habitaciones/ActualizarDatosHabitcaion.html'
+    model = Habitacion
+    fields = ('__all__')
+    success_url = reverse_lazy('urls_habitaciones:ListaHabitaciones')
+

@@ -28,7 +28,8 @@
                     <p class="card-text">
                         Numero de habitacion: {{h.numeroHabitacion}}, Estado :{{h.estadoHabitacion}}
                     </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+        name='ActualizarHabitacion'
+                    <a href="{% url 'urls_habitaciones:ActualizarHabitacion' h.id %}" class="btn btn-primary">Modificar</a>
                 </div>
             </div>
         {% endfor %}
