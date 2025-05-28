@@ -17,16 +17,16 @@
                     <img src="{% static 'img/dl.jpg' %}" class="card-img-top" alt="...">
                 {% elif h.nivelHabitacion == 'EJECUTIVA' %}
                     <img src="{% static 'img/ej.jpg' %}" class="card-img-top" alt="...">
-                {% elif h.nivelHabitacion == '' %}
+                {% elif h.nivelHabitacion == 'SUITE' %}
                     <img src="{% static 'img/suite.jpg' %}" class="card-img-top" alt="...">
-                {% elif h.nivelHabitacion == '' %}
+                {% elif h.nivelHabitacion == 'PRESIDENCIAL' %}
                     <img src="{% static 'img/prl.jpg' %}" class="card-img-top" alt="...">
                 {% endif %}
 
                 <div class="card-body">
                     <h5 class="card-title">{{h.nivelHabitacion}}</h5>
                     <p class="card-text">
-                        Numero de habitacion: {{h.numeroHabitacion}}, Estado :{{h.estadoHabitacion}}
+                        Numero de habitacion: {{h.numeroHabitacion}}
                     </p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>

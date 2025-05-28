@@ -13,6 +13,7 @@ class Habitaciones(ListView): #Administrador
 class HabitacionesDisponibles(ListView):  # Cliente
     template_name = 'habitaciones/HabitacionesDisponibles.html'
     context_object_name = 'habitaciones'
+    paginate_by = 5
 
     def get_queryset(self):
         diponibilidad = 'DISPONIBLE'  
