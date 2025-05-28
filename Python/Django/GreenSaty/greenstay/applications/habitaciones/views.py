@@ -6,4 +6,5 @@ class Habitaciones(ListView):
     template_name = 'habitaciones/ListaHabitaciones.html'
     model = Habitacion
     context_object_name = 'habitaciones'
+    paginate_by = 10
     pass
