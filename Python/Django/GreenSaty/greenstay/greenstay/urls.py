@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('applications.home.urls')),
     path('Administrador/', include('applications.areas.urls')),
     path('Administrador/', include('applications.administrador.urls')),
-    path('', include('applications.habitaciones.urls')),
+    path('', include('applications.habitaciones.urls')), #a lo mejor no es necesario esta url
+    path('', include('applications.clientes.urls')),
 ]
