@@ -12,5 +12,10 @@ urlpatterns = [
     path('Habitaciones-disponibles/',
         views.HabitacionesDisponibles.as_view(),
         name='HabitacionesDisponibles'
+    ),
+    path(
+        'Actualizar-Habitacion/<pk>',
+        views.ActualizarDatosHabitacion.as_view(),
+        name='ActualizarHabitacion',
     )
 ]
