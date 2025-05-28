@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %} 
 
 {% block title %}
     Habitaciones
@@ -6,13 +7,20 @@
 
 {% block body %}
     <h1>Habitaciones</h1>
-    <ul>
-        {% for h in habitaciones %}
-            <li>Numero de habitacion: {{h.numeroHabitacion}}</li>
-            <li>Categoria: {{h.nivelHabitacion}}</li>
-            <li>Estado :{{h.estadoHabitacion}}</li>
-        {% endfor %}
-    </ul>
-
-    
+    <div class="container-lg">
+    {% for h in habitaciones %}
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'img/st.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{h.nivelHabitacion}}</h5>
+                <p class="card-text">
+                    Numero de habitacion: {{h.numeroHabitacion}}, Estado :{{h.estadoHabitacion}}
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock body %}
+
+
