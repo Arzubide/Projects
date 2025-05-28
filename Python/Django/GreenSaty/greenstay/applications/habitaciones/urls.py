@@ -7,6 +7,10 @@ urlpatterns = [
     path(
         'habitaciones/',
         views.Habitaciones.as_view(),
-        name='ListaHabitaciones'
+        name='ListaHabitaciones',
+    ),
+    path('Habitaciones-disponibles/',
+        views.HabitacionesDisponibles.as_view(),
+        name='HabitacionesDisponibles'
     )
 ]

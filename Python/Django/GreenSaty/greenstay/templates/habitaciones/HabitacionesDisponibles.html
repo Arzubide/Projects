@@ -17,9 +17,9 @@
                     <img src="{% static 'img/dl.jpg' %}" class="card-img-top" alt="...">
                 {% elif h.nivelHabitacion == 'EJECUTIVA' %}
                     <img src="{% static 'img/ej.jpg' %}" class="card-img-top" alt="...">
-                {% elif h.nivelHabitacion == 'SUITE' %}
+                {% elif h.nivelHabitacion == '' %}
                     <img src="{% static 'img/suite.jpg' %}" class="card-img-top" alt="...">
-                {% elif h.nivelHabitacion == 'PRESIDENCIAL' %}
+                {% elif h.nivelHabitacion == '' %}
                     <img src="{% static 'img/prl.jpg' %}" class="card-img-top" alt="...">
                 {% endif %}
 
@@ -53,4 +53,3 @@
 
     </div>
 {% endblock body %}
-
