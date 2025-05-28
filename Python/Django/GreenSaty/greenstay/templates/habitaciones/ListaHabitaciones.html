@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Habitaciones
+{% endblock title %}
+
+{% block body %}
+    <h1>Habitaciones</h1>
+    <ul>
+        {% for h in habitaciones %}
+            <li>Numero de habitacion: {{h.numeroHabitacion}}</li>
+            <li>Categoria: {{h.nivelHabitacion}}</li>
+            <li>Estado :{{h.estadoHabitacion}}</li>
+        {% endfor %}
+    </ul>
+
+    
+{% endblock body %}
