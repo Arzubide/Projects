@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView
+from django.views import View
 from .models import Habitacion
 from django.urls import reverse_lazy
+from django.shortcuts import redirect, get_object_or_404 #no se que hace 404
 
 class Habitaciones(ListView): #Administrador
     template_name = 'habitaciones/ListaHabitaciones.html'
@@ -27,3 +29,11 @@ class ActualizarDatosHabitacion(UpdateView):
     fields = ('__all__')
     success_url = reverse_lazy('urls_habitaciones:ListaHabitaciones')
 
+
+class ReservarHabitacionView(View):
+    def post(self, request, pk):
+        habitacion = get_object_or_404(Habitacion, pk=pk, estadoHabitacion='DISPONIBLE')
+        habitacion.estadoHabitacion = 'RESERVADA'
+        habitacion.usuarioHabitacion = request.user
+        habitacion.save()
+        return redirect('urls_habitaciones:HabitacionesDisponibles')  # vista con los datos de la reservacion

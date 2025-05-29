@@ -17,5 +17,9 @@ urlpatterns = [
         'Actualizar-Habitacion/<pk>',
         views.ActualizarDatosHabitacion.as_view(),
         name='ActualizarHabitacion',
-    )
+    ),
+    path('reservar/<int:pk>/', 
+        views.ReservarHabitacionView.as_view(), 
+        name='reservar_habitacion',
+    ),
 ]
