@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Detalles cuenta
+{% endblock title %}
+
+{% block body %}
+    <h1>Detalles de la cuenta</h1>
+    <!--Inicio de los dato personales registrados-->
+    <h2>Datos personales registrados</h2>
+    <p>Nombres: {{user.nombres}}</p>
+    <p>Apellidos: {{user.apellidos}}</p>
+    <p>Correo: {{user.correo}}</p>
+    <!--Fin de los dato personales registrados-->
+
+    <!--Inicio de bloque para mostrar las habitaciones que tiene el usuario-->
+    <h2>Habitaciones reservadas</h2>
+    <ul>
+        {% for h in habitacion %}
+        <li>{{h.numeroHabitacion}}</li>
+        {% empty %}
+        <h4>No tienes nunguna habitacion reservada.</h4>
+        {% endfor %}
+    </ul>
+    <!--Fin de bloque para mostrar las habitaciones que tiene el usuario-->
+
+    <!--Inicio para mostrar las tarjeatas registradas-->
+    <h2>Tarjetas registradas</h2>
+        <ul>
+        {% for t in tarjeta %}
+            <li>{{t}}</li>
+        {% empty %}
+            <h4>No tienes nunguna tarjeta registrada.</h4>
+        {% endfor %}
+    </ul>
+    <!--Fin para mostrar las tarjeatas registradas-->
+    
+
+
+{% endblock body %}
