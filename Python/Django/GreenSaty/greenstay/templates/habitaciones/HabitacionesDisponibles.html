@@ -28,10 +28,7 @@
                     <p class="card-text">
                         Numero de habitacion: {{h.numeroHabitacion}}
                     </p>
-                    <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' h.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Reservar</button>
-                    </form>>
+                    <a href="{% url 'urls_habitaciones:detalles-habitacion' h.id %}" class="btn btn-primary">Mostrar</a>
                 </div>
             </div>
         {% endfor %}
