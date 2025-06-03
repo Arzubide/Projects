@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import Tarjeta
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
 
 class RegistroTarjeta(CreateView):

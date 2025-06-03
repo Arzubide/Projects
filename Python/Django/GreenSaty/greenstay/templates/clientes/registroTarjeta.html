@@ -6,7 +6,7 @@
 
 {% block body %}
     <h1>Registro de tarjeta de credito</h1>
-    <form method="post">
+    <form method="post">{% csrf_token %}
         {{form.as_p}}
         <button type="submit">Agregar tarjeta</button>
     </form>
