@@ -22,4 +22,9 @@ urlpatterns = [
         views.ReservarHabitacionView.as_view(), 
         name='reservar_habitacion',
     ),
+    path(
+        'detalles-habitacion/<pk>/',
+        views.DetallesHabitacion.as_view(),
+        name='detalles-habitacion'
+    )
 ]
