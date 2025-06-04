@@ -25,5 +25,8 @@ class TarjetaCredito(models.Model):
     
     def metodoPago(self):
         return (f'{self.tipoTarjeta} - **** **** **** {self.numeroTarjeta[-4:]}')
+    
+    def Terminacion(self):
+        return f'**** **** **** {self.numeroTarjeta[-4:]}'
 
 

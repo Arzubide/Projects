@@ -12,5 +12,19 @@ urlpatterns = [
         'Detalles-Cuenta/<pk>/',
         views.DetallesCuenta.as_view(),
         name='detallesCuenta'
+    ),
+    path(
+        'Actualizar-Datos/<pk>/',
+        views.ActualizarDatos.as_view(),
+        name='actualizarDatos'
+    ),
+    path('Eliminar/<int:pk>/', 
+        views.EliminarReservacion.as_view(), 
+        name='EliminarReservacion',
+    ),
+    path(
+        'Eliminar-Tarjeta/<pk>/',
+        views.EliminarTarjetaCredito.as_view(),
+        name='EliminarTarjeta'
     )
 ]
