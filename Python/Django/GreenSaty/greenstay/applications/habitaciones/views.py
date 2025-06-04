@@ -51,10 +51,13 @@ class DetallesHabitacion(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         usuario = self.request.user
+
+        TarjetasUsuario = TarjetaCredito.objects.filter(usuario=usuario)
+        context['tarjeta'] = TarjetasUsuario
+
         '''Esto es una consulta que busca todas las tarjetas de crédito en la base de datos que están relacionadas con el usuario actual.'''
         tiene_tarjeta = TarjetaCredito.objects.filter(usuario=usuario).exists()
         '''Dame todas las tarjetas de crédito donde el campo usuario en la base de datos coincida con el usuario que está actualmente autenticado.'''
-        
         context['tiene_tarjeta'] = tiene_tarjeta
         return context
     
