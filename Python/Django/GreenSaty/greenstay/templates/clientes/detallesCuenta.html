@@ -11,6 +11,7 @@
     <p>Nombres: {{user.nombres}}</p>
     <p>Apellidos: {{user.apellidos}}</p>
     <p>Correo: {{user.correo}}</p>
+    <a href="{% url 'urls_clientes:actualizarDatos' user.id %}">Editar Datos</a>
     <!--Fin de los dato personales registrados-->
 
     <!--Inicio de bloque para mostrar las habitaciones que tiene el usuario-->
@@ -18,10 +19,17 @@
     <ul>
         {% for h in habitacion %}
         <li>{{h.numeroHabitacion}}</li>
+        
+        <form method="post" action="{% url 'urls_clientes:EliminarReservacion' h.id %}">
+            {% csrf_token %}
+            <button type="submit">Eliminar reservacion</button>
+        </form>
+
         {% empty %}
         <h4>No tienes nunguna habitacion reservada.</h4>
         {% endfor %}
     </ul>
+    <a href="{% url 'urls_habitaciones:HabitacionesDisponibles' %}">Agregar reservacion</a>
     <!--Fin de bloque para mostrar las habitaciones que tiene el usuario-->
 
     <!--Inicio para mostrar las tarjeatas registradas-->
@@ -29,10 +37,13 @@
         <ul>
         {% for t in tarjeta %}
             <li>{{t}}</li>
+            <a href="{% url 'urls_clientes:EliminarTarjeta' t.id %}">Eliminar tarjeta</a>
         {% empty %}
             <h4>No tienes nunguna tarjeta registrada.</h4>
         {% endfor %}
     </ul>
+    
+    <a href="{% url 'urls_clientes:registroTarjeta' %}">Agregar tarjeta</a>
     <!--Fin para mostrar las tarjeatas registradas-->
     
 
