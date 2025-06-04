@@ -10,10 +10,17 @@
     
     <div>
         {% if tiene_tarjeta %}
-        <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Reservar</button>
-        </form> 
+            <!--Simulando la compra-->
+            <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">
+                {% csrf_token %}
+                <label for="cars">Seleccione su metodo de pago:</label>
+                    <select id="" name="">
+                        {% for t in tarjeta %}                      
+                        <option>{{t.metodoPago}}</option>
+                        {% endfor %}
+                    </select><br>
+                <button type="submit" class="btn btn-primary">Reservar</button>
+            </form> 
         {% else %}
         <a href="{% url 'urls_clientes:registroTarjeta' %}" class="btn btn-primary">Registrar tarjeta</a>
         <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">

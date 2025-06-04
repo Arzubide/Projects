@@ -22,5 +22,8 @@ class TarjetaCredito(models.Model):
 
     def __str__(self):
         return f'{self.tipoTarjeta} - **** **** **** {self.numeroTarjeta[-4:]} - Titular {self.titular}'
+    
+    def metodoPago(self):
+        return (f'{self.tipoTarjeta} - **** **** **** {self.numeroTarjeta[-4:]}')
 
 
