@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import FormView
+from django.views.generic import FormView, ListView
 from .forms import Registro
 from django.urls import reverse_lazy
 from .models import AreasHotel
@@ -16,3 +16,12 @@ class RegistroArea(FormView):
         )
         areaCreada.save()
         return super(RegistroArea, self).form_valid(form)
+
+
+class ListaAreasRegistradas(ListView):
+    model = AreasHotel
+    template_name = 'areas/ListaAreasRegistradas.html'
+    context_object_name = 'areas'
+
+    def get_queryset(self):
+        return AreasHotel.objects.all()
