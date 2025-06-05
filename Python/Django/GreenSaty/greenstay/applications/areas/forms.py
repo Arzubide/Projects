@@ -26,7 +26,7 @@ class Registro(forms.ModelForm):
                 attrs = {
                     'placeholder' : 'nnAM - nnPM',
                     'class': 'form-control',
-                    'id' : 'nombreArea'
+                    'id' : 'horarioFuncionamiento'
                 }
             )
         }
