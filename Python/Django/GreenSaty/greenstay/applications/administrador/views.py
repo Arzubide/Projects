@@ -11,7 +11,9 @@ class RegistroDelPerosnal(CreateView):
     success_url = reverse_lazy('urls_home:inicioAdmin')
 
 class ListadoPersonal(ListView):
-    template_name = 'administrador/ListaEmpleados.html'
+    # template_name = 'administrador/ListaEmpleados.html'
+    template_name = 'administrador/Gestion_empleados.html'
+    context_object_name = 'empleados'
     
     def get_queryset(self):
         empleado = self.request.GET.get("apellido","")

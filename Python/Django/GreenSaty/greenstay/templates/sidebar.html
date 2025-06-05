@@ -7,25 +7,21 @@
 
         <!-- Dashboard General -->
 
-        <a href="dashboard.html" class="list-group-item list-group-item-action sidebar-link">
+        <a href="{% url 'urls_home:inicioAdmin' %}" class="list-group-item list-group-item-action sidebar-link">
             Dashboard general
         </a>
 
         <!-- Catalogo del hotel -->
 
         <a class="list-group-item list-group-item-action sidebar-link d-flex justify-content-between align-items-center"
-            data-bs-toggle="collapse" href="#moduloCatalogo" role="button" aria-expanded="false"
-            aria-controls="moduloCatalogo">
+            data-bs-toggle="collapse" href="#moduloCatalogo" role="button" aria-expanded="false" aria-controls="moduloCatalogo">
             Catalogo del hotel
             <span class="caret">▸</span>
         </a>
 
         <div class="collapse ps-3" id="moduloCatalogo">
-            <a href="Catalogo_cuartos.html" class="list-group-item list-group-item-action sidebar-link">
+            <a href="{% url 'urls_habitaciones:ListaHabitaciones' %}" class="list-group-item list-group-item-action sidebar-link">
                 Catalogo de cuartos
-            </a>
-            <a href="Catalogo_servicios.html" class="list-group-item list-group-item-action sidebar-link">
-                Catalogo de servicios
             </a>
         </div>
 
@@ -120,7 +116,7 @@
         </a>
 
         <div class="collapse ps-3" id="moduloGestionEmpleado">
-            <a href="Gestion_empleados.html" class="list-group-item list-group-item-action sidebar-link">
+            <a href="{% url 'urls_administrador:ListadoEmpleados' %}" class="list-group-item list-group-item-action sidebar-link">
                 Empleados
             </a>
             <a href="Contratacion.html" class="list-group-item list-group-item-action sidebar-link">
