@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 
 class RegistroDelPerosnal(CreateView):
     model = RegistroPersonal
-    template_name = 'administrador/RegistroPersonal.html'
+    template_name = 'administrador/Contratacion.html'
     form_class = ModeloRegistroPersonal
     success_url = reverse_lazy('urls_home:inicioAdmin')
 

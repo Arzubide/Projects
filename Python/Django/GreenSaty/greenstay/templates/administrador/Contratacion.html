@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+{% endblock css %}
+
+{% block title %}
+    Contratación de Empleados - Hotel Manager
+{% endblock title %}
+
+{% block body %}
+    <div class="d-flex" id="wrapper">
+        {% include 'sidebar.html' %}
+        <div id="page-content-wrapper" class="w-100">
+            {% include 'navbar.html' %}
+            <div class="container-fluid p-4">
+                <h1>Contratación de Empleados</h1>
+                <p>Formulario para registrar nuevos empleados en el sistema del hotel.</p>
+
+                <form method="post"> {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit">Registrar</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script src="{% static 'js/sidebar_toogle.js' %}"></script>
+{% endblock body %}
