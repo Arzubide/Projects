@@ -16,21 +16,29 @@ class ModeloRegistroPersonal(forms.ModelForm):
 
         widgets = {
             'area': forms.Select(
-                
+                attrs = {
+                    'class' : 'form-select'
+                }
             ),
             'nombres' : forms.TextInput(
                 attrs={
-                    'placeholder' : 'Ingresa tu nombre(s)'
+                    'placeholder' : 'Ingresa tu nombre(s)',
+                    'class': 'form-control',
+                    'id' : 'nombreArea'
                 }
             ),
             'apellidos' : forms.TextInput(
                 attrs={
-                    'placeholder' : 'Ingresa tus apellidos'
+                    'placeholder' : 'Ingresa tus apellidos',
+                    'class': 'form-control',
+                    'id' : 'nombreArea'
                 }
             ),
             'correo' : forms.EmailInput(
                 attrs={
-                    'placeholder' : 'Ingresa tu correo'
+                    'placeholder' : 'Ingresa tu correo',
+                    'class': 'form-control',
+                    'id' : 'nombreArea'
                 }
             ),
             'gerenteArea' : forms.CheckboxInput()

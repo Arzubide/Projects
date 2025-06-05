@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404 #no se que hace 404
 
 class Habitaciones(ListView): #Administrador
-    template_name = 'habitaciones/ListaHabitaciones.html'
+    template_name = 'habitaciones/Catalogo_cuartos.html'
     model = Habitacion
     context_object_name = 'habitaciones'
     paginate_by = 10

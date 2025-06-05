@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from .models import AreasHotel
 
 class RegistroArea(FormView):
-    template_name = 'areas/RegistroArea.html'
+    template_name = 'areas/Creacion_servicios.html'
     form_class = Registro
     success_url = reverse_lazy('urls_home:inicioAdmin')##
     
