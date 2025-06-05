@@ -4,12 +4,12 @@ from django.db import models
 class AreasHotel(models.Model):
 
     ESTADOS = [
-        ('Disponible','Disponible'),
-        ('Inhabilitada', 'Inhabilitada')
+        ('DISPONIBLE','Disponible'),
+        ('INHABILITADA', 'Inhabilitada')
     ]
 
     nombreArea = models.CharField(max_length=50, unique=True)
-    estado = models.BooleanField(default='Inhabilitada', blank=True, choices=ESTADOS)
+    estado = models.CharField(max_length=20, choices=ESTADOS, default='INHABILITADA')
     horarioFuncionamiento = models.CharField(max_length=15)
 
     def __str__(self):

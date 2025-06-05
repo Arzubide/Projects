@@ -17,20 +17,25 @@
                 {% include 'navbar.html' %}
                 <div class="container-fluid p-4">
                     <h1 class="mb-4">Crear Nuevo Servicio</h1>
+
                     <form method="post">{% csrf_token %}
                         <div class="mb-3">
-                            <label for="" class="form-label">Nombre del Área</label>
-                        {{form.nombreArea}}
+                            <label for="" class="form-label">Nombre del área</label>
+                            {{form.nombreArea}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Estado del área</label>
+                            {{form.estado}}
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Horario del funcionamiento</label>
-                        {{form.horarioFuncionamiento}}
+                            {{form.horarioFuncionamiento}}
                         </div>
                         <div class="mb-3" style="text-align: center;">
                             <button type="submit" class="btn btn-primary">Registrar</button>
                         </div>
-                        
                     </form>
+                    
                 </div>
 
             </div>

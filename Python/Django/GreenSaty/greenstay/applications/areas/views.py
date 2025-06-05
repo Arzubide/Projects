@@ -7,12 +7,13 @@ from .models import AreasHotel
 class RegistroArea(FormView):
     template_name = 'areas/Creacion_servicios.html'
     form_class = Registro
-    success_url = reverse_lazy('urls_home:inicioAdmin')##
+    success_url = reverse_lazy('urls_home:inicioAdmin')
     
     def form_valid(self, form):
         areaCreada = AreasHotel(
             nombreArea = form.cleaned_data['nombreArea'],
-            horarioFuncionamiento = form.cleaned_data['horarioFuncionamiento']
+            horarioFuncionamiento = form.cleaned_data['horarioFuncionamiento'],
+            estado = form.cleaned_data['estado']
         )
         areaCreada.save()
         return super(RegistroArea, self).form_valid(form)
