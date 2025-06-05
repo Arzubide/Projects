@@ -1,5 +1,8 @@
 from django.shortcuts import render
+#Modelos
 from .models import RegistroPersonal
+from applications.users.models import Usuarios
+#Vistas
 from django.views.generic import CreateView, ListView
 from .forms import ModeloRegistroPersonal
 from django.urls import reverse_lazy
@@ -11,7 +14,7 @@ class RegistroDelPerosnal(CreateView):
     success_url = reverse_lazy('urls_home:inicioAdmin')
 
 class ListadoPersonal(ListView):
-    # template_name = 'administrador/ListaEmpleados.html'
+
     template_name = 'administrador/Gestion_empleados.html'
     context_object_name = 'empleados'
     
@@ -22,3 +25,13 @@ class ListadoPersonal(ListView):
         )
 
         return ListadoEmpleados
+    
+
+class ListaClientes(ListView):
+    model = Usuarios
+    template_name = 'administrador/ListaUsuarios.html'
+    context_object_name = 'usuarios'
+
+    def get_queryset(self):
+        return Usuarios.objects.all() #Filtramos a todos los usuarios del modelo
+    

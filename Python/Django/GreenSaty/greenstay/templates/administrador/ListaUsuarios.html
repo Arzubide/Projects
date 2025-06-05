@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Gestión de Empleados - Hotel Manager
+    Lista de Usuarios
 {% endblock title %}
 
 {% block css %}
@@ -10,16 +10,13 @@
 {% endblock css %}
 
 {% block body %}
-    
-
     <div class="d-flex" id="wrapper">
         {% include 'sidebar.html' %}
         <div id="page-content-wrapper" class="w-100">
             {% include 'navbar.html' %}
-
             <div class="container-fluid p-4">
-                <h1>Gestión de Empleados</h1>
-                <p>Lista de empleados con opciones para modificar o despedir.</p>
+                <h1>Gestión de Clientes</h1>
+                <p>Lista los clientes con opciones para modificar.</p>
 
                 <table class="table table-striped align-middle">
                     <thead>
@@ -28,18 +25,16 @@
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Correo</th>
-                            <th>Area</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="empleadosTableBody">
-                        {% for e in empleados %}
+                        {% for u in usuarios %}
                             <tr>
-                                <td>{{e.id}}</td>
-                                <td>{{e.nombres}}</td>
-                                <td>{{e.apellidos}}</td>
-                                <td>{{e.correo}}</td>
-                                <td>{{e.area}}</td>
+                                <td>{{u.id}}</td>
+                                <td>{{u.nombres}}</td>
+                                <td>{{u.apellidos}}</td>
+                                <td>{{u.correo}}</td>
                                 <td>
                                     <a href="" class="btn btn-sm btn-warning btn-action">Modificar</a>
                                     <a href="" class="btn btn-sm btn-danger">Eliminar</a>
@@ -50,8 +45,8 @@
                 </table>
 
             </div>
-
         </div>
+
     </div>
     <script src="{% static 'js/sidebar_toogle.js' %}"></script>
 {% endblock body %}

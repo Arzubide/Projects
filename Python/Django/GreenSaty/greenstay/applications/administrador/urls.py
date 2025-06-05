@@ -15,4 +15,9 @@ urlpatterns = [
         views.ListadoPersonal.as_view(),
         name = 'ListadoEmpleados',
     ),
+    path(
+        'Lista-clientes/',
+        views.ListaClientes.as_view(),
+        name='ListaClientes'
+    )
 ]
