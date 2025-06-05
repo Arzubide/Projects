@@ -1,0 +1,91 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #fff;
+}
+
+/* Wrapper para layout */
+#wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar general */
+#sidebar-wrapper {
+  width: 240px;
+  transition: all 0.3s ease;
+  overflow-y: auto;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: -240px;
+}
+
+/* Sidebar usuario */
+.sidebar-user {
+  background-color: #1a237e; /* azul naval */
+}
+
+/* Sidebar admin */
+.sidebar-admin {
+  background-color: #5a066bd2; /* dorado */
+  color: #ff0404;
+}
+
+.sidebar-admin .sidebar-heading {
+  background-color: #001f3f; /* azul naval oscuro */
+  color: #e2b110; /* dorado */
+}
+
+.sidebar-admin .list-group-item {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.sidebar-admin .list-group-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #ff2525;
+}
+
+/* Links sidebar */
+.list-group-item {
+  border: none;
+  color: #fff;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #d4af37;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #121212 !important;
+}
+
+/* Botón toggle */
+#sidebarToggle {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #d4af37;
+  cursor: pointer;
+}
+
+/* Contenido principal */
+#page-content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #121212;
+  padding: 20px;
+}
+
+h1, p {
+  color: #fff;
+}

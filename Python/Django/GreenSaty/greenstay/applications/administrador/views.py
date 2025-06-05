@@ -6,12 +6,14 @@ from django.urls import reverse_lazy
 
 class RegistroDelPerosnal(CreateView):
     model = RegistroPersonal
-    template_name = 'administrador/RegistroPersonal.html'
+    template_name = 'administrador/Contratacion.html'
     form_class = ModeloRegistroPersonal
     success_url = reverse_lazy('urls_home:inicioAdmin')
 
 class ListadoPersonal(ListView):
-    template_name = 'administrador/ListaEmpleados.html'
+    # template_name = 'administrador/ListaEmpleados.html'
+    template_name = 'administrador/Gestion_empleados.html'
+    context_object_name = 'empleados'
     
     def get_queryset(self):
         empleado = self.request.GET.get("apellido","")

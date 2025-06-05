@@ -1,0 +1,69 @@
+<!-- Sidebar -->
+<div class="border-end sidebar-admin" id="sidebar-wrapper">
+    <div class="sidebar-heading text-white py-4 px-3 fs-4 fw-bold text-center border-bottom">
+        Panel de Control
+    </div>
+    <div class="list-group list-group-flush">
+
+        <!-- Dashboard General -->
+
+        <a href="{% url 'urls_home:inicioAdmin' %}" class="list-group-item list-group-item-action sidebar-link">
+            Dashboard general
+        </a>
+
+        <!-- Gestion huespedes -->
+
+        <a href="Gestion_huespedes.html" class="list-group-item list-group-item-action sidebar-link">
+            Gestión de huespedes
+        </a>
+
+        <!-- Modulo gestion hotel-->
+
+        <a class="list-group-item list-group-item-action sidebar-link d-flex justify-content-between align-items-center"
+            data-bs-toggle="collapse" href="#moduloCreacionInfraestructura" role="button" aria-expanded="false"
+            aria-controls="CreacionServicios">
+            Gestion del hotel
+            <span class="caret">▸</span>
+        </a>
+
+        <div class="collapse ps-3" id="moduloCreacionInfraestructura">
+
+            <a href="{% url 'urls_areas:RegistroArea' %}" class="list-group-item list-group-item-action sidebar-link">
+                Registro de área
+            </a>
+
+            <a href="" class="list-group-item list-group-item-action sidebar-link">
+                Areas registradas
+            </a>
+
+            <a href="{% url 'urls_habitaciones:ListaHabitaciones' %}" class="list-group-item list-group-item-action sidebar-link">
+                Administrar cuartos
+            </a>
+
+        </div>
+
+        <!-- Modulo gestion empleado-->
+
+        <a class="list-group-item list-group-item-action sidebar-link d-flex justify-content-between align-items-center"
+            data-bs-toggle="collapse" href="#moduloGestionEmpleado" role="button" aria-expanded="false"
+            aria-controls="GestionEmpleado">
+            Gestion de empleados
+            <span class="caret">▸</span>
+        </a>
+
+        <div class="collapse ps-3" id="moduloGestionEmpleado">
+            <a href="{% url 'urls_administrador:ListadoEmpleados' %}" class="list-group-item list-group-item-action sidebar-link">
+                Empleados
+            </a>
+            <a href="{% url 'urls_administrador:RegistroEmpleado' %}" class="list-group-item list-group-item-action sidebar-link">
+                Contratacion de empleados
+            </a>
+        </div>
+
+            <a href="{% url 'urls_users:logout' %}" class="list-group-item list-group-item-action sidebar-link">
+                Cerrar sesión
+            </a>
+
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
