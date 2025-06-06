@@ -5,6 +5,7 @@ from django.views import View
 #Modelos
 from .models import Habitacion
 from applications.clientes.models import TarjetaCredito
+from .forms import ModeloHabitacion
 #URLs
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404 #no se que hace 404
@@ -35,9 +36,9 @@ class HabitacionesDisponibles(ListView):  # Cliente
     
 
 class ActualizarDatosHabitacion(UpdateView):
-    template_name = 'habitaciones/ActualizarDatosHabitcaion.html'
     model = Habitacion
-    fields = ('__all__')
+    template_name = 'acciones/ModificarDatosHabitcaion.html'
+    form_class = ModeloHabitacion
     success_url = reverse_lazy('urls_habitaciones:ListaHabitaciones')
 
 
