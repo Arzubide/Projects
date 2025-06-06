@@ -47,7 +47,7 @@ class ListaClientes(ListView):
     context_object_name = 'usuarios'
 
     def get_queryset(self):
-        return Usuarios.objects.all() #Filtramos a todos los usuarios del modelo
+        return Usuarios.objects.exclude(correo__endswith='@greenstay.com') #Lista unicamente de los empleados
     
 
 class EliminarCliente(DeleteView):
