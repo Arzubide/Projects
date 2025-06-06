@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import FormView, ListView
+from django.views.generic import FormView, ListView, DeleteView,UpdateView
 from .forms import Registro
 from django.urls import reverse_lazy
 from .models import AreasHotel
@@ -26,3 +26,16 @@ class ListaAreasRegistradas(ListView):
 
     def get_queryset(self):
         return AreasHotel.objects.all()
+
+
+class EliminarArea(DeleteView):
+    model = AreasHotel
+    template_name = 'acciones/EliminarArea.html'
+    success_url = reverse_lazy('urls_areas:ListaAreasRegistradas')
+
+
+class ModificarUsuario(UpdateView):
+    model = AreasHotel
+    template_name = 'acciones/.html'
+    form_class = Registro
+    success_url = reverse_lazy('urls_administrador:') 

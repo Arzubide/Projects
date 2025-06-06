@@ -14,5 +14,10 @@ urlpatterns = [
         'Lista-Areas/',
         views.ListaAreasRegistradas.as_view(),
         name='ListaAreasRegistradas'
+    ),
+    path(
+        'Elimar/<pk>',
+        views.EliminarArea.as_view(),
+        name='EliminarArea'
     )
 ]
