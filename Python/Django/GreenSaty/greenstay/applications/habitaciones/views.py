@@ -14,7 +14,14 @@ class Habitaciones(ListView): #Administrador
     model = Habitacion
     context_object_name = 'habitaciones'
     paginate_by = 10
-    pass
+    
+    def get_queryset(self):
+        categoria = self.request.GET.get('categoria','')
+        ListaPorCategoria = Habitacion.objects.filter(
+            nivelHabitacion__icontains = categoria
+        )
+        return ListaPorCategoria
+
 
 
 class HabitacionesDisponibles(ListView):  # Cliente
