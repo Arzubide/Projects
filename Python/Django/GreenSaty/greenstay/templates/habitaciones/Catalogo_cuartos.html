@@ -18,12 +18,7 @@
         <div id="page-content-wrapper" class="w-100">
 
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom">
-                <div class="container-fluid">
-                    <button class="btn btn-outline-light" id="sidebarToggle">☰</button>
-                    <span class="navbar-brand ms-3">Catálogo de Cuartos</span>
-                </div>
-            </nav>
+            {% include 'navbar.html' %}
             <!-- Contenedor de las habitaciones -->
             <div class="container-fluid p-4">
                 <h1 class="mb-4">Catálogo de Cuartos</h1>
@@ -105,71 +100,3 @@
 
 {% endblock body %}
 
-<!-- <body>
-
-    <div class="d-flex" id="wrapper">
-
-        {% include 'sidebar.html' %}
-
-        <!-- Page content 
-        <div id="page-content-wrapper" class="w-100">
-
-            <!-- Navbar 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom">
-                <div class="container-fluid">
-                    <button class="btn btn-outline-light" id="sidebarToggle">☰</button>
-                    <span class="navbar-brand ms-3">Catálogo de Cuartos</span>
-                </div>
-            </nav>
-
-            <!-- Main content 
-            <div class="container-fluid p-4">
-                <h1 class="mb-4">Catálogo de Cuartos</h1>
-
-                <div class="row">
-                    <!-- Cuarto 1 
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img src="../img/cuarto1.jpg" class="card-img-top" alt="Cuarto Estándar">
-                            <div class="card-body">
-                                <h5 class="card-title">Cuarto Estándar</h5>
-                                <p class="card-text">Capacidad: 2 personas<br>Precio: $900 MXN / noche</p>
-                                <a href="detalle_cuarto.html?id=1" class="btn btn-primary">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img src="../img/cuarto2.jpg" class="card-img-top" alt="Cuarto Doble">
-                            <div class="card-body">
-                                <h5 class="card-title">Cuarto Doble</h5>
-                                <p class="card-text">Capacidad: 4 personas<br>Precio: $1500 MXN / noche</p>
-                                <a href="detalle_cuarto.html?id=2" class="btn btn-primary">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-
-           
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img src="../img/cuarto3.jpg" class="card-img-top" alt="Suite Ejecutiva">
-                            <div class="card-body">
-                                <h5 class="card-title">Suite Ejecutiva</h5>
-                                <p class="card-text">Capacidad: 2 personas<br>Precio: $2500 MXN / noche</p>
-                                <a href="detalle_cuarto.html?id=3" class="btn btn-primary">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-
-             
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <script src="../js/sidebar_toogle.js"></script>
-
-</body> -->
