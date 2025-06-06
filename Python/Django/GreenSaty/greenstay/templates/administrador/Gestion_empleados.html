@@ -41,7 +41,7 @@
                                 <td>{{e.correo}}</td>
                                 <td>{{e.area}}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-warning btn-action">Modificar</a>
+                                    <a href="{% url 'urls_administrador:MoficarEmpleado' e.id %}" class="btn btn-sm btn-warning btn-action">Modificar</a>
                                     <a href="{% url 'urls_administrador:EliminarEmpleado' e.id %}" class="btn btn-sm btn-danger">Eliminar</a>
                                 </td>
                             </tr>

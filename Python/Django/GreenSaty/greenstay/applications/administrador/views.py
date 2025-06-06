@@ -26,7 +26,8 @@ class ListadoPersonal(ListView):
         )
 
         return ListadoEmpleados
-    
+
+
 class EliminarPersonal(DeleteView):
     model = RegistroPersonal
     template_name = 'acciones/EliminarPersonal.html'
@@ -34,7 +35,10 @@ class EliminarPersonal(DeleteView):
 
 
 class ModificarPersonal(UpdateView):
-    pass
+    model = RegistroPersonal
+    template_name = 'acciones/ModificarEmpleado.html'
+    form_class = ModeloRegistroPersonal
+    success_url = reverse_lazy('urls_administrador:ListadoEmpleados')
 
 
 class ListaClientes(ListView):
