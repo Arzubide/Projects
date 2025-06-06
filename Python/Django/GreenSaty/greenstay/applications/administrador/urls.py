@@ -21,13 +21,18 @@ urlpatterns = [
         name='ListaClientes'
     ),
         path(
-        'Eliminar/<pk>',
+        'Eliminar-Cliente/<pk>',
         views.EliminarCliente.as_view(),
         name='EliminarCliente'
     ),
     path(
-        'Modificar/<pk>',
+        'Modificar-Cliente/<pk>',
         views.ModificarUsuario.as_view(),
         name='ModificarUsuario'
+    ),
+    path(
+        'Eliinar-Empleado/<pk>',
+        views.EliminarPersonal.as_view(),
+        name='EliminarEmpleado',
     )
 ]

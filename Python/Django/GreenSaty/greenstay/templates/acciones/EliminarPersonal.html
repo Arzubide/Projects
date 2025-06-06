@@ -6,7 +6,7 @@
 {% endblock css %}
 
 {% block title %}
-    Eliminar Usuario
+    Eliminar Empleado
 {% endblock title %}
 
 {% block body %}
@@ -19,12 +19,12 @@
                 <form method="post"> {% csrf_token %}
                     <div class="mb-3" style="text-align: center;">
                         <button type="submit" class="btn btn-primary">Eliminar</button>
-                        <a href="{% url 'urls_administrador:ListaClientes' %}" class="btn btn-primary">Cancelar</a><!--  Redireccionamiento a la lista de todos los empleados a traves de la URL -->
+                        <a href="{% url 'urls_administrador:ListadoEmpleados' %}" class="btn btn-primary">Cancelar</a><!--  Redireccionamiento a la lista de todos los empleados a traves de la URL -->
                     </div>
 
                 </form>
             </div>
         </div>
     </div>
-    <script src="{% static 'js/sidebar_toogle.js' %}"></script>
+<script src="{% static 'js/sidebar_toogle.js' %}"></script>
 {% endblock body %}
