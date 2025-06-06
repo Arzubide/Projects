@@ -19,5 +19,10 @@ urlpatterns = [
         'Lista-clientes/',
         views.ListaClientes.as_view(),
         name='ListaClientes'
+    ),
+        path(
+        'Eliminar/<pk>',
+        views.EliminarCliente.as_view(),
+        name='EliminarCliente'
     )
 ]

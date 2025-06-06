@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+{% endblock css %}
+
+{% block title %}
+    Eliminar
+{% endblock title %}
+
+{% block body %}
+    <div class="d-flex" id="wrapper">
+        {% include 'sidebar.html' %}
+        <div id="page-content-wrapper" class="w-100">
+            {% include 'navbar.html' %}
+            <div class="container-fluid p-4">
+                <h2 style="text-align: center;">Esta seguro que desea eliminar el registro de {{ object }} </h2>
+                <form method="post"> {% csrf_token %}
+                    <div class="mb-3" style="text-align: center;">
+                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                        <a href="{% url 'urls_administrador:ListaClientes' %}" class="btn btn-primary">Cancelar</a><!--  Redireccionamiento a la lista de todos los empleados a traves de la URL -->
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/sidebar_toogle.js' %}"></script>
+{% endblock body %}
