@@ -23,10 +23,10 @@
             <div class="container-fluid p-4">
                 <h1 class="mb-4">Catálogo de Cuartos</h1>
                     <!-- Busqueda por categoria -->
-                    <h3 style="text-align: center;">Selecciona una categoria</h3>
+                    
                     <form method="get">{% csrf_token %}
                         <div class="input-group mb-3">
-                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                            <button class="btn btn-outline-secondary" type="submit">Filtrar por nivel</button>
                             <select class="form-select" id="categoria" name="categoria" aria-label="Example select with button addon">
                                 <option value="STANDART">Standart</option>
                                 <option value="DELUXE">Deluxe</option>
