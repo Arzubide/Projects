@@ -20,19 +20,19 @@
 
                 <form method="post"> {% csrf_token %}
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Área de trabajo</label>
+                        <label class="form-label">Área de trabajo: </label>
                         {{form.area}}
                     </div>
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre Completo</label>
+                        <label class="form-label">Nombre Completo: </label>
                         {{form.nombres}}
                     </div>
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Apellidos</label>
+                        <label class="form-label">Apellidos: </label>
                         {{form.apellidos}}
                     </div>
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Correo</label>
+                        <label class="form-label">Correo: </label>
                         {{form.correo}}
                     </div>
                     

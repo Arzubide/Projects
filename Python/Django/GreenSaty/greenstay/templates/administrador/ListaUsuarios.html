@@ -36,7 +36,7 @@
                                 <td>{{u.apellidos}}</td>
                                 <td>{{u.correo}}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-warning btn-action">Modificar</a>
+                                    <a href="{% url 'urls_administrador:ModificarUsuario' u.id %}" class="btn btn-sm btn-warning btn-action">Modificar</a>
                                     <a href="{% url 'urls_administrador:EliminarCliente' u.id %}" class="btn btn-sm btn-danger">Eliminar</a>
                                 </td>
                             </tr>

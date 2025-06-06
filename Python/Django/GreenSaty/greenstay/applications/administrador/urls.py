@@ -24,5 +24,10 @@ urlpatterns = [
         'Eliminar/<pk>',
         views.EliminarCliente.as_view(),
         name='EliminarCliente'
+    ),
+    path(
+        'Modificar/<pk>',
+        views.ModificarUsuario.as_view(),
+        name='ModificarUsuario'
     )
 ]

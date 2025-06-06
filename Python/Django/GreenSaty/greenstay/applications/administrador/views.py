@@ -3,8 +3,8 @@ from django.shortcuts import render
 from .models import RegistroPersonal
 from applications.users.models import Usuarios
 #Vistas
-from django.views.generic import CreateView, ListView, DeleteView
-from .forms import ModeloRegistroPersonal
+from django.views.generic import CreateView, ListView, DeleteView,UpdateView
+from .forms import ModeloRegistroPersonal, ModelUsuarios
 from django.urls import reverse_lazy
 
 class RegistroDelPerosnal(CreateView):
@@ -40,4 +40,11 @@ class ListaClientes(ListView):
 class EliminarCliente(DeleteView):
     model = Usuarios
     template_name = 'acciones/eliminarUsuario.html'
-    success_url = reverse_lazy('urls_home:inicioAdmin')
+    success_url = reverse_lazy('urls_administrador:ListaClientes')
+
+
+class ModificarUsuario(UpdateView):
+    model = Usuarios
+    template_name = 'acciones/modificarUsuario.html'
+    form_class = ModelUsuarios
+    success_url = reverse_lazy('urls_administrador:ListaClientes') 

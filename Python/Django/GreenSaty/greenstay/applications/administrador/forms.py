@@ -1,5 +1,6 @@
 from django import forms
 from .models import RegistroPersonal
+from applications.users.models import Usuarios
 
 
 class ModeloRegistroPersonal(forms.ModelForm):
@@ -43,4 +44,48 @@ class ModeloRegistroPersonal(forms.ModelForm):
             ),
             'gerenteArea' : forms.CheckboxInput()
         }
-    
+
+
+class ModelUsuarios(forms.ModelForm):
+    class Meta:
+        model = Usuarios
+        fields = (
+            'nombres',
+            'apellidos',
+            'correo',
+            'is_staff',
+            'is_admin_pagina'
+        )
+
+        widgets = {
+            'nombres' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id' : ''
+                }
+            ),
+            'apellidos' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id' : ''
+                }
+            ),
+            'correo' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id' : ''
+                }
+            ),
+            'is_staff' : forms.CheckboxInput(
+                attrs={
+                    'class': '',
+                    'id' : ''
+                }
+            ),
+            'is_admin_pagina' : forms.CheckboxInput(
+                attrs={
+                    'class': '',
+                    'id' : ''
+                }
+            )
+        }
