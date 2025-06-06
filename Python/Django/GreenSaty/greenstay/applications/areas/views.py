@@ -34,8 +34,8 @@ class EliminarArea(DeleteView):
     success_url = reverse_lazy('urls_areas:ListaAreasRegistradas')
 
 
-class ModificarUsuario(UpdateView):
+class ModificarArea(UpdateView):
     model = AreasHotel
-    template_name = 'acciones/.html'
+    template_name = 'acciones/ModificarArea.html'
     form_class = Registro
-    success_url = reverse_lazy('urls_administrador:') 
+    success_url = reverse_lazy('urls_areas:ListaAreasRegistradas')

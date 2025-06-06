@@ -19,5 +19,10 @@ urlpatterns = [
         'Elimar/<pk>',
         views.EliminarArea.as_view(),
         name='EliminarArea'
+    ),
+    path(
+        'Modificar/<pk>',
+        views.ModificarArea.as_view(),
+        name='ModificarArea'
     )
 ]

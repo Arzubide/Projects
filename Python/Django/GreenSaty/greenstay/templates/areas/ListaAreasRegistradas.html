@@ -36,7 +36,7 @@
                                 <td>{{a.estado}}</td>
                                 <td>{{a.horarioFuncionamiento}}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-warning btn-action">Modificar</a>
+                                    <a href="{% url 'urls_areas:ModificarArea' a.id %}" class="btn btn-sm btn-warning btn-action">Modificar</a>
                                     <a href="{% url 'urls_areas:EliminarArea' a.id %}" class="btn btn-sm btn-danger">Eliminar</a>
                                 </td>
                             </tr>
