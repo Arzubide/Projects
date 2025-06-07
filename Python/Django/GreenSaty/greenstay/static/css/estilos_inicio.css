@@ -1,0 +1,99 @@
+/* Estilos generales para la página */
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* Color del texto */
+  color: white;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para inicio */
+.content-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /*Fondo*/
+  background-color: #094d31;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../assets/img/Fondo.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Estilos para menus */
+#page-content-wrapper {
+  /* Un color de fondo claro como respaldo por si la imagen no carga */
+  background-color: #f8f9fa;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../assets/img/Fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Estilo para tarjetas en el inicio-servicios */
+
+.card-icon {
+  font-size: 3rem;
+  color: #0069e9;
+}
+
+/* Estilos para eL carousel del inicio */
+
+#carouselHotel,
+.carousel-inner,
+.carousel-item {
+  flex: 1;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Estilos para boton en formularios*/
+
+.btn-primary {
+  background-color: #d4af37;
+  border: none;
+  color: #1a1a1a;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #c9a033;
+  color: #1a1a1a;
+}
+
+/* Estilos para dentro de sesion */
+
+.card-header {
+  color: rgb(255, 255, 255);
+  background-color: #09273b;
+}
+
+.card-text {
+  color: #000000;
+}
+
+.card-body p {
+  color: #212529;
+}
+
+.list-group-item {
+  color: #212529; /* Este es el color de texto oscuro por defecto de Bootstrap */
+}
