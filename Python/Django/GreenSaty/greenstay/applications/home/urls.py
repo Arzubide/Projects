@@ -19,4 +19,25 @@ urlpatterns = [
         views.InicioAdministrador.as_view(),
         name='inicioAdmin'
     ),
+    path(
+        'Servicios/',
+        views.Servicios.as_view(),
+        name='servicios'
+    ),
+    path(
+        'Nosotros/',
+        views.AcercaDe.as_view(),
+        name='acercaDe'
+    ),
+    path(
+        'Cuartos/',
+        views.Cuartos.as_view(),
+        name='cuartos'
+    ),
+    path(
+        'Terminos-Condiciones/',
+        views.TerminosYCondiciones.as_view(),
+        name='terminos'
+    )
+
 ]

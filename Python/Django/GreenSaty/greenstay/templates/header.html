@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'urls_home:indexHome' %}">GreenStay</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{% url 'urls_home:indexHome' %}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'urls_home:cuartos' %}">Habitaciones</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'urls_home:servicios' %}">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'urls_home:acercaDe' %}">Acerca de</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'urls_users:registroUsuario' %}">Registrarse</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'urls_users:login' %}">Iniciar sesion</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- 
+    <a href="{% url 'urls_users:registroUsuario' %}">Registrar sesion usuario</a> -->
+    <a href="{% url 'urls_users:registroAdmin' %}">Registrar sesion administrador</a>
+    <!-- <a href="{% url 'urls_users:login' %}">Iniciar sesion usuario</a> -->
+    <a href="{% url 'urls_users:login-admin' %}">Iniciar sesion administrador</a>
