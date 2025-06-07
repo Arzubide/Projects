@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Nosotros
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href=" {% static 'css/estilos_inicio.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div class="page-container">
+
+        <!-- Carga del header -->
+        {% include 'header.html' %}
+
+        <!-- Contenido principal -->
+        <div class="content-wrap">
+            <div class="container my-5">
+                <div class="row text-center mb-5">
+                    <div class="col">
+                        <h1 class="display-4">Nuestra historia</h1>
+                        <p class="lead">Más que un hotel, somos un refugio que combina lujo, confort y un profundo
+                            respeto por la naturaleza.</p>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-5">
+                    <div class="col-md-6">
+                        <h2>El origen de GreenStay</h2>
+                        <p>Fundado en 2018 por un grupo de apasionados por la hotelería y el ecoturismo, GreenStay nació
+                            del sueño de crear un destino paradisíaco que no solo ofreciera una experiencia inolvidable
+                            a sus huéspedes, sino que también contribuyera positivamente al medio ambiente y a la
+                            comunidad local.</p>
+                        <p>Cada rincón de nuestro hotel está diseñado para armonizar con el paisaje, utilizando
+                            materiales sostenibles y promoviendo prácticas que aseguran la preservación de la belleza
+                            natural que nos rodea.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{% static 'img/index/Nosotros.jpg' %}" class="img-fluid rounded shadow" alt="Fachada del Hotel">
+                    </div>
+                </div>
+
+                <hr class="my-5">
+
+                <div class="row text-center">
+                    <h2 class="mb-4">Nuestro Compromiso</h2>
+                    <div class="col-md-4">
+                        <h4>Misión</h4>
+                        <p>Ofrecer una experiencia de hospitalidad excepcional y de lujo, demostrando que el confort y
+                            la sostenibilidad pueden coexistir en perfecta armonía, creando recuerdos memorables para
+                            nuestros visitantes.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Visión</h4>
+                        <p>Ser el hotel líder y sostenible de la región, reconocido por nuestra excelencia en
+                            el servicio, nuestro impacto ambiental positivo y nuestro fuerte vínculo con la cultura y
+                            comunidad local.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Valores</h4>
+                        <p>Calidad, respeto por el entorno, innovación, pasión por el servicio y autenticidad son los
+                            pilares que guían cada una de nuestras acciones y decisiones diarias.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Carga del footer -->
+        {% include 'footer.html' %}
+
+    </div>
+{% endblock body %}

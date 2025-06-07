@@ -24,9 +24,7 @@ html {
 
   /*Fondo*/
   background-color: #094d31;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../assets/img/Fondo.jpg");
-
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("../img/index/Fondo.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,8 +35,8 @@ html {
   /* Un color de fondo claro como respaldo por si la imagen no carga */
   background-color: #f8f9fa;
 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../assets/img/Fondo.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../img/index/Principal1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

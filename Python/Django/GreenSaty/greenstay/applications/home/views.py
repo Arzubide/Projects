@@ -12,3 +12,11 @@ class InicioUsuario(VistaUsuario,TemplateView):
 
 class InicioAdministrador(VistaAdministrador,TemplateView):
     template_name = 'home/inicioAdministrador.html'
+
+
+class Servicios(TemplateView):
+    template_name = 'home/indexCont/Servicios.html'
+
+
+class AcercaDe(TemplateView):
+    template_name = 'home/indexCont/Nosotros.html'
