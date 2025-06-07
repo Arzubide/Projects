@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+{% endblock css %}
+
+{% block title %}
+    Eliminar
+{% endblock title %}
+
+{% block body %}
+    <div class="d-flex" id="wrapper">
+        {% include 'sidebar.html' %}
+        <div id="page-content-wrapper" class="w-100">
+            {% include 'navbar.html' %}
+            <div class="container-fluid p-4">
+                <h2>Usuario {{object}}</h2>
+                <form method="post">{% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Nombres: </label>
+                        {{form.nombres}}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="apellidos" class="form-label">Apellidos:  </label>
+                        {{form.apellidos}}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">Correo:</label>
+                        {{form.correo}}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="is_staff" class="form-label">Is_staff</label>
+                        {{form.is_staff}}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="is_admin_pagina" class="form-label">Is_admin_pagina</label>
+                        {{form.is_admin_pagina}}
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                    <a href="{% url 'urls_administrador:ListaClientes' %}" class="btn btn-primary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/sidebar_toogle.js' %}"></script>
+{% endblock body %}

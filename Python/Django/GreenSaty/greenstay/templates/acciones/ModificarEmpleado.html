@@ -6,7 +6,7 @@
 {% endblock css %}
 
 {% block title %}
-    Contratación de Empleados - Hotel Manager
+    Modificar empleado
 {% endblock title %}
 
 {% block body %}
@@ -15,34 +15,29 @@
         <div id="page-content-wrapper" class="w-100">
             {% include 'navbar.html' %}
             <div class="container-fluid p-4">
-                <h1>Contratación de Empleados</h1>
-                <p>Formulario para registrar nuevos empleados en el sistema del hotel.</p>
-
-                <form method="post"> {% csrf_token %}
+                <h2>Empleado {{object}}</h2>
+                <form method="post">{% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label">Área de trabajo: </label>
-                        {{form.area}}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Nombre Completo: </label>
+                        <label for="nombres" class="form-label">Nombres: </label>
                         {{form.nombres}}
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Apellidos: </label>
+                        <label for="apellidos" class="form-label">Apellidos: </label>
                         {{form.apellidos}}
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Correo: </label>
+                        <label for="correo" class="form-label">Correo: </label>
                         {{form.correo}}
                     </div>
-                    
-                    <div class="mb-3" style="text-align: center;">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    <div class="mb-3">
+                        <label for="area" class="form-label">Área perteneciente: </label>
+                        {{form.area}}
                     </div>
-                    
+
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                    <a href="{% url 'urls_administrador:ListadoEmpleados' %}" class="btn btn-primary">Cancelar</a>
                 </form>
             </div>
-
         </div>
     </div>
     <script src="{% static 'js/sidebar_toogle.js' %}"></script>

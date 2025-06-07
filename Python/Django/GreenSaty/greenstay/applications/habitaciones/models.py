@@ -39,5 +39,7 @@ class Habitacion(models.Model):
          
     )
 
+    precioHabitacion = models.IntegerField(default=0)
+
     def __str__(self):
         return f'Habitación {self.numeroHabitacion} - {self.get_estadoHabitacion_display()}'

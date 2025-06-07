@@ -1,5 +1,6 @@
 from django import forms
 from .models import RegistroPersonal
+from applications.users.models import Usuarios
 
 
 class ModeloRegistroPersonal(forms.ModelForm):
@@ -10,8 +11,7 @@ class ModeloRegistroPersonal(forms.ModelForm):
             'area',
             'nombres',
             'apellidos',
-            'correo',
-            'gerenteArea',
+            'correo'
         )
 
         widgets = {
@@ -24,23 +24,66 @@ class ModeloRegistroPersonal(forms.ModelForm):
                 attrs={
                     'placeholder' : 'Ingresa tu nombre(s)',
                     'class': 'form-control',
-                    'id' : 'nombreArea'
+                    'id' : ''
                 }
             ),
             'apellidos' : forms.TextInput(
                 attrs={
                     'placeholder' : 'Ingresa tus apellidos',
                     'class': 'form-control',
-                    'id' : 'nombreArea'
+                    'id' : ''
                 }
             ),
             'correo' : forms.EmailInput(
                 attrs={
                     'placeholder' : 'Ingresa tu correo',
                     'class': 'form-control',
-                    'id' : 'nombreArea'
+                    'id' : ''
+                }
+            )
+        }
+
+
+class ModelUsuarios(forms.ModelForm):
+    class Meta:
+        model = Usuarios
+        fields = (
+            'nombres',
+            'apellidos',
+            'correo',
+            'is_staff',
+            'is_admin_pagina'
+        )
+
+        widgets = {
+            'nombres' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id' : ''
                 }
             ),
-            'gerenteArea' : forms.CheckboxInput()
+            'apellidos' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id' : ''
+                }
+            ),
+            'correo' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id' : ''
+                }
+            ),
+            'is_staff' : forms.CheckboxInput(
+                attrs={
+                    'class': '',
+                    'id' : ''
+                }
+            ),
+            'is_admin_pagina' : forms.CheckboxInput(
+                attrs={
+                    'class': '',
+                    'id' : ''
+                }
+            )
         }
-    

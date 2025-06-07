@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+{% endblock css %}
+
+{% block title %}
+    Eliminar
+{% endblock title %}
+
+{% block body %}
+    <div class="d-flex" id="wrapper">
+        {% include 'sidebar.html' %}
+        <div id="page-content-wrapper" class="w-100">
+            {% include 'navbar.html' %}
+            <div class="container-fluid p-4">
+                <h1>Datos</h1>
+                <form method="post"> {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Nombres: </label>
+                        {{form.numeroHabitacion}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Categoria de la habitacion: </label>
+                        {{form.nivelHabitacion}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Estado de la habitacion</label>
+                        {{form.estadoHabitacion}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Asociado con:  </label>
+                        {{form.usuarioHabitacion}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Precio de la habitacion </label>
+                        {{form.precioHabitacion}}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                    <a href="{% url 'urls_habitaciones:ListaHabitaciones' %}" class="btn btn-primary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/sidebar_toogle.js' %}"></script>
+
+{% endblock body %}

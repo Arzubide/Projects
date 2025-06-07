@@ -13,8 +13,8 @@
 
         <!-- Gestion huespedes -->
 
-        <a href="Gestion_huespedes.html" class="list-group-item list-group-item-action sidebar-link">
-            Gestión de huespedes
+        <a href="{% url 'urls_administrador:ListaClientes' %}" class="list-group-item list-group-item-action sidebar-link">
+            Gestión de clientes
         </a>
 
         <!-- Modulo gestion hotel-->
@@ -32,7 +32,7 @@
                 Registro de área
             </a>
 
-            <a href="" class="list-group-item list-group-item-action sidebar-link">
+            <a href="{% url 'urls_areas:ListaAreasRegistradas' %}" class="list-group-item list-group-item-action sidebar-link">
                 Areas registradas
             </a>
 

@@ -3,14 +3,12 @@ from .models import AreasHotel
 
 
 class Registro(forms.ModelForm):
-    # nombreArea = forms.CharField(max_length=50)
-    # horarioFuncionamiento = forms.CharField(max_length=15)
-
     class Meta:
         model = AreasHotel
         fields = (
             'nombreArea',
             'horarioFuncionamiento',
+            'estado'
         )
 
         
@@ -27,6 +25,11 @@ class Registro(forms.ModelForm):
                     'placeholder' : 'nnAM - nnPM',
                     'class': 'form-control',
                     'id' : 'horarioFuncionamiento'
+                }
+            ),
+            'estado' : forms.Select(
+                attrs = {
+                    'class' : 'form-select'
                 }
             )
         }

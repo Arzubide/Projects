@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Gestión de Empleados - Hotel Manager
+    Areas registradas
 {% endblock title %}
 
 {% block css %}
@@ -10,39 +10,34 @@
 {% endblock css %}
 
 {% block body %}
-    
-
     <div class="d-flex" id="wrapper">
         {% include 'sidebar.html' %}
         <div id="page-content-wrapper" class="w-100">
             {% include 'navbar.html' %}
-
             <div class="container-fluid p-4">
-                <h1>Gestión de Empleados</h1>
-                <p>Lista de empleados con opciones para modificar o despedir.</p>
-
+                <h1>Gestión de las áreas registradas</h1>
+                <p>Lista de las áreas registradas, podran modificarlas y acceder a ellas.</p>
+                
                 <table class="table table-striped align-middle">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Correo</th>
-                            <th>Area</th>
+                            <th>Estado</th>
+                            <th>Horario</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="empleadosTableBody">
-                        {% for e in empleados %}
+                        {% for a in areas %}
                             <tr>
-                                <td>{{e.id}}</td>
-                                <td>{{e.nombres}}</td>
-                                <td>{{e.apellidos}}</td>
-                                <td>{{e.correo}}</td>
-                                <td>{{e.area}}</td>
+                                <td>{{a.id}}</td>
+                                <td>{{a.nombreArea}}</td>
+                                <td>{{a.estado}}</td>
+                                <td>{{a.horarioFuncionamiento}}</td>
                                 <td>
-                                    <a href="{% url 'urls_administrador:MoficarEmpleado' e.id %}" class="btn btn-sm btn-warning btn-action">Modificar</a>
-                                    <a href="{% url 'urls_administrador:EliminarEmpleado' e.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                                    <a href="{% url 'urls_areas:ModificarArea' a.id %}" class="btn btn-sm btn-warning btn-action">Modificar</a>
+                                    <a href="{% url 'urls_areas:EliminarArea' a.id %}" class="btn btn-sm btn-danger">Eliminar</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -50,7 +45,6 @@
                 </table>
 
             </div>
-
         </div>
     </div>
     <script src="{% static 'js/sidebar_toogle.js' %}"></script>
