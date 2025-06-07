@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.shortcuts import render
 from .forms import Tarjeta
 #Modelos
@@ -6,7 +7,7 @@ from applications.habitaciones.models import Habitacion
 from applications.users.models import Usuarios
 from django.views import View
 #Vistas
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView, TemplateView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404
 
@@ -74,12 +75,39 @@ class DatosHabitacionReservada(DetailView):
     context_object_name = 'habitacion'
     
     
-class ValidacionChekIn():
-    pass
+class ValidacionChekIn(View):
+    template_name = 'clientes/ValidacionChekIn.html'
+
+    def get(self, request, pk):
+        habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
+        return render(request, self.template_name, {'habitacion': habitacion})
+
+    def post(self, request, pk):
+        habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
+        token_ingresado = request.POST.get('token', '')
+
+        # if habitacion.estadoHabitacion != 'RESERVADA':
+        #     return render(request, self.template_name, {
+        #         'habitacion': habitacion,
+        #         'error': 'La habitación no está en estado de reserva.'
+        #     })
+
+        if token_ingresado == str(habitacion.tockenChekInCheckOut):
+            habitacion.estadoHabitacion = 'OCUPADA'
+            habitacion.fechaCheckIn = timezone.now()
+            habitacion.save()
+            return redirect('urls_clientes:Exito')  # Ajusta al nombre correcto
+        else:
+            return render(request, self.template_name, {
+                'habitacion': habitacion,
+                'error': 'El código ingresado no es válido.'
+            })
+    
+    
 
 
-class CkeckIn(View):
-    pass
+class CkeckInExitoso(TemplateView):
+    template_name = 'clientes/ExitoCkeck.html'
 
 
 class ChekOut(View):

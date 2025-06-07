@@ -31,5 +31,15 @@ urlpatterns = [
         'Detalles-habitacion/<pk>',
         views.DatosHabitacionReservada.as_view(),
         name='DatosHabitacion'
+    ),
+    path(
+        'Check-In/<pk>',
+        views.ValidacionChekIn.as_view(),
+        name='validacionEntrada'
+    ),
+    path(
+        'CheckIn-Exitoso/',
+        views.CkeckInExitoso.as_view(),
+        name='Exito'
     )
 ]

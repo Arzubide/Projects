@@ -9,6 +9,8 @@
     <h3>Token para realizar CheckIn</h3>
     <p>{{habitacion.tockenChekInCheckOut}}</p>
 
+    <a href="{% url 'urls_clientes:validacionEntrada' habitacion.id %}">Registrar entrada</a>
+
     <!-- Aqui dependiendo si la habitacion esta en estado de reserva aparecera el boton para realizar checkIn, si esta en estado ocupado aparecera el boton de CheckOut, y eliminara la reservacion de este usuario y la habitacion pasara a estado disponible -->
 {% endblock body %}
 
