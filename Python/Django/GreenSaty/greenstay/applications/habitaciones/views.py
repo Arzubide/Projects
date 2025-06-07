@@ -1,3 +1,8 @@
+#Librerias python
+import secrets
+import string
+
+#Codigo django
 from django.shortcuts import render
 #Vistas
 from django.views.generic import ListView, UpdateView, DetailView
@@ -43,12 +48,21 @@ class ActualizarDatosHabitacion(UpdateView):
 
 
 class ReservarHabitacionView(View):
+    
     def post(self, request, pk):
+        def generar_token(longitud=32):
+            caracteres = string.ascii_letters + string.digits
+            token = ''.join(secrets.choice(caracteres) for _ in range(longitud))
+            return token #Codigo para realizar checkIn y CheckOut
+
+        CodigoHabitacion = generar_token() #Codigo para acceder a la habitacion
+
         habitacion = get_object_or_404(Habitacion, pk=pk, estadoHabitacion='DISPONIBLE')
         habitacion.estadoHabitacion = 'RESERVADA'
+        habitacion.tockenChekInCheckOut = CodigoHabitacion 
         habitacion.usuarioHabitacion = request.user
         habitacion.save()
-        return redirect('urls_habitaciones:HabitacionesDisponibles')  # vista con los datos de la reservacion
+        return redirect('urls_habitaciones:HabitacionesDisponibles')  # vista con los datos de la reservacion y checkIn
 
 
 class DetallesHabitacion(DetailView):

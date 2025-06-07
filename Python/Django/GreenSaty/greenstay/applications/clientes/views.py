@@ -6,7 +6,7 @@ from applications.habitaciones.models import Habitacion
 from applications.users.models import Usuarios
 from django.views import View
 #Vistas
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404
 
@@ -62,3 +62,25 @@ class ActualizarDatos(UpdateView):
         'correo',
     ]
     success_url = reverse_lazy('urls_home:inicioUser')
+
+
+class VistaCheckInYCheckOut(ListView):
+    '''Mostrara las habitaciones en las que puede realizar checkIn y checkOut'''
+
+
+class DatosHabitacionReservada(DetailView):
+    model = Habitacion
+    template_name = 'clientes/DatosHabitacion.html'
+    context_object_name = 'habitacion'
+    
+    
+class ValidacionChekIn():
+    pass
+
+
+class CkeckIn(View):
+    pass
+
+
+class ChekOut(View):
+    pass

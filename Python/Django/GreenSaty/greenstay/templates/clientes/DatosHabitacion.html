@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Detalles habitacion
+{% endblock title %}
+
+{% block body %}
+    <h2>{{habitacion.numeroHabitacion}}</h2>
+    <h3>Token para realizar CheckIn</h3>
+    <p>{{habitacion.tockenChekInCheckOut}}</p>
+
+    <!-- Aqui dependiendo si la habitacion esta en estado de reserva aparecera el boton para realizar checkIn, si esta en estado ocupado aparecera el boton de CheckOut, y eliminara la reservacion de este usuario y la habitacion pasara a estado disponible -->
+{% endblock body %}
+

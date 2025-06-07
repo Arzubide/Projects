@@ -26,5 +26,10 @@ urlpatterns = [
         'Eliminar-Tarjeta/<pk>/',
         views.EliminarTarjetaCredito.as_view(),
         name='EliminarTarjeta'
+    ),
+    path(
+        'Detalles-habitacion/<pk>',
+        views.DatosHabitacionReservada.as_view(),
+        name='DatosHabitacion'
     )
 ]
