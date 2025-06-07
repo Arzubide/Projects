@@ -20,3 +20,7 @@ class Servicios(TemplateView):
 
 class AcercaDe(TemplateView):
     template_name = 'home/indexCont/Nosotros.html'
+
+
+class Cuartos(TemplateView):
+    template_name = 'home/indexCont/Cuartos.html'

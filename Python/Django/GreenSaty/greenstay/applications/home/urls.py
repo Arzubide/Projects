@@ -28,6 +28,11 @@ urlpatterns = [
         'Nosotros/',
         views.AcercaDe.as_view(),
         name='acercaDe'
+    ),
+    path(
+        'Cuartos/',
+        views.Cuartos.as_view(),
+        name='cuartos'
     )
 
 ]
