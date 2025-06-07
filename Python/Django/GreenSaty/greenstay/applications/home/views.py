@@ -24,3 +24,7 @@ class AcercaDe(TemplateView):
 
 class Cuartos(TemplateView):
     template_name = 'home/indexCont/Cuartos.html'
+
+
+class TerminosYCondiciones(TemplateView):
+    template_name = 'home/indexCont/Terminos_condiciones.html'

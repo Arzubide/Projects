@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Términos y Condiciones - GreenStay
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href=" {% static 'css/estilos_inicio.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div class="page-container">
+
+        <!-- Carga del header -->
+        {% include 'header.html' %}
+
+                <div class="content-wrap">
+            <div class="container my-5">
+                <div class="row">
+                    <!-- Columna central para el contenido -->
+                    <div class="col-lg-10 mx-auto">
+                        <h1 class="display-5 text-center mb-4">Términos y condiciones generales</h1>
+                        <p class="text-center text-muted">Última actualización: 7 de junio de 2025</p>
+
+                        <p class="lead">Bienvenido a GreenStay Hotel. Al realizar una reservación o registrarse como
+                            huésped, usted ("el Huésped") acepta y se compromete a cumplir los siguientes términos y
+                            condiciones establecidos por GreenStay Hotel ("el Hotel").</p>
+
+                        <hr class="my-4">
+
+                        <h4 class="mt-5">1. Política de Reservaciones y Pago</h4>
+                        <p>Toda reservación debe ser garantizada con una tarjeta de crédito válida. El pago total de la
+                            estancia se realizará en el momento del check-in. Aceptamos las principales tarjetas de
+                            crédito (Visa, MasterCard, American Express) y transferencias bancarias previo acuerdo. Las
+                            tarifas mostradas están en Pesos Mexicanos (MXN) y no incluyen el 16% de IVA y el 3% de
+                            impuesto sobre hospedaje, los cuales serán añadidos a su cuenta final.</p>
+
+                        <h4 class="mt-5">2. Política de Cancelación y No-Show (No Presentación)</h4>
+                        <ul>
+                            <li><strong>Cancelación Gratuita:</strong> Las cancelaciones realizadas con más de 72 horas
+                                de antelación a la fecha de llegada (antes de las 15:00, hora local) no incurrirán en
+                                penalización.</li>
+                            <li><strong>Cancelación con Penalización:</strong> Las cancelaciones realizadas dentro de
+                                las 72 horas previas a la llegada tendrán una penalización correspondiente al costo de
+                                la primera noche de la estancia.</li>
+                            <li><strong>No-Show:</strong> En caso de no presentarse en la fecha de llegada programada,
+                                se procederá al cobro del 100% del total de la reservación y la habitación será
+                                liberada.</li>
+                        </ul>
+
+                        <h4 class="mt-5">3. Horarios de Check-in y Check-out</h4>
+                        <ul>
+                            <li><strong>Check-in:</strong> A partir de las 15:00 horas.</li>
+                            <li><strong>Check-out:</strong> Antes de las 12:00 horas (mediodía).</li>
+                        </ul>
+                        <p>Para el registro (check-in), es indispensable presentar una identificación oficial con
+                            fotografía (INE, Pasaporte) y la tarjeta de crédito utilizada para la reservación. El
+                            check-out tardío (late check-out) está sujeto a disponibilidad y puede generar un cargo
+                            adicional.</p>
+
+                        <h4 class="mt-5">4. Normas de la estancia</h4>
+                        <p><strong>Humo:</strong> GreenStay es un hotel 100% libre de humo. Está estrictamente prohibido
+                            fumar en las habitaciones y áreas cerradas. El incumplimiento de esta norma resultará en un
+                            cargo de $3,500 MXN por concepto de limpieza profunda.</p>
+                        <p><strong>Daños a la propiedad:</strong> El Huésped será responsable por cualquier daño causado
+                            a la propiedad del Hotel, ya sea en la habitación o en las áreas comunes, y los costos de
+                            reparación o reemplazo serán cargados a su cuenta.</p>
+                        <p><strong>Mascotas:</strong> No se permite el acceso de mascotas, a excepción de animales de
+                            servicio debidamente acreditados.</p>
+                        <p><strong>Ocupación:</strong> El número de personas por habitación no debe exceder la capacidad
+                            máxima establecida para cada tipo de cuarto.</p>
+
+                        <h4 class="mt-5">5. Limitación de responsabilidad</h4>
+                        <p>El Hotel no se hace responsable por la pérdida, robo o daño de objetos de valor no
+                            depositados en la caja de seguridad de la habitación. El uso de las instalaciones como la
+                            piscina, gimnasio y otras áreas recreativas es bajo la propia responsabilidad del Huésped.
+                        </p>
+
+                        <h4 class="mt-5">6. Privacidad</h4>
+                        <p>La información personal recopilada durante el proceso de reservación y estancia se maneja de
+                            acuerdo con nuestro Aviso de Privacidad, en cumplimiento con la Ley Federal de Protección de
+                            Datos Personales en Posesión de los Particulares.</p>
+
+                        <h4 class="mt-5">7. Ley aplicable</h4>
+                        <p>Estos términos y condiciones se rigen por las leyes vigentes en los Estados Unidos Mexicanos.
+                            Para cualquier disputa, las partes se someten a la jurisdicción de los tribunales
+                            competentes de Toluca, Estado de México, renunciando a cualquier otro fuero que pudiera
+                            corresponderles.</p>
+
+                        <p class="mt-5 text-center">Gracias por elegir GreenStay Hotel. ¡Le deseamos una estancia
+                            placentera!</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+    </div>
+{% endblock body %}
+
+
+    
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Términos y Condiciones - GreenStay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href=" {% static 'css/estilos_inicio.css' %}">
+</head>
+
+<body>
+    <div class="page-container">
+
+        <!-- Carga del header -->
+        {% include 'header.html' %}
+
+        <!-- Contenido principal -->
+
+
+        <!-- Carga del footer -->
+        <div id="footer-placeholder"></div>
+
+    </div>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/foter_header_loader.js"></script>
+</body>
+
+</html>

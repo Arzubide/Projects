@@ -33,6 +33,11 @@ urlpatterns = [
         'Cuartos/',
         views.Cuartos.as_view(),
         name='cuartos'
+    ),
+    path(
+        'Terminos-Condiciones/',
+        views.TerminosYCondiciones.as_view(),
+        name='terminos'
     )
 
 ]
