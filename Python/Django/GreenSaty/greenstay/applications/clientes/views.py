@@ -5,6 +5,7 @@ from .forms import Tarjeta
 from .models import TarjetaCredito
 from applications.habitaciones.models import Habitacion
 from applications.users.models import Usuarios
+from applications.users.forms import ActualizarDatos
 from django.views import View
 #Vistas
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView, TemplateView
@@ -71,11 +72,7 @@ class EliminarReservacion(View):
 class ActualizarDatos(UpdateView):
     model = Usuarios
     template_name = 'clientes/editarDatos.html'
-    fields = [
-        'nombres',
-        'apellidos',
-        'correo',
-    ]
+    form_class = ActualizarDatos
     success_url = reverse_lazy('urls_home:inicioUser')
 
 

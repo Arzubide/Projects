@@ -111,5 +111,8 @@ html {
   color: #212529; /* Este es el color de texto oscuro por defecto de Bootstrap */
 }
 
+.bg-gold {
+    background-color: #d4af37; /* Dorado */
+}
 
 
