@@ -81,14 +81,14 @@ html {
 /* Estilos para boton en formularios*/
 
 .btn-primary {
-  background-color: #d4af37;
+  background-color: #1eb2ff;
   border: none;
-  color: #1a1a1a;
+  color: #FFFF;
   font-weight: bold;
 }
 
 .btn-primary:hover {
-  background-color: #c9a033;
+  background-color: #37aad4;
   color: #1a1a1a;
 }
 
