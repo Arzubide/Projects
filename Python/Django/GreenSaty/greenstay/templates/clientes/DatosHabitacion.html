@@ -1,20 +1,82 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-    Detalles habitacion
+    Detalles de la Habitación
 {% endblock title %}
 
-{% block body %}
-    <h2>{{habitacion.numeroHabitacion}}</h2>
-    <h3>Token para realizar CheckIn</h3>
-    <p>{{habitacion.tockenChekInCheckOut}}</p>
-    <p>{{habitacion.estadoHabitacion}}</p>
-    {% if habitacion.estadoHabitacion == 'OCUPADA' %}
-        <a href="{% url 'urls_clientes:EliminarReservacion' habitacion.id %}">Registrar salida</a>
-    {% else %}
-        <a href="{% url 'urls_clientes:validacionEntrada' habitacion.id %}">Registrar entrada</a>
-    {% endif %}
+{% block css %}
+    
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/estilos_inicio.css' %}" rel="stylesheet" />
+{% endblock css %}
 
-    <!-- Aqui dependiendo si la habitacion esta en estado de reserva aparecera el boton para realizar checkIn, si esta en estado ocupado aparecera el boton de CheckOut, y eliminara la reservacion de este usuario y la habitacion pasara a estado disponible -->
+{% block body %}
+<div class="page-container">
+    {% include 'header_user.html' %}
+
+    <div class="content-wrap">
+        <div class="container">
+            <div class="card p-4 w-100 mx-auto" style="max-width: 900px;">
+                <div class="card-header bg-gold text-white text-center rounded-top">
+                    <h4 class="mb-0">Detalles de la Habitación</h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="mb-4">
+                        {% if habitacion.nivelHabitacion == 'STANDART' %}
+                            <img src="{% static 'img/st.jpg' %}" class="img-fluid rounded shadow-lg w-100" alt="Habitación Standard">
+                        {% elif habitacion.nivelHabitacion == 'DELUXE' %}
+                            <img src="{% static 'img/dl.jpg' %}" class="img-fluid rounded shadow-lg w-100" alt="Habitación Deluxe">
+                        {% elif habitacion.nivelHabitacion == 'EJECUTIVA' %}
+                            <img src="{% static 'img/ej.jpg' %}" class="img-fluid rounded shadow-lg w-100" alt="Habitación Ejecutiva">
+                        {% elif habitacion.nivelHabitacion == 'SUITE' %}
+                            <img src="{% static 'img/suite.jpg' %}" class="img-fluid rounded shadow-lg w-100" alt="Suite">
+                        {% elif habitacion.nivelHabitacion == 'PRESIDENCIAL' %}
+                            <img src="{% static 'img/prl.jpg' %}" class="img-fluid rounded shadow-lg w-100" alt="Habitación Presidencial">
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <h5><strong>Número de Habitación:</strong> {{ habitacion.numeroHabitacion }}</h5>
+                    </div>
+
+                    <div class="mb-3">
+                        <p><strong>Tipo de habitacion:</strong> {{habitacion.nivelHabitacion}}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <p><strong>Token para Check-In:</strong> {{ habitacion.tockenChekInCheckOut }}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        {% if habitacion.estadoHabitacion == 'RESERVADA' %}
+                                <p><strong>Estado:</strong> <span class="badge rounded-pill text-bg-warning"> {{ habitacion.estadoHabitacion }} </span></p>
+                        {% else %}
+                            <p><strong>Estado:</strong> <span class="badge bg-success"> {{ habitacion.estadoHabitacion }} </span></p>
+                        {% endif %}
+                    </div>
+                    {% if habitacion.estadoHabitacion == 'OCUPADA' %}
+                    <div class="mb-3">
+                        <p><strong>Hora de entrada:</strong> {{ habitacion.fechaCheckIn }}</p>
+                    </div>
+                    {% endif %}
+                                      
+                    <div class="d-flex justify-content-end">
+                        {% if habitacion.estadoHabitacion == 'OCUPADA' %}  
+                            <a href="{% url 'urls_clientes:EliminarReservacion' habitacion.id %}" class="btn btn-danger">Registrar salida</a>
+                        {% else %}
+                            <a href="{% url 'urls_clientes:validacionEntrada' habitacion.id %}" class="btn btn-success">Registrar entrada</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer_user.html' %}
+</div>
 {% endblock body %}
+
 
