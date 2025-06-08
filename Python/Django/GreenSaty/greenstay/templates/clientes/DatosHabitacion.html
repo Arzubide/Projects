@@ -10,7 +10,7 @@
     <p>{{habitacion.tockenChekInCheckOut}}</p>
     <p>{{habitacion.estadoHabitacion}}</p>
     {% if habitacion.estadoHabitacion == 'OCUPADA' %}
-        <a href="">Registrar salida</a>
+        <a href="{% url 'urls_clientes:EliminarReservacion' habitacion.id %}">Registrar salida</a>
     {% else %}
         <a href="{% url 'urls_clientes:validacionEntrada' habitacion.id %}">Registrar entrada</a>
     {% endif %}

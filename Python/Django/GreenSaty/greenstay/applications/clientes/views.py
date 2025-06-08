@@ -46,12 +46,26 @@ class EliminarTarjetaCredito(DeleteView):
 
 
 class EliminarReservacion(View):
+    
+    template_name = 'acciones/SalidaElimar.html'
+
+    def get(self, request, pk):
+        habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
+        return render(request, self.template_name, {'habitacion': habitacion})
+
     def post(self, request, pk):
-        habitacion = get_object_or_404(Habitacion, pk=pk, estadoHabitacion='RESERVADA')
-        habitacion.estadoHabitacion = 'DISPONIBLE'
-        habitacion.usuarioHabitacion = None
-        habitacion.save()
-        return redirect('urls_home:inicioUser')
+        habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
+
+        token_ingresado = request.POST.get('token', '')
+        if token_ingresado == str(habitacion.tockenChekInCheckOut):
+            habitacion = get_object_or_404(Habitacion, pk=pk)
+            habitacion.estadoHabitacion = 'DISPONIBLE'
+            habitacion.tockenChekInCheckOut = None
+            habitacion.usuarioHabitacion = None
+            habitacion.fechaCheckOut = timezone.now()
+            habitacion.fechaCheckIn = None
+            habitacion.save()
+            return redirect('urls_home:inicioUser')
 
 
 class ActualizarDatos(UpdateView):
@@ -76,7 +90,7 @@ class DatosHabitacionReservada(DetailView):
     
     
 class ValidacionChekIn(View):
-    template_name = 'clientes/ValidacionChekIn.html'
+    template_name = 'acciones/ValidacionChekIn.html'
 
     def get(self, request, pk):
         habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
@@ -85,12 +99,6 @@ class ValidacionChekIn(View):
     def post(self, request, pk):
         habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
         token_ingresado = request.POST.get('token', '')
-
-        # if habitacion.estadoHabitacion != 'RESERVADA':
-        #     return render(request, self.template_name, {
-        #         'habitacion': habitacion,
-        #         'error': 'La habitación no está en estado de reserva.'
-        #     })
 
         if token_ingresado == str(habitacion.tockenChekInCheckOut):
             habitacion.estadoHabitacion = 'OCUPADA'
@@ -105,10 +113,29 @@ class ValidacionChekIn(View):
     
     
 
-
 class CkeckInExitoso(TemplateView):
     template_name = 'clientes/ExitoCkeck.html'
 
 
 class ChekOut(View):
-    pass
+    template_name = 'clientes/ChekOut.html'
+
+    def get(self, request, pk):
+        habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
+        return render(request, self.template_name, {'habitacion': habitacion})
+
+    def post(self, request, pk):
+        habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
+        token_ingresado = request.POST.get('token', '')
+
+
+        if token_ingresado == str(habitacion.tockenChekInCheckOut):
+            habitacion.estadoHabitacion = 'OCUPADA'
+            habitacion.fechaCheckIn = timezone.now()
+            habitacion.save()
+            return redirect('urls_clientes:Exito')  
+        else:
+            return render(request, self.template_name, {
+                'habitacion': habitacion,
+                'error': 'El código ingresado no es válido.'
+            })
