@@ -7,6 +7,9 @@
     <h1>Bienvenido {{user}}</h1>
     <!-- <a href="">Datos cliente</a> -->
     <a href="{% url 'urls_clientes:detallesCuenta' user.id %}">Detalles de cuenta</a> 
+
+    {% if user. %}
+
     <!-- Los detalles de cliente muestra las habitaciones reservadas, las tarjetas de credito registradas y sus datos personales -->
     <a href="{% url 'urls_clientes:registroTarjeta' %}">Registrar Tarjeta de Credito/debito</a>
     <a href="{% url 'urls_habitaciones:HabitacionesDisponibles' %}">Habitaciones</a>

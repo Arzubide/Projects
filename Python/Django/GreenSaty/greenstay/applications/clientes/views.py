@@ -46,7 +46,7 @@ class EliminarTarjetaCredito(DeleteView):
 
 
 class EliminarReservacion(View):
-    
+    ##Duda sobre la funcion get
     template_name = 'acciones/SalidaElimar.html'
 
     def get(self, request, pk):
@@ -111,31 +111,7 @@ class ValidacionChekIn(View):
                 'error': 'El código ingresado no es válido.'
             })
     
-    
 
 class CkeckInExitoso(TemplateView):
     template_name = 'clientes/ExitoCkeck.html'
 
-
-class ChekOut(View):
-    template_name = 'clientes/ChekOut.html'
-
-    def get(self, request, pk):
-        habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
-        return render(request, self.template_name, {'habitacion': habitacion})
-
-    def post(self, request, pk):
-        habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
-        token_ingresado = request.POST.get('token', '')
-
-
-        if token_ingresado == str(habitacion.tockenChekInCheckOut):
-            habitacion.estadoHabitacion = 'OCUPADA'
-            habitacion.fechaCheckIn = timezone.now()
-            habitacion.save()
-            return redirect('urls_clientes:Exito')  
-        else:
-            return render(request, self.template_name, {
-                'habitacion': habitacion,
-                'error': 'El código ingresado no es válido.'
-            })
