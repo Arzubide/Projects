@@ -35,7 +35,7 @@ class DetallesCuenta(DetailView):
 
         #habitaciones registradas
         HabitacionesUsurio = Habitacion.objects.filter(usuarioHabitacion=Usuario) #Variable modelo = varible de la funcion
-        context['habitacion'] = HabitacionesUsurio
+        context['habitaciones'] = HabitacionesUsurio
         return context
 
 
