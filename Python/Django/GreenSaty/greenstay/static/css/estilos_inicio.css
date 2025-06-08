@@ -1,5 +1,20 @@
 /* Estilos generales para la página */
+.card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+  font-size: 3rem;
+  color: #d4af37;
+}
 body,
 html {
   height: 100%;
@@ -95,3 +110,6 @@ html {
 .list-group-item {
   color: #212529; /* Este es el color de texto oscuro por defecto de Bootstrap */
 }
+
+
+
