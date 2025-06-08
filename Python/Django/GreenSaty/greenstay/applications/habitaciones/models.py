@@ -39,6 +39,10 @@ class Habitacion(models.Model):
          
     )
 
+    tockenChekInCheckOut = models.CharField(max_length=64, null=True, blank=True)
+    fechaCheckIn = models.DateTimeField(null=True, blank=True)
+    fechaCheckOut = models.DateTimeField(null=True, blank=True)
+
     precioHabitacion = models.IntegerField(default=0)
 
     def __str__(self):
