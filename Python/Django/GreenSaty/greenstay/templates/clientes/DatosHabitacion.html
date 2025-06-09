@@ -70,14 +70,19 @@
                         <p><strong>Hora de entrada:</strong> {{ habitacion.fechaCheckIn }}</p>
                     </div>
                     {% endif %}
-                                      
-                    <div class="d-flex justify-content-end">
+
+                    <div class="d-flex justify-content-center">
                         {% if habitacion.estadoHabitacion == 'OCUPADA' %}  
                             <a href="{% url 'urls_clientes:EliminarReservacion' habitacion.id %}" class="btn btn-danger">Registrar salida</a>
                         {% else %}
                             <a href="{% url 'urls_clientes:validacionEntrada' habitacion.id %}" class="btn btn-success">Registrar entrada</a>
                         {% endif %}
                     </div>
+
+                    <div class="d-flex justify-content-center gap-3" style="padding-top: 2%;">
+                        <a href="{% url 'urls_clientes:detallesCuenta' user.id %}" class="btn">Atras</a>
+                    </div>
+
 
                 </div>
             </div>
