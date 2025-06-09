@@ -10,16 +10,20 @@ from django.views import View
 #Vistas
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView, TemplateView
 from django.urls import reverse_lazy
+from django.urls import reverse
 from django.shortcuts import redirect, get_object_or_404
 
 class RegistroTarjeta(CreateView):
     template_name = 'clientes/registroTarjeta.html'
     form_class = Tarjeta
-    success_url = reverse_lazy('urls_home:inicioUser')
     
     def form_valid(self, form):
         form.instance.usuario = self.request.user #Le asignamos la tarjeta al cliente que tiene la cuenta activa
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        # Redirige a la vista con el detalle de cuenta del usuario actual
+        return reverse('urls_clientes:detallesCuenta', kwargs={'pk': self.request.user.id})
     
 
 class DetallesCuenta(DetailView):
@@ -79,10 +83,6 @@ class ActualizarDatos(UpdateView):
     template_name = 'clientes/editarDatos.html'
     form_class = ActualizarDatos
     success_url = reverse_lazy('urls_home:inicioUser')
-
-
-class VistaCheckInYCheckOut(ListView):
-    '''Mostrara las habitaciones en las que puede realizar checkIn y checkOut'''
 
 
 class DatosHabitacionReservada(DetailView):

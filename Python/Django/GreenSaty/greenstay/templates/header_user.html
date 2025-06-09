@@ -8,7 +8,6 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="{% url 'urls_home:inicioUser' %}">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'urls_clientes:detallesCuenta' user.id %}">Perfil</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'urls_clientes:registroTarjeta' %}">Metodo de pago</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'urls_habitaciones:HabitacionesDisponibles' %}">Habitaciones</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'urls_users:logout' %}">Cerrar sesion</a></li>
             </ul>
