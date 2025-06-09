@@ -67,6 +67,11 @@ class EliminarReservacion(View):
             habitacion.fechaCheckIn = None
             habitacion.save()
             return redirect('urls_home:inicioUser')
+        else:
+            return render(request, self.template_name, {
+                'habitacion': habitacion,
+                'error': 'El código ingresado no es válido.'
+            })
 
 
 class ActualizarDatos(UpdateView):
