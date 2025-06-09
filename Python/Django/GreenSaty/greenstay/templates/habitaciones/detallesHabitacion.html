@@ -17,102 +17,120 @@
     <div class="page-container">
     {% include 'header_user.html' %}
         <div class="content-wrap py-5">
-            <!-- Metodo de pago -->
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h3 class="mb-3">Método de Pago</h3>
-                    {% if tiene_tarjeta %}
-                        {% for t in tarjeta %}                      
-                            {% if t.tipoTarjeta == 'VISA' %}
-                                <!-- Visa -->
-                                <div class="form-check mb-3">
-                                <input class="form-check-input" type="radio" name="paymentMethod" id="savedCard1"
-                                    value="saved1" checked>
-                                <label class="form-check-label w-100" for="savedCard1">
-                                    <div class="card payment-card">
-                                        <div class="card-body d-flex justify-content-between align-items-center">
-                                            <div><i class="bi bi-credit-card-2-front-fill fs-2 text-primary"></i>
-                                                <strong>Visa</strong><strong>{{t.Terminacion}}</strong>
-                                            </div>
-                                            <div class="text-muted">Expira {{t.fechaExpiracion}}</div>
-                                        </div>
-                                    </div>
-                                </label>
-                                </div>
-                                <!-- Fin Visa -->
-                            {% elif t.tipoTarjeta == 'MASTERCARD' %}
-                                <!-- Mastercard -->
-                                <div class="form-check mb-3">
-                                <input class="form-check-input" type="radio" name="paymentMethod" id="savedCard2"
-                                    value="saved2">
-                                <label class="form-check-label w-100" for="savedCard2">
-                                    <div class="card payment-card">
-                                        <div class="card-body d-flex justify-content-between align-items-center">
-                                            <div><i class="bi bi-credit-card-2-front-fill fs-2 text-dark"></i>
-                                                <strong>Mastercard</strong> <strong>{{t.Terminacion}}</strong>
-                                            </div>
-                                            <div class="text-muted">Expira {{t.fechaExpiracion}}</div>
-                                        </div>
-                                    </div>
-                                </label>
-                                </div>
-                                <!-- Fin Mastercard -->
-                            {% elif t.tipoTarjeta == 'AMEX' %}
-                                <!-- Mastercard -->
-                                <div class="form-check mb-3">
-                                <input class="form-check-input" type="radio" name="paymentMethod" id="savedCard2"
-                                    value="saved2">
-                                <label class="form-check-label w-100" for="savedCard2">
-                                    <div class="card payment-card">
-                                        <div class="card-body d-flex justify-content-between align-items-center">
-                                            <div><i class="bi bi-credit-card-2-front-fill fs-2 text-dark"></i>
-                                                <strong>American Expess</strong> <strong>{{t.Terminacion}}</strong>
-                                            </div>
-                                            <div class="text-muted">Expira {{t.fechaExpiracion}}</div>
-                                        </div>
-                                    </div>
-                                </label>
-                                </div>
-                                <!-- Fin Mastercard -->
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <a href="{% url 'urls_clientes:registroTarjeta' %}" class="btn btn-primary">Registrar metodo de pago</a>
-                        <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">
-                            {% csrf_token %}
-                            
-                        </form> 
-                    {% endif %}
-                    
-                </div>
-            </div>
-            <!-- Fin metodo de pago -->
+
 
             <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">{% csrf_token %}
                 <!-- REsumen reserva -->
                 <div >
-                    <div class="card shadow-sm sticky-top" style="top: 20px;">
+                    <div class="card shadow-sm">
                         <div class="card-header">
                             <h4 class="my-0">Resumen de tu Reserva</h4>
                         </div>
                         <div class="card-body">
+                            <!-- Imagen habitcion -->
                             <div class="d-flex align-items-center mb-3">
-                                <img src="https://placehold.co/600x400/68a670/FFF?text=Ejecutiva"
-                                    class="img-fluid rounded me-3" alt="Habitación Ejecutiva" style="width: 120px;">
+                                {% if habitacion.nivelHabitacion == 'STANDART' %}
+                                    <img src="{% static 'img/index/Penthouse.jpg' %}"class="img-fluid rounded me-3" alt="Habitación Ejecutiva" style="width: 120px;">
+                                {% elif habitacion.nivelHabitacion == 'DELUXE' %}
+                                    <img src="{% static 'img/index/Cuarto_sencillo.jpg' %}"class="img-fluid rounded me-3" alt="Habitación Ejecutiva" style="width: 120px;">
+                                {% elif habitacion.nivelHabitacion == 'EJECUTIVA' %}
+                                    <img src="{% static 'img/index/Cuarto_doble.jpg' %}" class="img-fluid rounded me-3" alt="Habitación Ejecutiva" style="width: 120px;">
+                                {% elif habitacion.nivelHabitacion == 'SUITE' %}
+                                    <img src="{% static 'img/index/suite.jpg' %}" class="img-fluid rounded me-3" alt="Habitación Ejecutiva" style="width: 120px;">
+                                {% elif habitacion.nivelHabitacion == 'PRESIDENCIAL' %}
+                                    <img src="{% static 'img/index/presidencial.jpg' %}" class="img-fluid rounded me-3" alt="Habitación Ejecutiva" style="width: 120px;">
+                                {% endif %}
                                 <div>
                                     <h5 class="mb-1">Habitación {{habitacion.nivelHabitacion}}</h5>
                                     <p class="mb-0 text-muted">{{habitacion.numeroHabitacion}}</p>
                                 </div>
                             </div>
+                            <!-- Fin imagen de la reservacion -->
+                            
                             <label class="form-label fw-bold">Selecciona tu estancia:</label>
-                            <div id="datepicker-container" class="input-group mb-3">
-                                <input type="text" class="form-control text-center" name="start"
-                                    placeholder="Check-in" readonly><span class="input-group-text"><i
-                                        class="bi bi-arrow-right-short"></i></span>
-                                <input type="text" class="form-control text-center" name="end"
-                                    placeholder="Check-out" readonly>
+                            <!-- Ingresa las fechas de la estancia -->
+                            <div >
+                                
+                                <input type="datetime-local" class="form-control text-center" placeholder="Entrada" readonly>
+                                <span class="input-group-text">
+                                <i class="bi bi-arrow-right-short"></i></span>
+                                <input type="datetime-local" class="form-control text-center" placeholder="Check-out" readonly>
+
                             </div>
+                            <!-- Fin de registro de las fechas de estancia -->
                             <hr>
+
+                            <!-- Metodo de pago -->
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h3 class="mb-3">Método de Pago</h3>
+                                    {% if tiene_tarjeta %}
+                                        {% for t in tarjeta %}                      
+                                            {% if t.tipoTarjeta == 'VISA' %}
+                                                <!-- Visa -->
+                                                <div class="form-check mb-3">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="savedCard1"
+                                                    value="saved1" checked>
+                                                <label class="form-check-label w-100" for="savedCard1">
+                                                    <div class="card payment-card">
+                                                        <div class="card-body d-flex justify-content-between align-items-center">
+                                                            <div><i class="bi bi-credit-card-2-front-fill fs-2 text-primary"></i>
+                                                                <strong>Visa</strong><strong>{{t.Terminacion}}</strong>
+                                                            </div>
+                                                            <div class="text-muted">Expira {{t.fechaExpiracion}}</div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                                </div>
+                                                <!-- Fin Visa -->
+                                            {% elif t.tipoTarjeta == 'MASTERCARD' %}
+                                                <!-- Mastercard -->
+                                                <div class="form-check mb-3">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="savedCard2"
+                                                    value="saved2">
+                                                <label class="form-check-label w-100" for="savedCard2">
+                                                    <div class="card payment-card">
+                                                        <div class="card-body d-flex justify-content-between align-items-center">
+                                                            <div><i class="bi bi-credit-card-2-front-fill fs-2 text-dark"></i>
+                                                                <strong>Mastercard</strong> <strong>{{t.Terminacion}}</strong>
+                                                            </div>
+                                                            <div class="text-muted">Expira {{t.fechaExpiracion}}</div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                                </div>
+                                                <!-- Fin Mastercard -->
+                                            {% elif t.tipoTarjeta == 'AMEX' %}
+                                                <!-- Mastercard -->
+                                                <div class="form-check mb-3">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="savedCard2"
+                                                    value="saved2">
+                                                <label class="form-check-label w-100" for="savedCard2">
+                                                    <div class="card payment-card">
+                                                        <div class="card-body d-flex justify-content-between align-items-center">
+                                                            <div><i class="bi bi-credit-card-2-front-fill fs-2 text-dark"></i>
+                                                                <strong>American Expess</strong> <strong>{{t.Terminacion}}</strong>
+                                                            </div>
+                                                            <div class="text-muted">Expira {{t.fechaExpiracion}}</div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                                </div>
+                                                <!-- Fin Mastercard -->
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <a href="{% url 'urls_clientes:registroTarjeta' %}" class="btn btn-primary">Registrar metodo de pago</a>
+                                        <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">
+                                            {% csrf_token %}
+                                            
+                                        </form> 
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                            <!-- Fin metodo de pago -->
+
                             <ul class="list-group list-group-flush">
                                 <!-- <li class="list-group-item d-flex justify-content-between">
                                     <span>Duración:</span><strong id="stay-duration">-- Noches</strong>
@@ -130,7 +148,7 @@
                                 <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
                                 <label class="form-check-label" for="termsCheck">
                                     Acepto los
-                                    <a href="../Terminos_condiciones.html" target="_blank" rel="noopener">términos y
+                                    <a href="" target="_blank" rel="noopener">términos y
                                         condiciones</a>.
                                 </label>
                             </div>
@@ -144,32 +162,7 @@
             </form>
             
         </div>
-    </div>
-
-
-
-    <h1>Detalles de la habitacion {{habitacion.numeroHabitacion}}</h1>
-    
-    <div>
-        {% if tiene_tarjeta %}
-            <!--Simulando la compra-->
-            <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">
-                {% csrf_token %}
-                <label for="cars">Seleccione su metodo de pago:</label>
-                    <select id="" name="">
-                        {% for t in tarjeta %}                      
-                        <option>{{t.metodoPago}}</option>
-                        {% endfor %}
-                    </select><br>
-                <button type="submit" class="btn btn-primary">Reservar</button>
-            </form> 
-        {% else %}
-        <a href="{% url 'urls_clientes:registroTarjeta' %}" class="btn btn-primary">Registrar tarjeta</a>
-        <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary" disabled>Reservar</button>
-        </form> 
-        {% endif %}
+        {% include 'footer_user.html' %}
     </div>
 
 {% endblock body %}

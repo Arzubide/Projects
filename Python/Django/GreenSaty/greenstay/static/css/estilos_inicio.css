@@ -60,7 +60,7 @@ html {
 
 .card-icon {
   font-size: 3rem;
-  color: #0069e9;
+  color: #2c496b;
 }
 
 /* Estilos para eL carousel del inicio */
@@ -81,14 +81,14 @@ html {
 /* Estilos para boton en formularios*/
 
 .btn-primary {
-  background-color: #1eb2ff;
+  background-color: #2f586e;
   border: none;
   color: #FFFF;
   font-weight: bold;
 }
 
 .btn-primary:hover {
-  background-color: #37aad4;
+  background-color: #06394b;
   color: #1a1a1a;
 }
 
@@ -112,7 +112,7 @@ html {
 }
 
 .bg-gold {
-    background-color: #d4af37; /* Dorado */
+    background-color: #000000; /* Dorado */
 }
 
 
