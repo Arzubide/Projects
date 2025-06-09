@@ -9,10 +9,10 @@ html {
 
 /* Wrapper para layout */
 
-#wrapper {
+.page-container {
   display: flex;
-  height: 100vh;
-  overflow: hidden;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Sidebar general */
@@ -101,14 +101,46 @@ html {
 
 /* Contenido principal */
 
-#page-content-wrapper {
-  flex: 1;
-  overflow-y: auto;
-  background-color: #121212;
-  padding: 20px;
+.content-wrap {
+  flex: 1; /* Esto hace que el contenido principal tome todo el espacio disponible */
 }
 
 h1,
 p {
   color: #fff;
+}
+
+/* Evita scroll interno en carruseles o tarjetas */
+.card {
+    overflow: hidden;
+}
+
+/* Establece altura fija para imágenes y las ajusta correctamente */
+.carousel-inner img {
+    height: 250px;           /* Altura fija para todas las imágenes */
+    object-fit: cover;       /* Ajusta imagen sin deformarla */
+    object-position: center; /* Centra la imagen */
+}
+
+/* Asegura que las columnas no causen overflow */
+.room-card {
+    max-width: 350px;
+}
+
+/* Contenedor general sin scroll innecesario */
+.container-fluid {
+    overflow: visible !important;
+}
+
+/* Asegura que el contenedor no cree scroll lateral */
+#wrapper, #page-content-wrapper {
+    overflow-x: hidden;
+}
+
+/* El body y html deben permitir scroll vertical pero no horizontal */
+html, body {
+    overflow-x: hidden;
+}
+.pagination {
+  margin-bottom: 1rem;  /* O ajusta según necesidad */
 }

@@ -29,16 +29,20 @@ class Habitaciones(ListView): #Administrador
         return ListaPorCategoria
 
 
-
 class HabitacionesDisponibles(ListView):  # Cliente
     template_name = 'habitaciones/HabitacionesDisponibles.html'
     context_object_name = 'habitaciones'
     paginate_by = 5
 
     def get_queryset(self):
-        diponibilidad = 'DISPONIBLE'  
-        return Habitacion.objects.filter(estadoHabitacion=diponibilidad)
-    
+        diponibilidad = 'DISPONIBLE'
+        categoria = self.request.GET.get('categoria','')
+        ListaHabitaciones = Habitacion.objects.filter(
+            estadoHabitacion=diponibilidad,
+            nivelHabitacion__icontains = categoria
+        )
+        return ListaHabitaciones
+
 
 class ActualizarDatosHabitacion(UpdateView):
     model = Habitacion

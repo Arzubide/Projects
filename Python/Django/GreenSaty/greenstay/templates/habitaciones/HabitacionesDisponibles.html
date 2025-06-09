@@ -5,8 +5,208 @@
     Habitaciones
 {% endblock title %}
 
+{% block css %}
+    <link href="{% static 'css/estilos_inicio.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+{% endblock css %}
+
 {% block body %}
-    <h1>Habitaciones</h1>
+    <div class="page-container">
+        {% include 'header_user.html' %}
+        <!-- Contenedor principal -->
+            <div class="content-wrap py-5">
+            <!-- Contenido principal -->
+                <div class="container-fluid p-4">
+                    <h1 class="text-center mb-4">Nuestras Habitaciones</h1>
+
+                    <!-- Filtro de botones -->
+                    <form method="get">{% csrf_token %}
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-secondary" type="submit">Filtrar por nivel</button>
+                            <select class="form-select" id="categoria" name="categoria" aria-label="Example select with button addon">
+                                <option value="STANDART">Standart</option>
+                                <option value="DELUXE">Deluxe</option>
+                                <option value="EJECUTIVA">Ejecutiva</option>
+                                <option value="SUITE">Suite</option>
+                                <option value="PRESIDENCIAL">Presidencial</option>
+                            </select>
+                        </div>
+                    </form>
+
+                    <!-- Tarjetas de habitaciones -->
+                    <div class="row g-4 justify-content-center">
+                        {% for h in habitaciones %}
+                            {% if h.nivelHabitacion == 'STANDART' %}
+                                <div class="col room-card" data-category="estandar">
+                                    <div class="card h-100">
+                                        <div id="carouselEstandar" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <img src="{% static 'img/index/Penthouse.jpg' %}" class="d-block w-100"
+                                                        alt="Habitación Estándar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Habitación {{h.nivelHabitacion}}</h5>
+                                            <p class="card-text">Numero de habitacion: {{h.numeroHabitacion}}</p>
+                                            <p class="card-text">Cómoda y funcional, ideal para viajeros solos o parejas. Equipada
+                                                con todo lo necesario para una estancia placentera.</p>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold text-success">${{h.precioHabitacion}} MXN / noche</span>
+                                            <a href="{% url 'urls_habitaciones:detalles-habitacion' h.id %}" class="btn btn-primary">Mostrar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif h.nivelHabitacion == 'DELUXE' %}
+                                <div class="col room-card" data-category="deluxe">
+                                    <div class="card h-100">
+                                        <div id="carouselDeluxe" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active"><img src="{% static 'img/index/Cuarto_sencillo.jpg' %}"
+                                                    class="d-block w-100" alt="Habitación Deluxe">
+                                                </div>
+                                        
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Habitación {{h.nivelHabitacion}}</h5>
+                                            <p class="card-text">Numero de habitacion: {{h.numeroHabitacion}}</p>
+                                            <p class="card-text">Un nivel superior de confort con más espacio, una cama King Size y
+                                                una pequeña área de estar. Vistas preferenciales.</p>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold text-success">${{h.precioHabitacion}} MXN / noche</span>
+                                            <a href="{% url 'urls_habitaciones:detalles-habitacion' h.id %}" class="btn btn-primary">Mostrar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif h.nivelHabitacion == 'EJECUTIVA' %}
+                                <div class="col room-card" data-category="ejecutiva">
+                                    <div class="card h-100">
+                                        <div id="carouselEjecutiva" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active"><img src="{% static 'img/index/Cuarto_doble.jpg' %}"
+                                                    class="d-block w-100" alt="Habitación Ejecutiva">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Habitación {{h.nivelHabitacion}}</h5>
+                                            <p class="card-text">Numero de habitacion: {{h.numeroHabitacion}}</p>
+                                            <p class="card-text">Diseñada para el viajero de negocios. Incluye un amplio escritorio,
+                                                silla ergonómica y acceso a servicios exclusivos.</p>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold text-success">${{h.precioHabitacion}} MXN / noche</span>
+                                            <a href="{% url 'urls_habitaciones:detalles-habitacion' h.id %}" class="btn btn-primary">Mostrar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif h.nivelHabitacion == 'SUITE' %}
+                                <div class="col room-card" data-category="suite">
+                                    <div class="card h-100">
+                                        <div id="carouselSuite" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active"><img src="{% static 'img/index/suite.jpg' %}"
+                                                    class="d-block w-100" alt="Suite">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{h.nivelHabitacion}}</h5>
+                                            <p class="card-text">Numero de habitacion: {{h.numeroHabitacion}}</p>
+                                            <p class="card-text">Una experiencia de lujo. Cuenta con dormitorio y sala de estar
+                                                independientes, jacuzzi y un balcón privado con vistas espectaculares.</p>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold text-success">${{h.precioHabitacion}} MXN / noche</span>
+                                            <a href="{% url 'urls_habitaciones:detalles-habitacion' h.id %}" class="btn btn-primary">Mostrar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif h.nivelHabitacion == 'PRESIDENCIAL' %}
+                                <div class="col room-card" data-category="presidencial">
+                                    <div class="card h-100">
+                                        <div id="carouselPresidencial" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active"><img src="{% static 'img/index/presidencial.jpg' %}"
+                                                    class="d-block w-100" alt="Suite Presidencial">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Suite {{h.nivelHabitacion}}</h5>
+                                            <p class="card-text">Numero de habitacion: {{h.numeroHabitacion}}</p>
+                                            <p class="card-text">El máximo lujo y exclusividad. Incluye varias habitaciones,
+                                                comedor, cocina y servicio de mayordomo. La mejor vista del hotel.</p>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold text-success">${{h.precioHabitacion}} MXN / noche</span>
+                                            <a href="{% url 'urls_habitaciones:detalles-habitacion' h.id %}" class="btn btn-primary">Mostrar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <!--Paginacion -->
+                    <nav aria-label="Page navigation" style="padding-top: 5%;">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">&laquo;</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo;</span>
+                        </li>
+                        <li class="page-item disabled">
+                            <span class="page-link">Anterior</span>
+                        </li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                        {% if num == page_obj.number %}
+                            <li class="page-item active" aria-current="page">
+                            <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Siguiente</span>
+                        </li>
+                        <li class="page-item disabled">
+                            <span class="page-link">&raquo;</span>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    </nav>
+                    <!--Fin de Paginacion -->
+                </div>
+            </div>
+        
+        {% include 'footer_user.html' %}
+    </div>
+{% endblock body %}
+
     <div class="container-lg">
         {% for h in habitaciones %}
             <div class="card" style="width: 18rem;">
@@ -51,5 +251,4 @@
             </span>
         </div>
 
-    </div>
-{% endblock body %}
+    </div> -->
