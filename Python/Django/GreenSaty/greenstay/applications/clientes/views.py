@@ -47,7 +47,11 @@ class DetallesCuenta(DetailView):
 class EliminarTarjetaCredito(DeleteView):
     model = TarjetaCredito
     template_name = 'clientes/eliminarTarjeta.html'
-    success_url = reverse_lazy('urls_home:inicioUser')
+    
+    def get_success_url(self):
+        # Redirige a la vista con el detalle de cuenta del usuario actual
+        return reverse('urls_clientes:detallesCuenta', kwargs={'pk': self.request.user.id})
+
 
 
 class EliminarReservacion(View):
