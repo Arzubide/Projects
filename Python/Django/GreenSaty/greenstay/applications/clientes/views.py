@@ -101,19 +101,16 @@ class ValidacionChekIn(View):
     def post(self, request, pk):
         habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
         token_ingresado = request.POST.get('token', '')
+        user = request.user
 
         if token_ingresado == str(habitacion.tockenChekInCheckOut):
             habitacion.estadoHabitacion = 'OCUPADA'
             habitacion.fechaCheckIn = timezone.now()
             habitacion.save()
-            return redirect('urls_clientes:Exito')  # Ajusta al nombre correcto
+            return redirect('urls_clientes:detallesCuenta', pk=user.id) # concatenamos para que lo tome como PK de la url
         else:
             return render(request, self.template_name, {
                 'habitacion': habitacion,
                 'error': 'El código ingresado no es válido.'
             })
     
-
-class CkeckInExitoso(TemplateView):
-    template_name = 'clientes/ExitoCkeck.html'
-

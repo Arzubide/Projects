@@ -1,15 +1,53 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
-    Validacion entrada
+    Validación de entrada (Check-In)
 {% endblock title %}
 
-{% block body %}
-    <form method="post">{% csrf_token %}
-        <input type="text" placeholder="Ingresa el token" name="token" id="token">
-        <button type="submit">Registrar entrada</button>
-    </form>
+{% block css %}
+    <link href="{% static 'css/estilos_inicio.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+{% endblock css %}
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+{% block body %}
+<div class="page-container">
+    {% include 'header_user.html' %}
+
+    <div class="content-wrap">
+        <div class="container">
+            <div class="card p-4 w-100 mx-auto" style="max-width: 600px;">
+                <div class="card-header bg-gold text-white text-center rounded-top">
+                    <h4 class="mb-0">Validación de entrada</h4>
+                </div>
+                <div class="card-body">
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="token" class="form-label"><strong>Ingresa el token de Check-In para la habitacion {{habitacion.numeroHabitacion}}</strong></label>
+                            <input type="text" class="form-control" name="token" id="token" placeholder="Token de seguridad" required>
+                        </div>
+
+                        {% if error %}
+                            <div class="alert alert-danger mt-2">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit" class="btn btn-success">Registrar entrada (Check-In)</button>
+                        </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <a href="{% url 'urls_clientes:detallesCuenta' user.id %}" class="btn">Atras</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer_user.html' %}
+</div>
 {% endblock body %}

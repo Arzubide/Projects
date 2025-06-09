@@ -36,10 +36,5 @@ urlpatterns = [
         'Check-In/<pk>',
         views.ValidacionChekIn.as_view(),
         name='validacionEntrada'
-    ),
-    path(
-        'CheckIn-Exitoso/',
-        views.CkeckInExitoso.as_view(),
-        name='Exito'
     )
 ]
