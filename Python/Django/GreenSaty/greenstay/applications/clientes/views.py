@@ -5,20 +5,25 @@ from .forms import Tarjeta
 from .models import TarjetaCredito
 from applications.habitaciones.models import Habitacion
 from applications.users.models import Usuarios
+from applications.users.forms import ActualizarDatos
 from django.views import View
 #Vistas
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView, TemplateView
 from django.urls import reverse_lazy
+from django.urls import reverse
 from django.shortcuts import redirect, get_object_or_404
 
 class RegistroTarjeta(CreateView):
     template_name = 'clientes/registroTarjeta.html'
     form_class = Tarjeta
-    success_url = reverse_lazy('urls_home:inicioUser')
     
     def form_valid(self, form):
         form.instance.usuario = self.request.user #Le asignamos la tarjeta al cliente que tiene la cuenta activa
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        # Redirige a la vista con el detalle de cuenta del usuario actual
+        return reverse('urls_clientes:detallesCuenta', kwargs={'pk': self.request.user.id})
     
 
 class DetallesCuenta(DetailView):
@@ -42,7 +47,11 @@ class DetallesCuenta(DetailView):
 class EliminarTarjetaCredito(DeleteView):
     model = TarjetaCredito
     template_name = 'clientes/eliminarTarjeta.html'
-    success_url = reverse_lazy('urls_home:inicioUser')
+    
+    def get_success_url(self):
+        # Redirige a la vista con el detalle de cuenta del usuario actual
+        return reverse('urls_clientes:detallesCuenta', kwargs={'pk': self.request.user.id})
+
 
 
 class EliminarReservacion(View):
@@ -66,21 +75,18 @@ class EliminarReservacion(View):
             habitacion.fechaCheckIn = None
             habitacion.save()
             return redirect('urls_home:inicioUser')
+        else:
+            return render(request, self.template_name, {
+                'habitacion': habitacion,
+                'error': 'El código ingresado no es válido.'
+            })
 
 
 class ActualizarDatos(UpdateView):
     model = Usuarios
     template_name = 'clientes/editarDatos.html'
-    fields = [
-        'nombres',
-        'apellidos',
-        'correo',
-    ]
+    form_class = ActualizarDatos
     success_url = reverse_lazy('urls_home:inicioUser')
-
-
-class VistaCheckInYCheckOut(ListView):
-    '''Mostrara las habitaciones en las que puede realizar checkIn y checkOut'''
 
 
 class DatosHabitacionReservada(DetailView):
@@ -99,19 +105,16 @@ class ValidacionChekIn(View):
     def post(self, request, pk):
         habitacion = get_object_or_404(Habitacion, pk=pk, usuarioHabitacion=request.user)
         token_ingresado = request.POST.get('token', '')
+        user = request.user
 
         if token_ingresado == str(habitacion.tockenChekInCheckOut):
             habitacion.estadoHabitacion = 'OCUPADA'
             habitacion.fechaCheckIn = timezone.now()
             habitacion.save()
-            return redirect('urls_clientes:Exito')  # Ajusta al nombre correcto
+            return redirect('urls_clientes:detallesCuenta', pk=user.id) # concatenamos para que lo tome como PK de la url
         else:
             return render(request, self.template_name, {
                 'habitacion': habitacion,
                 'error': 'El código ingresado no es válido.'
             })
     
-
-class CkeckInExitoso(TemplateView):
-    template_name = 'clientes/ExitoCkeck.html'
-

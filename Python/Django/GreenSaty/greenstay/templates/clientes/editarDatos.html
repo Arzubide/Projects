@@ -1,13 +1,58 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-    Actualizar datos
+    Actualizar Datos
 {% endblock title %}
 
+{% block css %}
+    <link href="{% static 'css/estilos_inicio.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+{% endblock css %}
+
 {% block body %}
-    <h1>Actualizar datos</h1>
-    <form method="post"> {% csrf_token %}
-        {{form.as_p}} <!-- Aqui ya nos rellena automaticamnte dependiendo del id que se selecciono para guardar  -->
-        <button type="submit">Actualizar</button>
-    </form>
+    <div class="page-container">
+        {% include 'header_user.html' %}
+
+        <div class="content-wrap">
+            <div class="container">
+                <div class="card p-4 w-100 mx-auto" style="max-width: 900px;">
+                    <div class="card-header bg-gold text-white text-center rounded-top">
+                        <h4 class="mb-0">Datos Personales</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.nombres.id_for_label }}">Nombre(s):</label>
+                                {{ form.nombres }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.apellidos.id_for_label }}">Apellidos: </label>
+                                {{ form.apellidos }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.correo.id_for_label }}">Correo electrónico</label>
+                                {{ form.correo }}
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+
+                            <div class="d-flex justify-content-center" style="padding-top: 1%;">
+                                <a href="{% url 'urls_clientes:detallesCuenta' user.id %}" class="btn btn-primary">Cancelar</a> 
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'footer_user.html' %}
+    </div>
 {% endblock body %}

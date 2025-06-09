@@ -1,17 +1,81 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     Inicio
 {% endblock title %}
 
+{% block css %}
+    <link href="{% static 'css/estilos_inicio.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    .card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-icon {
+    font-size: 3rem;
+    color: #d4af37;
+    }
+    </style>
+{% endblock css %}
+
 {% block body %}
-    <h1>Bienvenido {{user}}</h1>
-    <!-- <a href="">Datos cliente</a> -->
-    <a href="{% url 'urls_clientes:detallesCuenta' user.id %}">Detalles de cuenta</a> 
 
-    {% if user. %}
+    <div class="page-container">
 
-    <!-- Los detalles de cliente muestra las habitaciones reservadas, las tarjetas de credito registradas y sus datos personales -->
-    <a href="{% url 'urls_clientes:registroTarjeta' %}">Registrar Tarjeta de Credito/debito</a>
-    <a href="{% url 'urls_habitaciones:HabitacionesDisponibles' %}">Habitaciones</a>
-    <a href="{% url 'urls_users:logout' %}">Cerrar sesion</a>
+        <!-- Carga del header -->
+        {% include 'header_user.html' %}
+
+        <!-- Contenido principal -->
+        <div class="content-wrap">
+            <div class="container text-center text-white py-5">
+                <h1 class="display-4 mb-4">Bienvenido a Nuestro Hotel</h1>
+                <p class="lead mb-5">Disfruta de la mejor experiencia con nuestras comodidades y servicios de primera clase.</p>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body text-center">
+                                <i class="fas fa-bed card-icon mb-3"></i>
+                                <h5 class="card-title">Habitaciones cómodas</h5>
+                                <p class="card-text">Relájate en habitaciones diseñadas para tu confort.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body text-center">
+                                <i class="fas fa-utensils card-icon mb-3"></i>
+                                <h5 class="card-title">Restaurante gourmet</h5>
+                                <p class="card-text">Disfruta de una experiencia culinaria de primer nivel.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body text-center">
+                                <i class="fas fa-spa card-icon mb-3"></i>
+                                <h5 class="card-title">Spa & Bienestar</h5>
+                                <p class="card-text">Encuentra el equilibrio en nuestro centro de relajación.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carga del footer -->
+        {% include 'footer_user.html' %}
+    </div>
+
 {% endblock body %}

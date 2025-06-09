@@ -178,3 +178,33 @@ class LoginAdmin(forms.Form):
             return cleaned_data
 
 
+class ActualizarDatos(forms.ModelForm):
+    class Meta:
+        model = Usuarios
+        fields = (
+            'correo',
+            'nombres',
+            'apellidos'
+        )
+        
+        widgets = {
+            'correo' : forms.EmailInput(
+                attrs={
+                    'placeholder' : 'Ingresar el correo',
+                    'class' : 'form-control'
+                }
+            ),
+            'nombres' : forms.TextInput(
+                attrs={
+                    'placeholder' : 'Ingresar tu(s) nombre(s)',
+                    'class' : 'form-control'
+                }
+            ),
+            'apellidos' : forms.TextInput(
+                attrs={
+                    'placeholder' : 'Ingresar tus apellidos',
+                    'class' : 'form-control'
+                }
+            )
+
+        }
