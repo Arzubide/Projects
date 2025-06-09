@@ -20,26 +20,18 @@
                     <h1 class="text-center mb-4">Nuestras Habitaciones</h1>
 
                     <!-- Filtro de botones -->
-                    <ul class="nav nav-pills justify-content-center mb-5 filter-pills">
-                        <li class="nav-item">
-                            <button class="nav-link active" data-filter="all">Todas</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-filter="estandar">Estándar</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-filter="deluxe">Deluxe</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-filter="ejecutiva">Ejecutiva</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-filter="suite">Suite</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-filter="presidencial">Presidencial</button>
-                        </li>
-                    </ul>
+                    <form method="get">{% csrf_token %}
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-secondary" type="submit">Filtrar por nivel</button>
+                            <select class="form-select" id="categoria" name="categoria" aria-label="Example select with button addon">
+                                <option value="STANDART">Standart</option>
+                                <option value="DELUXE">Deluxe</option>
+                                <option value="EJECUTIVA">Ejecutiva</option>
+                                <option value="SUITE">Suite</option>
+                                <option value="PRESIDENCIAL">Presidencial</option>
+                            </select>
+                        </div>
+                    </form>
 
                     <!-- Tarjetas de habitaciones -->
                     <div class="row g-4 justify-content-center">

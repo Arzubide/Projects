@@ -36,8 +36,30 @@ class HabitacionesDisponibles(ListView):  # Cliente
     paginate_by = 5
 
     def get_queryset(self):
-        diponibilidad = 'DISPONIBLE'  
-        return Habitacion.objects.filter(estadoHabitacion=diponibilidad)
+        diponibilidad = 'DISPONIBLE'
+        categoria = self.request.GET.get('categoria','')
+        ListaHabitaciones = Habitacion.objects.filter(
+            estadoHabitacion=diponibilidad,
+            nivelHabitacion__icontains = categoria
+        )
+        
+        return ListaHabitaciones
+    
+    # class HabitacionesDisponibles(ListView):  # Cliente
+    # template_name = 'habitaciones/HabitacionesDisponibles.html'
+    # context_object_name = 'habitaciones'
+    # paginate_by = 5
+
+    # def get_queryset(self):
+    #     disponibilidad = 'DISPONIBLE'
+    #     queryset = Habitacion.objects.filter(estadoHabitacion=disponibilidad)
+
+    #     categoria = self.request.GET.get('categoria')
+    #     if categoria and categoria.lower() != 'all':
+    #         queryset = queryset.filter(nivelHabitacion__iexact=categoria)
+
+    #     return queryset
+
     
 
 class ActualizarDatosHabitacion(UpdateView):
