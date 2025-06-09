@@ -87,59 +87,62 @@
                 </div>
             </div>
             <!-- Fin metodo de pago -->
-            <!-- REsumen reserva -->
-            <div class="col-lg-5">
-                        <div class="card shadow-sm sticky-top" style="top: 20px;">
-                            <div class="card-header">
-                                <h4 class="my-0">Resumen de tu Reserva</h4>
+
+            <form method="post" action="{% url 'urls_habitaciones:reservar_habitacion' habitacion.id %}">{% csrf_token %}
+                <!-- REsumen reserva -->
+                <div >
+                    <div class="card shadow-sm sticky-top" style="top: 20px;">
+                        <div class="card-header">
+                            <h4 class="my-0">Resumen de tu Reserva</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://placehold.co/600x400/68a670/FFF?text=Ejecutiva"
+                                    class="img-fluid rounded me-3" alt="Habitación Ejecutiva" style="width: 120px;">
+                                <div>
+                                    <h5 class="mb-1">Habitación {{habitacion.nivelHabitacion}}</h5>
+                                    <p class="mb-0 text-muted">{{habitacion.numeroHabitacion}}</p>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img src="https://placehold.co/600x400/68a670/FFF?text=Ejecutiva"
-                                        class="img-fluid rounded me-3" alt="Habitación Ejecutiva" style="width: 120px;">
-                                    <div>
-                                        <h5 class="mb-1">Habitación Ejecutiva</h5>
-                                        <p class="mb-0 text-muted">Para 2 adultos</p>
-                                        <span id="price-per-night" class="d-none">2800</span>
-                                    </div>
-                                </div>
-                                <label class="form-label fw-bold">Selecciona tu estancia:</label>
-                                <div id="datepicker-container" class="input-group mb-3">
-                                    <input type="text" class="form-control text-center" name="start"
-                                        placeholder="Check-in" readonly><span class="input-group-text"><i
-                                            class="bi bi-arrow-right-short"></i></span>
-                                    <input type="text" class="form-control text-center" name="end"
-                                        placeholder="Check-out" readonly>
-                                </div>
-                                <hr>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>Duración:</span><strong id="stay-duration">-- Noches</strong>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between"><span
-                                            id="price-breakdown">$0.00 x 0 noches</span><span
-                                            id="subtotal-price">$0.00</span></li>
-                                    <li class="list-group-item d-flex justify-content-between"><span>Impuestos y cargos
-                                            (IVA 16%)</span><span id="taxes-price">$0.00</span></li>
-                                    <li class="list-group-item d-flex justify-content-between bg-light"><strong
-                                            class="fs-5">Total a pagar (MXN)</strong><strong class="fs-5 text-success"
-                                            id="total-price">$0.00</strong></li>
-                                </ul>
-                                <div class="form-check mt-4">
-                                    <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
-                                    <label class="form-check-label" for="termsCheck">
-                                        Acepto los
-                                        <a href="../Terminos_condiciones.html" target="_blank" rel="noopener">términos y
-                                            condiciones</a>.
-                                    </label>
-                                </div>
-                                <div class="d-grid mt-3">
-                                    <button type="submit" class="btn btn-primary btn-lg">Confirmar y Pagar</button>
-                                </div>
+                            <label class="form-label fw-bold">Selecciona tu estancia:</label>
+                            <div id="datepicker-container" class="input-group mb-3">
+                                <input type="text" class="form-control text-center" name="start"
+                                    placeholder="Check-in" readonly><span class="input-group-text"><i
+                                        class="bi bi-arrow-right-short"></i></span>
+                                <input type="text" class="form-control text-center" name="end"
+                                    placeholder="Check-out" readonly>
+                            </div>
+                            <hr>
+                            <ul class="list-group list-group-flush">
+                                <!-- <li class="list-group-item d-flex justify-content-between">
+                                    <span>Duración:</span><strong id="stay-duration">-- Noches</strong>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between"><span
+                                        id="price-breakdown">$0.00 x 0 noches</span><span
+                                        id="subtotal-price">$0.00</span></li>
+                                <li class="list-group-item d-flex justify-content-between"><span>Impuestos y cargos
+                                        (IVA 16%)</span><span id="taxes-price">$0.00</span></li> -->
+                                <li class="list-group-item d-flex justify-content-between bg-light"><strong
+                                        class="fs-5">Total a pagar (MXN)</strong><strong class="fs-5 text-success"
+                                        id="total-price">${{habitacion.precioHabitacion}}</strong></li>
+                            </ul>
+                            <div class="form-check mt-4">
+                                <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">
+                                    Acepto los
+                                    <a href="../Terminos_condiciones.html" target="_blank" rel="noopener">términos y
+                                        condiciones</a>.
+                                </label>
+                            </div>
+                            <div class="d-grid mt-3">
+                                <button type="submit" class="btn btn-primary btn-lg">Confirmar y Pagar</button>
                             </div>
                         </div>
-            </div>
-            <!-- FIN REsumen reserva -->
+                    </div>
+                </div>
+                <!-- FIN REsumen reserva -->
+            </form>
+            
         </div>
     </div>
 
