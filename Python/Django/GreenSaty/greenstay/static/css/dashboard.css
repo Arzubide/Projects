@@ -9,10 +9,10 @@ html {
 
 /* Wrapper para layout */
 
-#wrapper {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Sidebar general */
@@ -101,11 +101,12 @@ html {
 
 /* Contenido principal */
 
-#page-content-wrapper {
-  flex: 1;
-  overflow-y: auto;
-  background-color: #121212;
-  padding: 20px;
+.content-wrap {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    /* Elimina esto si está presente */
+    flex: none;
+    height: auto;
 }
 
 h1,
@@ -143,4 +144,7 @@ p {
 /* El body y html deben permitir scroll vertical pero no horizontal */
 html, body {
     overflow-x: hidden;
+}
+.pagination {
+  margin-bottom: 1rem;  /* O ajusta según necesidad */
 }
