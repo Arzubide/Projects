@@ -12,110 +12,79 @@
 {% endblock css %}
 
 {% block body %}
-<div class="page-container">
-    {% include 'header_user.html' %}
-    
-    <div class="content-wrap py-5">
-        <div class="container">
-            <h1 class="text-center mb-5">Panel de Cuenta</h1>
+    <div class="page-container">
+        {% include 'header_user.html' %}
+        
+        <div class="content-wrap py-5">
+            <div class="container">
+                <h1 class="text-center mb-5">Panel de Cuenta</h1>
 
-            <!-- Datos Personales -->
-            <div class="card mb-4">
-                <div class="card-header bg-gold text-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Datos Personales</h5>
-                    <a href="{% url 'urls_clientes:actualizarDatos' user.id %}" class="btn btn-primary">Editar Datos</a>
-                </div>
-                <div class="card-body">
-                    <p><strong>Nombres:</strong> {{ user.nombres }}</p>
-                    <p><strong>Apellidos:</strong> {{ user.apellidos }}</p>
-                    <p class="mb-0"><strong>Correo electrónico:</strong> {{ user.correo }}</p>
-                </div>
-            </div>
-
-            <!-- Habitaciones -->
-            <h3 class="mb-3">Habitaciones Reservadas</h3>
-            {% if habitaciones %}
-                {% for h in habitaciones %}
-                    <div class="card mb-3">
-                        <div class="card-header fw-bold bg-gold">
-                            Habitación #{{ h.numeroHabitacion }}
-                        </div>
-                        <div class="card-body">
-                            {% if h.estadoHabitacion == 'RESERVADA' %}
-                                <p><strong>Estado:</strong> <span class="badge rounded-pill text-bg-warning"> {{ h.estadoHabitacion }} </span></p>
-                            {% else %}
-                                <p><strong>Estado:</strong> <span class="badge bg-success"> {{ h.estadoHabitacion }} </span></p>
-                            {% endif %}
-                            <a href="{% url 'urls_clientes:DatosHabitacion' h.id %}" class="btn btn-sm btn-primary">Detalles Habitación</a>
-                            <a href="{% url 'urls_clientes:EliminarReservacion' h.id %}" class="btn btn-sm btn-outline-danger">Eliminar Reservación</a>
-                        </div>
+                <!-- Datos Personales -->
+                <div class="card mb-4">
+                    <div class="card-header bg-gold text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Datos Personales</h5>
+                        <a href="{% url 'urls_clientes:actualizarDatos' user.id %}" class="btn btn-primary">Editar Datos</a>
                     </div>
-                {% endfor %}
-            {% else %}
-                <div class="alert alert-warning">No tienes ninguna habitación reservada.</div>
-            {% endif %}
-            <a href="{% url 'urls_habitaciones:HabitacionesDisponibles' %}" class="btn btn-primary mb-5">Agregar Reservación</a>
-
-            <!-- Tarjetas -->
-            <h3 class="mb-3">Métodos de Pago</h3>
-            <div class="card mb-4">
-                <div class="card-header bg-gold d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 ">Tarjetas</h5>
-                    <a href="{% url 'urls_clientes:registroTarjeta' %}" class="btn btn-primary">Añadir Tarjeta</a>
+                    <div class="card-body">
+                        <p><strong>Nombres:</strong> {{ user.nombres }}</p>
+                        <p><strong>Apellidos:</strong> {{ user.apellidos }}</p>
+                        <p class="mb-0"><strong>Correo electrónico:</strong> {{ user.correo }}</p>
+                    </div>
                 </div>
-                <div class="card-body">
-                    {% if tarjeta %}
-                        <ul class="list-group">
-                            {% for t in tarjeta %}
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="mb-1"><i class="fa fa-credit-card"></i> {{ t.metodoPago }}</h6>
-                                        <small class="text-muted"><strong>Expira:</strong> {{ t.fechaExpiracion }}</small>
-                                    </div>
-                                    <a href="{% url 'urls_clientes:EliminarTarjeta' t.id %}" class="btn btn-outline-danger btn-sm">Eliminar</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <div class="alert alert-warning">No tienes ninguna tarjeta registrada.</div>
-                    {% endif %}
+
+                <!-- Habitaciones -->
+                <h3 class="mb-3">Habitaciones Reservadas</h3>
+                {% if habitaciones %}
+                    {% for h in habitaciones %}
+                        <div class="card mb-3">
+                            <div class="card-header fw-bold bg-gold">
+                                Habitación #{{ h.numeroHabitacion }}
+                            </div>
+                            <div class="card-body">
+                                {% if h.estadoHabitacion == 'RESERVADA' %}
+                                    <p><strong>Estado:</strong> <span class="badge rounded-pill text-bg-warning"> {{ h.estadoHabitacion }} </span></p>
+                                {% else %}
+                                    <p><strong>Estado:</strong> <span class="badge bg-success"> {{ h.estadoHabitacion }} </span></p>
+                                {% endif %}
+                                <a href="{% url 'urls_clientes:DatosHabitacion' h.id %}" class="btn btn-sm btn-primary">Detalles Habitación</a>
+                                <a href="{% url 'urls_clientes:EliminarReservacion' h.id %}" class="btn btn-sm btn-outline-danger">Eliminar Reservación</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning">No tienes ninguna habitación reservada.</div>
+                {% endif %}
+                <a href="{% url 'urls_habitaciones:HabitacionesDisponibles' %}" class="btn btn-primary mb-5">Agregar Reservación</a>
+
+                <!-- Tarjetas -->
+                <h3 class="mb-3">Métodos de Pago</h3>
+                <div class="card mb-4">
+                    <div class="card-header bg-gold d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 ">Tarjetas</h5>
+                        <a href="{% url 'urls_clientes:registroTarjeta' %}" class="btn btn-primary">Añadir Tarjeta</a>
+                    </div>
+                    <div class="card-body">
+                        {% if tarjeta %}
+                            <ul class="list-group">
+                                {% for t in tarjeta %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1"><i class="fa fa-credit-card"></i> {{ t.metodoPago }}</h6>
+                                            <small class="text-muted"><strong>Expira:</strong> {{ t.fechaExpiracion }}</small>
+                                        </div>
+                                        <a href="{% url 'urls_clientes:EliminarTarjeta' t.id %}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <div class="alert alert-warning">No tienes ninguna tarjeta registrada.</div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
+
+        {% include 'footer_user.html' %}
     </div>
-
-    {% include 'footer_user.html' %}
-</div>
-
-
-    <!--Inicio de bloque para mostrar las habitaciones que tiene el usuario-->
-    <h2>Habitaciones reservadas</h2>
-    <ul>
-        {% for h in habitaciones %}
-        <li>{{h.numeroHabitacion}}</li>
-        <a href="{% url 'urls_clientes:DatosHabitacion' h.id %}">Detalles Habitacion</a>
-        <a href="{% url 'urls_clientes:EliminarReservacion' h.id %}">Eiminar reservacion</a>
-
-        {% empty %}
-        <h4>No tienes nunguna habitacion reservada.</h4>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'urls_habitaciones:HabitacionesDisponibles' %}">Agregar reservacion</a>
-    <!--Fin de bloque para mostrar las habitaciones que tiene el usuario-->
-
-    <!--Inicio para mostrar las tarjeatas registradas-->
-    <h2>Tarjetas registradas</h2>
-        <ul>
-        {% for t in tarjeta %}
-            <li>{{t}}</li>
-            <a href="{% url 'urls_clientes:EliminarTarjeta' t.id %}">Eliminar tarjeta</a>
-        {% empty %}
-            <h4>No tienes nunguna tarjeta registrada.</h4>
-        {% endfor %}
-    </ul>
-    
-    <a href="{% url 'urls_clientes:registroTarjeta' %}">Agregar tarjeta</a>
-    <!--Fin para mostrar las tarjeatas registradas-->
-
 
 {% endblock body %}
