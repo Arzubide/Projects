@@ -10,9 +10,9 @@ html {
 /* Wrapper para layout */
 
 .page-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Sidebar general */
@@ -102,11 +102,7 @@ html {
 /* Contenido principal */
 
 .content-wrap {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    /* Elimina esto si está presente */
-    flex: none;
-    height: auto;
+  flex: 1; /* Esto hace que el contenido principal tome todo el espacio disponible */
 }
 
 h1,
