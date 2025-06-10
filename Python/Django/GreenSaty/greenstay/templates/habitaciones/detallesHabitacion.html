@@ -146,10 +146,10 @@
                                     <li class="list-group-item d-flex justify-content-between">
                                         <span>Duración:</span><strong id="stay-duration">-- Noches</strong>
                                     </li>
-                                    <!--
+                                    
                                     <li class="list-group-item d-flex justify-content-between"><span
                                             id="price-breakdown">$0.00 x 0 noches</span><span
-                                            id="subtotal-price">$0.00</span></li>
+                                            id="subtotal-price">$0.00</span></li><!--
                                     <li class="list-group-item d-flex justify-content-between"><span>Impuestos y cargos
                                             (IVA 16%)</span><span id="taxes-price">$0.00</span></li> -->
                                     <li class="list-group-item d-flex justify-content-between "><strong class="fs-5">Total a pagar (MXN)</strong><strong class="fs-5 text-success"
@@ -193,11 +193,15 @@
     </div>
 
 <script>
-
     document.addEventListener('DOMContentLoaded', function () {
         const container = document.getElementById('datepicker-container');
         const inputs = container.querySelectorAll('input');
         const durationElement = document.getElementById('stay-duration');
+        const priceBreakdown = document.getElementById('price-breakdown');
+        const subtotalPrice = document.getElementById('subtotal-price');
+        const totalPrice = document.getElementById('total-price');
+
+        const precioPorNoche = {{ habitacion.precioHabitacion|default:0 }};  // Precio por noche desde Django
 
         const datepicker = new DateRangePicker(container, {
             format: 'dd/mm/yyyy',
@@ -207,8 +211,7 @@
             minDate: new Date()
         });
 
-        // Función para calcular noches
-        function calcularNoches() {
+        function calcularNochesYPrecio() {
             const start = inputs[0].value;
             const end = inputs[1].value;
 
@@ -219,29 +222,41 @@
                 const fechaInicio = new Date(`${y1}-${m1}-${d1}`);
                 const fechaFin = new Date(`${y2}-${m2}-${d2}`);
 
-                const diferenciaMs = fechaFin - fechaInicio;
-                const noches = Math.round(diferenciaMs / (1000 * 60 * 60 * 24));
+                const diffMs = fechaFin - fechaInicio;
+                const noches = Math.round(diffMs / (1000 * 60 * 60 * 24));
 
-                // Validamos que haya al menos una noche
                 if (noches > 0) {
+                    // Actualizar duración
                     durationElement.textContent = `${noches} noche${noches > 1 ? 's' : ''}`;
+
+                    // Calcular precio total
+                    const total = noches * precioPorNoche;
+
+                    // Actualizar detalles de precio
+                    priceBreakdown.textContent = `$${precioPorNoche.toLocaleString('es-MX')} x ${noches} noche${noches > 1 ? 's' : ''}`;
+                    subtotalPrice.textContent = `$${total.toLocaleString('es-MX')}`;
+                    totalPrice.textContent = `$${total.toLocaleString('es-MX')}`;
                 } else {
-                    durationElement.textContent = `-- Noches`;
+                    durationElement.textContent = '-- Noches';
+                    priceBreakdown.textContent = '$0.00 x 0 noches';
+                    subtotalPrice.textContent = '$0.00';
+                    totalPrice.textContent = '$0.00';
                 }
             } else {
-                durationElement.textContent = `-- Noches`;
+                durationElement.textContent = '-- Noches';
+                priceBreakdown.textContent = '$0.00 x 0 noches';
+                subtotalPrice.textContent = '$0.00';
+                totalPrice.textContent = '$0.00';
             }
         }
 
-        // Evento al cambiar fechas
+        // Escuchar cambios en las fechas
         inputs.forEach(input => {
-            input.addEventListener('changeDate', calcularNoches);
+            input.addEventListener('changeDate', calcularNochesYPrecio);
         });
     });
-
-
-
 </script>
+
     
 {% endblock body %}
 
