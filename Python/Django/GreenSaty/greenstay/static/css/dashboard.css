@@ -144,3 +144,7 @@ html, body {
 .pagination {
   margin-bottom: 1rem;  /* O ajusta según necesidad */
 }
+
+.fs-5{
+  background-color: #000000;
+}
