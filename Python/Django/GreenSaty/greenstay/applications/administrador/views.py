@@ -6,15 +6,18 @@ from applications.users.models import Usuarios
 from django.views.generic import CreateView, ListView, DeleteView,UpdateView
 from .forms import ModeloRegistroPersonal, ModelUsuarios
 from django.urls import reverse_lazy
+#Control de sesiones 
+from applications.home.mixins import VistaAdministrador
 
-class RegistroDelPerosnal(CreateView):
+
+class RegistroDelPerosnal(VistaAdministrador,CreateView):
     model = RegistroPersonal
     template_name = 'administrador/Contratacion.html'
     form_class = ModeloRegistroPersonal
     success_url = reverse_lazy('urls_home:inicioAdmin')
 
 
-class ListadoPersonal(ListView):
+class ListadoPersonal(VistaAdministrador,ListView):
 
     template_name = 'administrador/Gestion_empleados.html'
     context_object_name = 'empleados'
@@ -28,20 +31,20 @@ class ListadoPersonal(ListView):
         return ListadoEmpleados
 
 
-class EliminarPersonal(DeleteView):
+class EliminarPersonal(VistaAdministrador,DeleteView):
     model = RegistroPersonal
     template_name = 'acciones/EliminarPersonal.html'
     success_url = reverse_lazy('urls_administrador:ListadoEmpleados')
 
 
-class ModificarPersonal(UpdateView):
+class ModificarPersonal(VistaAdministrador,UpdateView):
     model = RegistroPersonal
     template_name = 'acciones/ModificarEmpleado.html'
     form_class = ModeloRegistroPersonal
     success_url = reverse_lazy('urls_administrador:ListadoEmpleados')
 
 
-class ListaClientes(ListView):
+class ListaClientes(VistaAdministrador,ListView): #Modificar, muestra todos los usuarios, incluyendo el personal
     model = Usuarios
     template_name = 'administrador/ListaUsuarios.html'
     context_object_name = 'usuarios'
@@ -50,13 +53,13 @@ class ListaClientes(ListView):
         return Usuarios.objects.exclude(correo__endswith='@greenstay.com') #Lista unicamente de los empleados
     
 
-class EliminarCliente(DeleteView):
+class EliminarCliente(VistaAdministrador,DeleteView):
     model = Usuarios
     template_name = 'acciones/eliminarUsuario.html'
     success_url = reverse_lazy('urls_administrador:ListaClientes')
 
 
-class ModificarUsuario(UpdateView):
+class ModificarUsuario(VistaAdministrador,UpdateView):
     model = Usuarios
     template_name = 'acciones/modificarUsuario.html'
     form_class = ModelUsuarios
