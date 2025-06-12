@@ -8,12 +8,16 @@ from applications.users.models import Usuarios
 from applications.users.forms import ActualizarDatos
 from django.views import View
 #Vistas
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView, TemplateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.urls import reverse
 from django.shortcuts import redirect, get_object_or_404
 
-class RegistroTarjeta(CreateView):
+#Control de sesiones
+from applications.home.mixins import VistaUsuario
+
+
+class RegistroTarjeta(VistaUsuario,CreateView):
     template_name = 'clientes/registroTarjeta.html'
     form_class = Tarjeta
     
@@ -26,7 +30,7 @@ class RegistroTarjeta(CreateView):
         return reverse('urls_clientes:detallesCuenta', kwargs={'pk': self.request.user.id})
     
 
-class DetallesCuenta(DetailView):
+class DetallesCuenta(VistaUsuario,DetailView):
     template_name = 'clientes/detallesCuenta.html'
     model = Usuarios
 
@@ -44,7 +48,7 @@ class DetallesCuenta(DetailView):
         return context
 
 
-class EliminarTarjetaCredito(DeleteView):
+class EliminarTarjetaCredito(VistaUsuario,DeleteView):
     model = TarjetaCredito
     template_name = 'clientes/eliminarTarjeta.html'
     
@@ -54,7 +58,7 @@ class EliminarTarjetaCredito(DeleteView):
 
 
 
-class EliminarReservacion(View):
+class EliminarReservacion(VistaUsuario,View):
     ##Duda sobre la funcion get
     template_name = 'acciones/SalidaElimar.html'
 
@@ -82,20 +86,20 @@ class EliminarReservacion(View):
             })
 
 
-class ActualizarDatos(UpdateView):
+class ActualizarDatos(VistaUsuario,UpdateView):
     model = Usuarios
     template_name = 'clientes/editarDatos.html'
     form_class = ActualizarDatos
     success_url = reverse_lazy('urls_home:inicioUser')
 
 
-class DatosHabitacionReservada(DetailView):
+class DatosHabitacionReservada(VistaUsuario,DetailView):
     model = Habitacion
     template_name = 'clientes/DatosHabitacion.html'
     context_object_name = 'habitacion'
     
     
-class ValidacionChekIn(View):
+class ValidacionChekIn(VistaUsuario,View):
     template_name = 'acciones/ValidacionChekIn.html'
 
     def get(self, request, pk):
