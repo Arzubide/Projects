@@ -15,7 +15,10 @@ from .forms import ModeloHabitacion
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404 #no se que hace 404
 
-class Habitaciones(ListView): #Administrador
+#Control de sesiones
+from applications.home.mixins import VistaAdministrador, VistaUsuario
+
+class Habitaciones(VistaAdministrador,ListView): #Administrador
     template_name = 'habitaciones/Catalogo_cuartos.html'
     model = Habitacion
     context_object_name = 'habitaciones'
@@ -29,7 +32,7 @@ class Habitaciones(ListView): #Administrador
         return ListaPorCategoria
 
 
-class HabitacionesDisponibles(ListView):  # Cliente
+class HabitacionesDisponibles(VistaUsuario,ListView):  # Cliente
     template_name = 'habitaciones/HabitacionesDisponibles.html'
     context_object_name = 'habitaciones'
     paginate_by = 5
@@ -44,7 +47,7 @@ class HabitacionesDisponibles(ListView):  # Cliente
         return ListaHabitaciones
 
 
-class ActualizarDatosHabitacion(UpdateView):
+class ActualizarDatosHabitacion(VistaAdministrador,UpdateView): #Duda
     model = Habitacion
     template_name = 'acciones/ModificarDatosHabitcaion.html'
     form_class = ModeloHabitacion
@@ -69,7 +72,7 @@ class ReservarHabitacionView(View):
         return redirect('urls_habitaciones:HabitacionesDisponibles')  # vista con los datos de la reservacion y checkIn
 
 
-class DetallesHabitacion(DetailView):
+class DetallesHabitacion(VistaUsuario,DetailView):
     model = Habitacion
     template_name = 'habitaciones/detallesHabitacion.html'
     context_object_name = 'habitacion'
