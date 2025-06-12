@@ -1,13 +1,72 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-    Registro Administrador
+    Regsitro
 {% endblock title %}
 
+{% block css %}
+    <link rel="stylesheet" href=" {% static 'css/estilos_inicio.css' %}">
+{% endblock css %}
+
 {% block body %}
-    <h1>Registro para los administradores</h1>
-    <form method="post">{% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Registrar Administrador</button>
-    </form>
+    <div class="page-container">
+
+        {% include 'header.html' %}
+
+        <div class="content-wrap">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="card shadow-lg">
+                            <!-- Encabezado del formulario -->
+                            <div class="card-header text-center">
+                                <h3>Crear una Cuenta</h3>
+                            </div>
+                            <!-- Cuerpo del formulario -->
+                            <div class="card-body p-4">
+                                <form method="post">{% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="nombre" class="form-label">Nombre(s)</label>
+                                            {{form.nombres}}
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="apellidos" class="form-label">Apellidos</label>
+                                            {{form.apellidos}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Correo electrónico</label>
+                                        {{form.correo}}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Contraseña</label>
+                                        {{form.contrasenia}}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
+                                        {{form.confirmarContrasenia}}
+                                    </div>
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" value="" id="terms" required>
+                                        <label class="form-check-label" for="terms">
+                                            Acepto los <a href="{% url 'urls_home:terminos' %}">términos y
+                                                condiciones</a>.|
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                                </form>
+                                <p class="text-center mt-3">
+                                    ¿Ya tienes una cuenta? <a href="{% url 'urls_users:login' %}">Inicia Sesión</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'footer.html' %}
+    </div>
+
 {% endblock body %}

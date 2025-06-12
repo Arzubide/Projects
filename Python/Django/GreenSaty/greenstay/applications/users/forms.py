@@ -69,7 +69,8 @@ class FormularioRegistroAdmin(forms.ModelForm):
         required = True, 
         widget = forms.PasswordInput(
             attrs = {
-                'placeholder' : 'Ingresa la contrasenia'
+                'placeholder' : 'Ingresa la contrasenia',
+                'class' : 'form-control'
             }
         )
     )
@@ -79,7 +80,8 @@ class FormularioRegistroAdmin(forms.ModelForm):
         required = True, 
         widget = forms.PasswordInput(
             attrs = {
-                'placeholder' : 'Repetir la contrasenia la contrasenia'
+                'placeholder' : 'Repetir la contrasenia la contrasenia',
+                'class' : 'form-control'
             }
         )
     )
@@ -91,6 +93,28 @@ class FormularioRegistroAdmin(forms.ModelForm):
             'nombres',
             'apellidos'
         )
+        
+        widgets = {
+            'correo' : forms.EmailInput(
+                attrs={
+                    'placeholder' : 'Ingresar el correo',
+                    'class' : 'form-control'
+                }
+            ),
+            'nombres' : forms.TextInput(
+                attrs={
+                    'placeholder' : 'Ingresar tu(s) nombre(s)',
+                    'class' : 'form-control'
+                }
+            ),
+            'apellidos' : forms.TextInput(
+                attrs={
+                    'placeholder' : 'Ingresar tus apellidos',
+                    'class' : 'form-control'
+                }
+            )
+
+        }
     
     def clean_correo(self):
         dominioCorreo = '@greenstay.com'
