@@ -1,6 +1,7 @@
 from django import forms
 from .models import Usuarios
 from django.contrib.auth import authenticate
+from django.core.exceptions import ValidationError
 
 class FormularioRegistro(forms.ModelForm):
 
@@ -116,13 +117,21 @@ class FormularioRegistroAdmin(forms.ModelForm):
 
         }
     
+    def clean(self):
+        cleaned_data = super().clean()
+        contrasenia = cleaned_data.get("contrasenia")
+        confirmar = cleaned_data.get("confirmarContrasenia")
+
+        if contrasenia and confirmar and contrasenia != confirmar:
+            self.add_error('confirmarContrasenia', 'Las contraseñas no coinciden')
+
     def clean_correo(self):
-        dominioCorreo = '@greenstay.com'
-        correo = self.cleaned_data['correo']
-        if dominioCorreo in correo:
-            return correo
-        else:
-            raise self.add_error('correo','el correo debe ser de dominio @greenstay.com para registrarse como andministrador')
+        correo = self.cleaned_data.get('correo')
+        if correo and not correo.endswith('@greenstay.com'):
+            raise ValidationError('El correo debe ser del dominio @greenstay.com para registrarse como administrador')
+        return correo
+
+
 
 
 class LoginUsuarios(forms.Form):
