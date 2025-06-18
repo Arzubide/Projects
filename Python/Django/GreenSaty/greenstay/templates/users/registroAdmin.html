@@ -21,42 +21,73 @@
                         <div class="card shadow-lg">
                             <!-- Encabezado del formulario -->
                             <div class="card-header text-center">
-                                <h3>Crear una Cuenta</h3>
+                                <h3>Crear una Cuenta como administrador</h3>
                             </div>
                             <!-- Cuerpo del formulario -->
                             <div class="card-body p-4">
-                                <form method="post">{% csrf_token %}
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="nombre" class="form-label">Nombre(s)</label>
-                                            {{form.nombres}}
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="apellidos" class="form-label">Apellidos</label>
-                                            {{form.apellidos}}
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Correo electrónico</label>
-                                        {{form.correo}}
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Contraseña</label>
-                                        {{form.contrasenia}}
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
-                                        {{form.confirmarContrasenia}}
-                                    </div>
-                                    <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" value="" id="terms" required>
-                                        <label class="form-check-label" for="terms">
-                                            Acepto los <a href="{% url 'urls_home:terminos' %}">términos y
-                                                condiciones</a>.|
-                                        </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-                                </form>
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    <!-- Mensajes generales -->
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="{{ form.nombres.id_for_label }}" class="form-label">Nombre(s)</label>
+            {{ form.nombres }}
+            {% for error in form.nombres.errors %}
+                <div class="invalid-feedback d-block">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="{{ form.apellidos.id_for_label }}" class="form-label">Apellidos</label>
+            {{ form.apellidos }}
+            {% for error in form.apellidos.errors %}
+                <div class="invalid-feedback d-block">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.correo.id_for_label }}" class="form-label">Correo electrónico</label>
+        {{ form.correo }}
+        {% for error in form.correo.errors %}
+            <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.contrasenia.id_for_label }}" class="form-label">Contraseña</label>
+        {{ form.contrasenia }}
+        {% for error in form.contrasenia.errors %}
+            <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.confirmarContrasenia.id_for_label }}" class="form-label">Confirmar Contraseña</label>
+        {{ form.confirmarContrasenia }}
+        {% for error in form.confirmarContrasenia.errors %}
+            <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" value="" id="terms" required>
+        <label class="form-check-label" for="terms">
+            Acepto los <a href="{% url 'urls_home:terminos' %}">términos y condiciones</a>.
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+</form>
+
                                 <p class="text-center mt-3">
                                     ¿Ya tienes una cuenta? <a href="{% url 'urls_users:login' %}">Inicia Sesión</a>
                                 </p>

@@ -45,15 +45,15 @@
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 {% if h.nivelHabitacion == 'STANDART' %}
-                                    <img src="{% static 'img/st.jpg' %}" class="card-img-top" alt="Cuarto STANDART">
+                                    <img src="{% static 'img/index/Penthous.jpg' %}" class="card-img-top" alt="Cuarto STANDART">
                                 {% elif h.nivelHabitacion == 'DELUXE' %}
-                                    <img src="{% static 'img/dl.jpg' %}" class="card-img-top" alt="Cuarto DELUXE">
+                                    <img src="{% static 'img/index/Cuarto_sencillo.jpg' %}" class="card-img-top" alt="Cuarto DELUXE">
                                 {% elif h.nivelHabitacion == 'EJECUTIVA' %}
-                                    <img src="{% static 'img/ej.jpg' %}" class="card-img-top" alt="Cuarto EJECUTIVA">
+                                    <img src="{% static 'img/index/Cuarto_doble.jpg' %}" class="card-img-top" alt="Cuarto EJECUTIVA">
                                 {% elif h.nivelHabitacion == 'SUITE' %}
-                                    <img src="{% static 'img/suite.jpg' %}" class="card-img-top" alt="Cuarto SUITE">
+                                    <img src="{% static 'img/index/suite.jpg' %}" class="card-img-top" alt="Cuarto SUITE">
                                 {% elif h.nivelHabitacion == 'PRESIDENCIAL' %}
-                                    <img src="{% static 'img/prl.jpg' %}" class="card-img-top" alt="Cuarto PRESIDENCIAL">
+                                    <img src="{% static 'img/index/presidencial.jpg' %}" class="card-img-top" alt="Cuarto PRESIDENCIAL">
                                 {% endif %}
                                 <div class="card-body">
                                     {% if h.nivelHabitacion == 'STANDART' %}
