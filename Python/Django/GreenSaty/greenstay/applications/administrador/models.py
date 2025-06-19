@@ -9,7 +9,8 @@ class RegistroPersonal(models.Model):
     nombres = models.CharField(max_length=25)
     apellidos = models.CharField(max_length=25)
     correo = models.EmailField()
-    gerenteArea = models.BooleanField(default=False)
+    Is_employee = models.BooleanField(default=True, blank=True)
+
     
 
     def __str__(self):
