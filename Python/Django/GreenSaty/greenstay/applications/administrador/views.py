@@ -17,18 +17,13 @@ class RegistroDelPerosnal(VistaAdministrador,CreateView):
     success_url = reverse_lazy('urls_home:inicioAdmin')
 
 
-class ListadoPersonal(VistaAdministrador,ListView):
+class ListadoPersonal(VistaAdministrador,ListView): #Cambiar, esta mal
 
     template_name = 'administrador/Gestion_empleados.html'
     context_object_name = 'empleados'
     
     def get_queryset(self):
-        empleado = self.request.GET.get("apellido","")
-        ListadoEmpleados = RegistroPersonal.objects.filter(
-            apellidos__icontains = empleado
-        )
-
-        return ListadoEmpleados
+        return RegistroPersonal.objects.all()
 
 
 class EliminarPersonal(VistaAdministrador,DeleteView):
