@@ -1,8 +1,12 @@
+import Header from './components/Header' //Importamos el componente para poder utilizarlo
 
 function App() {
 
   return (
       <>
+      {/* Aqui renderizamos el componente dentro de este componente */}
+      <Header/>
+
         <header class="py-5 header">
             <div class="container-xl">
                 <div class="row justify-content-center justify-content-md-between">
