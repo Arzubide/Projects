@@ -23,6 +23,13 @@ function App() {
         setData(db)
     },[]) //Si esta listo, actua y le da la base de datos a data
 
+    // State para el carrito
+    const [carro, setCarro] = useState([]) // El carro inicialmente estara vacio
+
+    function addToCart(item) { //recibimos un item
+        setCarro(prevCart => [...prevCart, item]) //actualizamos el carro haciendo una copia del carro previo con el nuevo item que se vaya añadiendo al carro
+    }
+
 
   return (
       <>
@@ -48,6 +55,7 @@ function App() {
                         //Creamos un prop PADRE
                         key={guitarra.id} //Creamos el ID que necesita cuando iteramos
                         guitarra = {guitarra} //Creamos una propiedad guitarra (este nombre debe recibir como argumento el prop hijo) y el valor de esa propiedad es el objeto llamdo guitarra (argumento del arrow funciton)
+                        addToCart = {addToCart} //Le pasamos esta funcion como propiedad al componente
                     />
                 ))}
             </div>

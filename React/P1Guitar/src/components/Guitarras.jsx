@@ -1,9 +1,5 @@
-export function Guitarras({guitarra}) { // prop
+export function Guitarras({guitarra, addToCart}) { // prop
 
-    const clcik = (objeto)=>{ 
-        //Creamos la fucnion que recibe onClick
-        console.log('Click', objeto)
-    }
     //Usamos codigo JS junto con HTML
     return (
         <>
@@ -18,7 +14,7 @@ export function Guitarras({guitarra}) { // prop
                         <button 
                             type="button"
                             className="btn btn-dark w-100"
-                            onClick={() => clcik(guitarra)} //Para evitar llamar la funcion al instante, le damos el formato en un arrow function. obtenemos el obejeto guitarra desde aqui y le pasamos el id a la funcion antes del return
+                            onClick={() => addToCart(guitarra)} //Para evitar llamar la funcion al instante, le damos el formato en un arrow function. obtenemos el obejeto guitarra desde aqui y le pasamos el id a la funcion antes del return
                         >Agregar al Carrito</button>
                     </div>
                 </div>
