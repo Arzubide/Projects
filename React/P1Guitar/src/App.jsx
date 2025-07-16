@@ -27,7 +27,22 @@ function App() {
     const [carro, setCarro] = useState([]) // El carro inicialmente estara vacio
 
     function addToCart(item) { //recibimos un item
-        setCarro(prevCart => [...prevCart, item]) //actualizamos el carro haciendo una copia del carro previo con el nuevo item que se vaya añadiendo al carro
+
+        const itemExist = carro.findIndex(elemento => elemento.id === item.id) //Si el id del elemeto que se encuentra en nuestro carrito es igual al elemento que se va agregar, retorna numero diferente de -1
+
+        // Condicion para evitar duplicados y solo modificar la cantidad
+        if (itemExist >= 0) { //Existe ya el item dentro del carrito
+            //Si ya existe el elemento, lo que queremos hacer es solo aumentar la cantidad de elementos del item
+            const updateCar = [...carro] //hacemos copia del array original
+            updateCar[itemExist].quantity++ //Accedemos a la posicion del item y aumentamos la cantidad
+            setCarro(updateCar) //seteamos las nuevas actualizaciones
+            
+        }else{
+            // No existe, se agrega el item completo al carrito
+            item.quantity = 1 //Le agregamos la propiedad de cantidad al objeto, en este caso a la guitarra que sea agregada 
+            setCarro([...carro, item]) //actualizamos el carro haciendo una copia del carro previo con el nuevo item que se vaya añadiendo al carro
+        }
+
     }
 
 
