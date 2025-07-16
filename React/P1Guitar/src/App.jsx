@@ -1,19 +1,27 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header' //Importamos el componente para poder utilizarlo
 import { Guitarras } from './components/Guitarras'
+import { db } from './data/db'
 
 function App() {
 
-    // State
-    const [auth, setAuth] = useState(false)
-    // Effect
-    useEffect (() => {
-        console.log('Effect listo')
-    }, []) // Si en la parte de dependencias agregamos un arreglo vacio, indicamos que no tiene dependencias, por tanto se ejecuta en cuanto arraque la pagina
+    // // State
+    // const [auth, setAuth] = useState(false)
+    // // Effect
+    // useEffect (() => {
+    //     console.log('Effect listo')
+    // }, []) // Si en la parte de dependencias agregamos un arreglo vacio, indicamos que no tiene dependencias, por tanto se ejecuta en cuanto arraque la pagina
+
+    // useEffect (() => {
+    //     console.log('autenticado')
+    // }, [auth]) //Si dentro de las corchetes tiene una variable, este se ejecutara cuando menos una vez reciba el valor de auth, depende de la variable para ejecutarse
+
+    //Preparamos la bd para usarla
+    const [data, setData] = useState([])
 
     useEffect (() => {
-        console.log('autenticado')
-    }, [auth]) //Si dentro de las corchetes tiene una variable, este se ejecutara cuando menos una vez reciba el valor de auth, depende de la variable para ejecutarse
+        setData(db)
+    },[]) //Si esta listo, actua y le da la base de datos a data
 
 
   return (
@@ -34,7 +42,14 @@ function App() {
             <h2 className="text-center">Nuestra Colección</h2>
 
             <div className="row mt-5">
-                <Guitarras/>
+                {/* Iterando sobre el arreglo de data */}
+                {data.map((guitarra) => ( // Por cada guitarra que haya en el array
+                    <Guitarras
+                        //Creamos un prop PADRE
+                        key={guitarra.id} //Creamos el ID que necesita cuando iteramos
+                        guitarra = {guitarra} //Creamos una propiedad guitarra (este nombre debe recibir como argumento el prop hijo) y el valor de esa propiedad es el objeto llamdo guitarra (argumento del arrow funciton)
+                    />
+                ))}
             </div>
         </main>
 
