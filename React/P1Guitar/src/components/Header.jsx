@@ -1,10 +1,13 @@
-function Header({carro}) {
+// NOTA: opcionalmente se puede utilizar el hook useMemo para un mejor rendimiento en la pagina
+import { useMemo } from "react"
+
+function Header({carro, romeFromCart}) {
     // Dentro de la funcion, podemos agregar codigo HTML.
 
     //State derivado
     const initialValue = 0
-    const isEmpty  = () => carro.length === 0
-    const cartTotal = () => carro.reduce((total, item) => total + (item.quantity * item.price), initialValue) // Nos permite ir sumando cada valor que tengamos sobre el array que estemos trabajando, en este caso el array es carro
+    const isEmpty  = useMemo (() => carro.length === 0, [carro] ) // Reacciona solo si carro se actualiza, solo si la dependencia cambia
+    const cartTotal = useMemo(() => carro.reduce((total, item) => total + (item.quantity * item.price), initialValue), [carro])  // Nos permite ir sumando cada valor que tengamos sobre el array que estemos trabajando, en este caso el array es carro
 
     return (
         // Lo que este dentro de este return, sera lo que se mostrara en pantalla
@@ -25,7 +28,7 @@ function Header({carro}) {
                                 <img className="img-fluid" src="./public/img/carrito.png" alt="imagen carrito" />
 
                                 <div id="carrito" className="bg-white p-3">
-                                    { isEmpty() ? ( // Si el carro esta vacio, muestra esto
+                                    { isEmpty ? ( // Si el carro esta vacio, muestra esto
                                         <p className="text-center">El carrito esta vacio</p>
                                     ) : ( // De lo contrario mostramos esto
                                         <>
@@ -41,7 +44,7 @@ function Header({carro}) {
                                                 </thead>
                                                 <tbody>
                                                     {carro.map(guitarra => ( //por cada guitarra se mostrara lo siguiente
-                                                        <tr>
+                                                        <tr key={guitarra.id}>
                                                             <td>
                                                                 <img className="img-fluid" src={`../public/img/${guitarra.image}.jpg`} alt="imagen guitarra" />
                                                             </td>
@@ -68,6 +71,7 @@ function Header({carro}) {
                                                                 <button
                                                                     className="btn btn-danger"
                                                                     type="button"
+                                                                    onClick={() => romeFromCart(guitarra.id)}
                                                                 >
                                                                     X
                                                                 </button>
@@ -77,7 +81,7 @@ function Header({carro}) {
                                                     
                                                 </tbody>
                                             </table>
-                                            <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal()}</span></p>
+                                            <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
                                         </>
                                     
                                     )}

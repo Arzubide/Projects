@@ -45,6 +45,13 @@ function App() {
 
     }
 
+    function romeFromCart(id) {
+        /*
+            El método filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.
+        */
+        setCarro(prevCart => prevCart.filter((guitarra) => guitarra.id !== id)) // Como estamos seteando, podemos tener acceso al carro previo, sobre el cual podemos trabajar. Accedemos a cada guitarra de forma individual, que filtrara las guitarras cuyo id sea distinto del id que se te esta dando.
+
+    }
 
   return (
       <>
@@ -60,6 +67,7 @@ function App() {
         
         <Header
             carro = {carro}
+            romeFromCart = {romeFromCart}
         />
 
         <main className="container-xl mt-5">
