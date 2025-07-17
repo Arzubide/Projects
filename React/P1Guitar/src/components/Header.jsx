@@ -2,7 +2,9 @@ function Header({carro}) {
     // Dentro de la funcion, podemos agregar codigo HTML.
 
     //State derivado
+    const initialValue = 0
     const isEmpty  = () => carro.length === 0
+    const cartTotal = () => carro.reduce((total, item) => total + (item.quantity * item.price), initialValue) // Nos permite ir sumando cada valor que tengamos sobre el array que estemos trabajando, en este caso el array es carro
 
     return (
         // Lo que este dentro de este return, sera lo que se mostrara en pantalla
@@ -75,7 +77,7 @@ function Header({carro}) {
                                                     
                                                 </tbody>
                                             </table>
-                                            <p className="text-end">Total pagar: <span className="fw-bold">$899</span></p>
+                                            <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal()}</span></p>
                                         </>
                                     
                                     )}
