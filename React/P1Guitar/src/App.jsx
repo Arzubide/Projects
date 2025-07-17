@@ -18,6 +18,7 @@ function App() {
 
     //Preparamos la bd para usarla
     const [data, setData] = useState([])
+    const MAX_ITEMS = 5
 
     useEffect (() => {
         setData(db)
@@ -53,6 +54,19 @@ function App() {
 
     }
 
+    function increaseQuantity(id){
+        const updateCar = carro.map(item => {
+            if (item.id === id && item.quantity < MAX_ITEMS) { // Si el id es el mismo que le estamos dando
+                return {
+                    ...item,
+                    quantity: item.quantity + 1
+                }
+            }
+            return item
+        })
+        setCarro(updateCar)
+    }
+
   return (
       <>
       {/* Aqui renderizamos el componente dentro de este componente */}
@@ -68,6 +82,7 @@ function App() {
         <Header
             carro = {carro}
             romeFromCart = {romeFromCart}
+            increaseQuantity = {increaseQuantity}
         />
 
         <main className="container-xl mt-5">

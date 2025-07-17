@@ -1,12 +1,12 @@
 // NOTA: opcionalmente se puede utilizar el hook useMemo para un mejor rendimiento en la pagina
 import { useMemo } from "react"
 
-function Header({carro, romeFromCart}) {
+function Header({carro, romeFromCart, increaseQuantity}) {
     // Dentro de la funcion, podemos agregar codigo HTML.
 
     //State derivado
     const initialValue = 0
-    const isEmpty  = useMemo (() => carro.length === 0, [carro] ) // Reacciona solo si carro se actualiza, solo si la dependencia cambia
+    const isEmpty  = useMemo (() => carro.length === 0, [carro] ) // Reacciona solo si carro se actualiza, solo si la dependencia
     const cartTotal = useMemo(() => carro.reduce((total, item) => total + (item.quantity * item.price), initialValue), [carro])  // Nos permite ir sumando cada valor que tengamos sobre el array que estemos trabajando, en este caso el array es carro
 
     return (
@@ -63,6 +63,7 @@ function Header({carro, romeFromCart}) {
                                                                 <button
                                                                     type="button"
                                                                     className="btn btn-dark"
+                                                                    onClick={() => increaseQuantity(guitarra.id)}
                                                                 >
                                                                     +
                                                                 </button>
