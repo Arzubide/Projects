@@ -19,6 +19,7 @@ function App() {
     //Preparamos la bd para usarla
     const [data, setData] = useState([])
     const MAX_ITEMS = 5
+    const MIN_ITEMS = 1
 
     useEffect (() => {
         setData(db)
@@ -55,7 +56,8 @@ function App() {
     }
 
     function increaseQuantity(id){
-        const updateCar = carro.map(item => {
+        const updateCar = carro.map(
+            item => {
             if (item.id === id && item.quantity < MAX_ITEMS) { // Si el id es el mismo que le estamos dando
                 return {
                     ...item,
@@ -64,6 +66,21 @@ function App() {
             }
             return item
         })
+        setCarro(updateCar)
+    }
+
+    function decreaseQuantity(id){
+        const updateCar = carro.map(
+            item => {
+                if (item.id == id && item.quantity > MIN_ITEMS) {
+                    return {
+                        ...item,
+                        quantity: item.quantity - 1
+                    }
+                }
+                return item
+            }
+        )
         setCarro(updateCar)
     }
 
@@ -83,6 +100,7 @@ function App() {
             carro = {carro}
             romeFromCart = {romeFromCart}
             increaseQuantity = {increaseQuantity}
+            decreaseQuantity = {decreaseQuantity}
         />
 
         <main className="container-xl mt-5">
