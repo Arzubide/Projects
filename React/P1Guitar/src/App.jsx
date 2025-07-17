@@ -34,6 +34,8 @@ function App() {
 
         // Condicion para evitar duplicados y solo modificar la cantidad
         if (itemExist >= 0) { //Existe ya el item dentro del carrito
+            if (carro[itemExist].quantity >= MAX_ITEMS) 
+            return
             //Si ya existe el elemento, lo que queremos hacer es solo aumentar la cantidad de elementos del item
             const updateCar = [...carro] //hacemos copia del array original
             updateCar[itemExist].quantity++ //Accedemos a la posicion del item y aumentamos la cantidad
