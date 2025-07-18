@@ -16,8 +16,15 @@ function App() {
     //     console.log('autenticado')
     // }, [auth]) //Si dentro de las corchetes tiene una variable, este se ejecutara cuando menos una vez reciba el valor de auth, depende de la variable para ejecutarse
 
+    //Carrito inicial
+    const initialCart = () => {
+        const localStorageCart = localStorage.getItem('carro')
+        return localStorageCart ? JSON.parse(localStorageCart) : [] // Si tiene algun string el carro, lo com=nvertimos a arreglo para poder mostrarlo en el carro, de lo contrario setea el carro con un arreglo vacio para poder agregar elementos
+    }
+
     //Preparamos la bd para usarla
     const [data, setData] = useState([])
+
     const MAX_ITEMS = 5
     const MIN_ITEMS = 1
 
@@ -26,7 +33,17 @@ function App() {
     },[]) //Si esta listo, actua y le da la base de datos a data
 
     // State para el carrito
-    const [carro, setCarro] = useState([]) // El carro inicialmente estara vacio
+    const [carro, setCarro] = useState(initialCart) // El carro inicialmente estara vacio
+
+    useEffect(() => {
+        /* 
+            El Siguiente codigo es realizado para tener un carrito persistente usando localStorage
+            Recibe dos parametros, el primero es un string que sera un identificador, keyname
+            el segundo parametro es el valor, solo almacena strings localstorage, el arreglo de carro lo comvertimos a string
+        */
+       localStorage.setItem('carro', JSON.stringify(carro)) 
+       console.log(typeof JSON.stringify(carro))
+    }, [carro]) // Cada vez que el carro cambie, realizara el codigo que tiene dentro de la funcion
 
     function addToCart(item) { //recibimos un item
 
