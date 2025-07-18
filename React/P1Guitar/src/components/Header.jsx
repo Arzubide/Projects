@@ -1,7 +1,7 @@
 // NOTA: opcionalmente se puede utilizar el hook useMemo para un mejor rendimiento en la pagina
 import { useMemo } from "react"
 
-function Header({carro, romeFromCart, increaseQuantity, decreaseQuantity}) {
+function Header({carro, romeFromCart, increaseQuantity, decreaseQuantity, emptyCar}) {
     // Dentro de la funcion, podemos agregar codigo HTML.
 
     //State derivado
@@ -84,7 +84,7 @@ function Header({carro, romeFromCart, increaseQuantity, decreaseQuantity}) {
                                                 </tbody>
                                             </table>
                                             <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
-                                            <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                                            <button className="btn btn-dark w-100 mt-3 p-2" onClick={emptyCar} >Vaciar Carrito</button>
                                         </>
                                     
                                     )}

@@ -86,6 +86,10 @@ function App() {
         setCarro(updateCar)
     }
 
+    function emptyCar(){
+        setCarro([]) // Vaciamos el carrito
+    }
+
   return (
       <>
       {/* Aqui renderizamos el componente dentro de este componente */}
@@ -103,6 +107,7 @@ function App() {
             romeFromCart = {romeFromCart}
             increaseQuantity = {increaseQuantity}
             decreaseQuantity = {decreaseQuantity}
+            emptyCar = {emptyCar}
         />
 
         <main className="container-xl mt-5">
