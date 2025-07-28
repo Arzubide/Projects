@@ -10,14 +10,17 @@ function App() {
       </header>
 
       <main className="max-w-7xl mx-auto py-20 grid md:grid-cols-2">
-        <div>
-          <h2>Menu</h2>
+        <div className="pr-5">
+          <h2 className="text-center text-5xl pb-4 font-bold">Menu</h2>
+          <div className="space-y-2">
             {menuItems.map(item => (
               <Item
                key={item.id} // Cada item debe tener un ID unico
-               
+               item={item}
               />
             ))}
+
+          </div>
         </div>
 
         <div>
