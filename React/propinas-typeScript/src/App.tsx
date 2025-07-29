@@ -5,7 +5,7 @@ import useOrder from "./hooks/useOrder"
 
 function App() {
   
-  const { addItem, order } = useOrder() // Agregamos las funciones del hook personalizado
+  const { addItem, order, removeFromOrder } = useOrder() // Agregamos las funciones del hook personalizado
 
   return (
     <>
@@ -31,6 +31,7 @@ function App() {
         <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10">
             <OrderContent
               order={order}
+              removeFromOrder={removeFromOrder}
             />
         </div>
       </main>

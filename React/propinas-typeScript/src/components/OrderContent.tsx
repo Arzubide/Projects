@@ -1,10 +1,11 @@
-import type { orderItem } from "../types"
+import type { menuItem, orderItem } from "../types"
 
 
 type componentProps = {
     order : orderItem[]
+    removeFromOrder : (id : menuItem['id']) => void
 }
-export default function OrderContent({order} : componentProps) {
+export default function OrderContent({order, removeFromOrder} : componentProps) {
   return (
     <div>
         <h1 className='text-center text-5xl pb-4 font-bold'>Consumo</h1>
@@ -20,7 +21,7 @@ export default function OrderContent({order} : componentProps) {
                             <p>{item.name} - ${item.price}.00</p>
                             <p className="font-black">Cantidad {item.quantity} - Total ${item.price * item.quantity}.00</p>
                         </div>
-                        <button className="bg-red-500 h-8 w-8 rounded-full text-amber-50 font-black hover:bg-blue-500">
+                        <button className="bg-red-500 h-8 w-8 rounded-full text-amber-50 font-black hover:bg-blue-500" onClick={() => removeFromOrder(item.id)}>
                             X
                         </button>
                     </div>
