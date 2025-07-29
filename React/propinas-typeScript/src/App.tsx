@@ -1,8 +1,11 @@
 import Item from "./components/Item"
 import { menuItems } from "./data/db" //Datos de la base de datos
+import useOrder from "./hooks/useOrder"
 
 function App() {
   
+  const { addItem } = useOrder() // Agregamos las funciones del hook personalizado
+
   return (
     <>
       <header className="bg-teal-400 py-5">
@@ -17,6 +20,7 @@ function App() {
               <Item
                key={item.id} // Cada item debe tener un ID unico
                item={item}
+               addItem={addItem} // le pasamos la funcion al componente
               />
             ))}
 
@@ -25,7 +29,7 @@ function App() {
 
         <div>
           <h2>Consumo</h2>
-
+            
         </div>
       </main>
     </>
