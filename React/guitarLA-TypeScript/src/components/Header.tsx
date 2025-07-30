@@ -12,7 +12,7 @@ type headerProps = {
 }
 
 export default function Header({
-    cart, 
+        cart, 
         removeFromCart, 
         decreaseQuantity, 
         increaseQuantity, 

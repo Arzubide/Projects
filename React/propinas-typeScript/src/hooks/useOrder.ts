@@ -1,6 +1,5 @@
 import { useState } from "react"
 import type { menuItem, orderItem } from "../types"
-import Item from "../components/Item"
 
 
 export default function useOrder() {
