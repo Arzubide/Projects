@@ -1,5 +1,5 @@
 import Item from "./components/Item"
-import OrderContent from "./components/orderContent"
+import OrderContent from "./components/OrderContent"
 import OrderTotals from "./components/OrderTotals"
 import TipPercentageForm from "./components/TipPercentageForm"
 import { menuItems } from "./data/db" //Datos de la base de datos
