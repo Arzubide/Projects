@@ -8,7 +8,7 @@ import useOrder from "./hooks/useOrder"
 
 function App() {
   
-  const { addItem, order, removeFromOrder, tip, setTip } = useOrder() // Agregamos las funciones del hook personalizado
+  const { addItem, order, removeFromOrder, tip, setTip, saveOrder } = useOrder() // Agregamos las funciones del hook personalizado
 
   return (
     <>
@@ -45,6 +45,7 @@ function App() {
             <OrderTotals
               order={order}
               tip={tip}
+              saveOrder={saveOrder}
             />
 
         </div>

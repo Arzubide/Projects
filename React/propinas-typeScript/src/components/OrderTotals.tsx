@@ -3,10 +3,11 @@ import type { orderItem } from "../types"
 type componentProps={
     order : orderItem[]
     tip: number
+    saveOrder : () => void
 }
 
 
-export default function OrderTotals({order, tip}: componentProps) {
+export default function OrderTotals({order, tip, saveOrder}: componentProps) {
   
 //   const subTotal = useMemo(() => order.reduce( (total , item) => total + (item.quantity * item.price), 0)   , [order])  opcion del curso
     const subTotal = order.reduce(
@@ -35,7 +36,13 @@ export default function OrderTotals({order, tip}: componentProps) {
                 <span className="font-black"> ${Total}</span>
             </p>
         </div>
-        <button></button>
+        <button 
+            className="w-full bg-black p-3 uppercase text-white font-bold mt-10 hover:bg-gray-500 disabled:opacity-20"
+            disabled={Total===0}
+            onClick={saveOrder}
+        >
+            Guardar orden
+        </button>
     </>
   )
 }
