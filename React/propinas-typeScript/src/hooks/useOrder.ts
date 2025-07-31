@@ -4,6 +4,7 @@ import type { menuItem, orderItem } from "../types"
 
 export default function useOrder() {
     const [order, setOrder] = useState<orderItem[]>([]) // Utilizamos Generic <> para definir el tipo de dato que es order
+    const [tip, setTip] = useState(0)
 
     const addItem = (item : menuItem) => {
         const itemExist = order.find(orderItem => orderItem.id === item.id) // Si el item que se agrega (orderItem) es igual al que se encuentra en el menu (item)
@@ -31,6 +32,8 @@ export default function useOrder() {
     return {
         addItem,
         order, 
-        removeFromOrder
+        removeFromOrder,
+        tip,
+        setTip
     }
 }

@@ -1,13 +1,14 @@
 import Item from "./components/Item"
 import OrderContent from "./components/orderContent"
 import OrderTotals from "./components/OrderTotals"
+import TipPercentageForm from "./components/TipPercentageForm"
 import { menuItems } from "./data/db" //Datos de la base de datos
 import useOrder from "./hooks/useOrder"
 
 
 function App() {
   
-  const { addItem, order, removeFromOrder } = useOrder() // Agregamos las funciones del hook personalizado
+  const { addItem, order, removeFromOrder, tip, setTip } = useOrder() // Agregamos las funciones del hook personalizado
 
   return (
     <>
@@ -36,8 +37,14 @@ function App() {
               removeFromOrder={removeFromOrder}
             />
 
+            <TipPercentageForm
+              order={order}
+              setTip={setTip}
+            />
+
             <OrderTotals
               order={order}
+              tip={tip}
             />
 
         </div>
