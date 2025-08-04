@@ -23,6 +23,12 @@ export default function Form() {
         })
     }
 
+    const isValidActivity = () => {
+        const {name, calories} = activity
+        console.log(name.trim() !== '' && calories > 0)
+        return name.trim() !== '' && calories > 0 // trim( ) elimina los espacios en blanco en ambos extremos del string. SI ES VERDADERO SE DESAVILITA
+    }
+
   return (
     <form className="space-y-5 bg-white p-10 shadow rounded-2xl">
         <div className="grid grid-cols-1 gap-3">
@@ -66,6 +72,11 @@ export default function Form() {
                 onChange={handleChange}/>
         </div>
 
-        <input type="submit" className="bg-gray-600 text-white cursor-pointer w-full  p-2 hover:bg-gray-900 font-bold uppercase" value={'Guardar'}/>
+        <input 
+            type="submit" 
+            className="bg-gray-600 text-white cursor-pointer w-full  p-2 hover:bg-gray-900 font-bold uppercase disabled:opacity-25" 
+            value={'Guardar'}
+            disabled={!isValidActivity()} // Si se cumple la condicion se habilita, si es falso se desabilita el boton
+            />
     </form>
 )}
