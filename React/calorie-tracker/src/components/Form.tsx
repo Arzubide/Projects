@@ -1,20 +1,25 @@
+import type { Activity } from "../types"
 import { categories } from "../data/categories"
 import { useState } from "react"
 
 export default function Form() {
 
-    const [activity, setActivity] = useState({
+    const [activity, setActivity] = useState<Activity>({ // Tipamos el state
         category : 1,
         name : '',
         calories : 0
     })
 
 
-    const handleChange = (e) => {
+    const handleChange = (e : React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => { // Esta tipado asi debido a que se ocupa esta funcion se ocupa en esos dos tipos de eleventos, select o input
+
+        // Debido a que dentro de la aplicacion web en lugar de ser seteados como numbero, todo lo setea con string, primero vamos a identificar cuales son los inputs que se deben setear como numeros y cuales no
+        const isNumberField = ['category', 'calories'].includes(e.target.id) // Si obtenemos el id que esta dentro de los strings dentro, retorna true, de lo contrario retorna false. Asi podemos manejar el control de numero y de strings
+
         /* Con e.taget.id sabes que elemento es que esta seleccionando o de donde proviene la entrada. Con e.target.value obtenemos el valor ingresado por el usuario */
         setActivity({
             ...activity, // Hacemos una copia de lo que esta previamene seteado
-            [e.target.id] : e.target.value // Seteamos los nuevos valores  [KEY] : VALUE. Key va entre llaves para que ts lo interprete como variable y no como la llave literal (e.target.id)
+            [e.target.id] : isNumberField ? +e.target.value : e.target.value // Seteamos los nuevos valores  [KEY] : VALUE. Key va entre llaves para que ts lo interprete como variable y no como la llave literal (e.target.id)
         })
     }
 
