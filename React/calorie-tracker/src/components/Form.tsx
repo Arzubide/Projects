@@ -56,7 +56,7 @@ export default function Form() {
                 type="text"  
                 id="name" 
                 className="border p-2 rounded-2xl w-full bg-white" 
-                placeholder="Ej. Comida, Jugo de naranja, Ejercicio, Ensalada, Pesas, Bicicleta"
+                placeholder={activity.category == 1 ? 'Ej. Comida, ensalada, cena' : 'Ej. Pesas, bicicleta, correr'}
                 value={activity.name}
                 onChange={handleChange}/>
         </div>
@@ -75,7 +75,7 @@ export default function Form() {
         <input 
             type="submit" 
             className="bg-gray-600 text-white cursor-pointer w-full  p-2 hover:bg-gray-900 font-bold uppercase disabled:opacity-25" 
-            value={'Guardar'}
+            value={activity.category == 1 ? 'Guardar comida' : 'Guardar ejercicio'}
             disabled={!isValidActivity()} // Si se cumple la condicion se habilita, si es falso se desabilita el boton
             />
     </form>
