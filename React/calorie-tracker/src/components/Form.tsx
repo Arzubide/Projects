@@ -29,8 +29,15 @@ export default function Form() {
         return name.trim() !== '' && calories > 0 // trim( ) elimina los espacios en blanco en ambos extremos del string. SI ES VERDADERO SE DESAVILITA
     }
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        
+    }
+
   return (
-    <form className="space-y-5 bg-white p-10 shadow rounded-2xl">
+    <form 
+        className="space-y-5 bg-white p-10 shadow rounded-2xl"
+        onSubmit={handleSubmit}
+    >
         <div className="grid grid-cols-1 gap-3">
             <label htmlFor="category" className="font-bold">Categoria: </label>
             <select 
