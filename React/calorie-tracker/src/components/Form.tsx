@@ -35,8 +35,16 @@ export default function Form({dispatch} : FormProps) {
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+        e.preventDefault() // Evitamos que se actualice la pagina
         dispatch({type : 'save-activity', payload : {newActivity : activity}})
+        
+        setActivity( // Una vez almacenada la informacion reseteamos el formulario
+            {
+                category : 1,
+                name : '',
+                calories : 0
+            }
+        )
     }
 
   return (
