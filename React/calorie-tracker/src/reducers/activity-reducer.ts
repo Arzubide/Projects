@@ -14,11 +14,17 @@ export type ActivityState = {
     activeID : string
 }
 
+// Funcion exclusiva para el localstorage y el estado incial de reducer
+const localStorageActivities  = () : Activity[] => {
+    const activities = localStorage.getItem('activities')
+    return activities ? JSON.parse(activities) : []
+}
+
 export const initialState : ActivityState = {
     /* Este es el estado inicial del reducer.
     Aquí defines con qué datos empieza tu aplicación antes de que pase nada.
     En este caso, comienza con activities como un arreglo vacío. */
-    activities : [],
+    activities : localStorageActivities(),
     activeID : ''
 }
 
