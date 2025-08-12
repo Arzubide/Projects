@@ -7,7 +7,8 @@ export type ActivityActions = {
     type : 'save-activity', // El type describe que es lo que esta susediendo
     payload : { newActivity : Activity }// Payload son los datos que se van agregar o que vamos almacenar 
 } | {type : 'setActiveId', payload: {id: Activity['id']}} | // Agregamos una nueva accions a nuestro reducer, en este caso solo recolectamos el id de la actividad para identificarla y poder editar 
-    {type: 'delete-Activity', payload : {id : Activity['id']}}
+    {type: 'delete-Activity', payload : {id : Activity['id']}} |
+    {type: 'delete-all'} // Aqui vemos que no es obligatorio tener un payload
 
 export type ActivityState = {
     activities : Activity[],
@@ -69,6 +70,13 @@ export const activityReducer = (
         return {
             ...state,
             activities : state.activities.filter(actividad => actividad.id !== action.payload.id)
+        }
+    }
+
+    if (action.type === 'delete-all') {
+        return {
+            activities : [],
+            activeID : ''
         }
     }
 

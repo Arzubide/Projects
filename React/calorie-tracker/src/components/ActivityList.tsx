@@ -27,7 +27,7 @@ export default function ActivityList({state, dispatch} : ActivityProps ) {
                 No hay actividades registradas</p> 
         :
             state.map( activity => (
-                <div key={activity.id} className="px-5 py-10 bg-gray-500 mt-5 flex justify-between">
+                <div key={activity.id} className="px-5 py-10 bg-white mt-5 flex justify-between shadow-2xl">
                     {/* Div izquierda, contenido de lo registrado */}
                     <div className="space-y-2 relative">
                         <p className={`absolute -top-8 -left-8 px-10 py-2 text-white uppercase font-bold 
