@@ -30,10 +30,24 @@ export const activityReducer = (
 ) => {
     if (action.type === 'save-activity') {
         // Este codigo maneja la logica para actualizar el state
+        let updatedActivities : Activity[] = []// Se declara como let ya que tendra valores distintos
+        if(state.activeID){
+            // Estamos editando una actividad
+            updatedActivities = state.activities.map(actividad => actividad.id === state.activeID // Si la actividad que seleccionamos es igual a la que se encuentra en        nuestras actividades
+                ?   action.payload.newActivity // Actualizamos la actividad
+                :   actividad // De lo contrario mantenemos las actividades
+            )
+        } else{
+            //Estamos agregando una nueva actividad
+            updatedActivities = [...state.activities, action.payload.newActivity] // Hacemos copia de las actividades previas y concatenamos con la nueva informacion ingresada
+
+        }
 
         return { // retorna el estado actualizado
             ...state,
-            activities : [...state.activities, action.payload.newActivity] // Hacemos copia de las actividades previas y concatenamos con la nueva informacion ingresada
+            activities : updatedActivities, // Guardamos la informacion
+            activeID : '' // Cada que haya una nueva actividad, se reinicia el activeID
+
         }
     }
 
