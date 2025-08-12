@@ -26,6 +26,7 @@ function App() {
       <section className='p-10 mx-auto max-w-4xl'>
         <ActivityList
           state={state.activities} // Solo le pasamos las actividades que necesitamos en ese componente
+          dispatch={dispatch}
         />
       </section>
     </>

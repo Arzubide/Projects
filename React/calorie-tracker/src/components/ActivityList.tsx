@@ -1,14 +1,16 @@
 import type { Activity } from "../types"
 import { categories } from "../data/categories"
-import { useMemo } from "react"
+import { useMemo, type Dispatch } from "react"
 import { PencilSquareIcon } from '@heroicons/react/24/outline'  // Investigar mas sobre esta dependencia de telwindcss que contiene ya inconos para el diesenio
+import type { ActivityActions } from "../reducers/activity-reducer"
 
 type ActivityProps = {
     state : Activity[]
+    dispatch : Dispatch<ActivityActions>
 }
 
 
-export default function ActivityList({state} : ActivityProps ) {
+export default function ActivityList({state, dispatch} : ActivityProps ) {
 
     const categoryName = useMemo(() => (category : Activity['category']) => categories.map(cat => cat.id === category ? cat.name : ''), [state]) // Comparamos el ID de cotegory con el que reccibimos del formulario y accedemos al name de la categoria
 
@@ -36,7 +38,9 @@ export default function ActivityList({state} : ActivityProps ) {
                 </div>
                 {/* Div derecha, modificacion o eliminar contenido */}
                 <div className="flex gap-5 items-center">
-                    <button>
+                    <button
+                    onClick={()=>dispatch({type : "setActiveId", payload : {id : activity.id }})}
+                    >
                         <PencilSquareIcon // Importamos el icono 
                             className="h-8 w-8 text-gray-800 hover:text-white"
                         />
