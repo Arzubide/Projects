@@ -48,7 +48,7 @@ export default function ActivityList({state, dispatch} : ActivityProps ) {
                         onClick={()=>dispatch({type : "setActiveId", payload : {id : activity.id }})}
                         >
                             <PencilSquareIcon // Importamos el icono 
-                                className="h-8 w-8 text-gray-800 hover:text-white"
+                                className="h-8 w-8 text-gray-800 "
                             />
                         </button>
                         <button
@@ -56,7 +56,7 @@ export default function ActivityList({state, dispatch} : ActivityProps ) {
                             onClick={() => dispatch({type : 'delete-Activity' , payload : {id:activity.id}})}
                         >
                             <XCircleIcon
-                                className="h-8 w-8 text-gray-800 hover:text-white"
+                                className="h-8 w-8 text-red-800 "
                             />
                         </button>
 
