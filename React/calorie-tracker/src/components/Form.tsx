@@ -1,11 +1,12 @@
 import { v4 as uuidv4 } from "uuid"
 import type { Activity } from "../types"
 import { categories } from "../data/categories"
-import { useState, type Dispatch } from "react"
-import type { ActivityActions } from "../reducers/activity-reducer"
+import { useEffect, useState, type Dispatch } from "react"
+import type { ActivityActions, ActivityState } from "../reducers/activity-reducer"
 
 type FormProps = {
     dispatch : Dispatch<ActivityActions>
+    state : ActivityState
 }
 
 const initialState : Activity = {
@@ -15,9 +16,18 @@ const initialState : Activity = {
     calories : 0
 }
 
-export default function Form({dispatch} : FormProps) {
+export default function Form({dispatch, state} : FormProps) {
 
     const [activity, setActivity] = useState<Activity>(initialState)
+
+    useEffect(()=> {
+        if(state.activeID){
+            /* El método filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada. Retorna un nuevo arreglo */
+            const selectedActivity = state.activities.filter((actividad) => state.activeID === actividad.id)[0] // Se agrega el [0] para acceder a los elementos del arreglo que terna filter
+            setActivity(selectedActivity) // Obtenemos los valores de la actividad en el formulario
+            // setActivity(selectedActivity)
+        }
+    }, [state.activeID]) // Escucharemos si hay algo en el ID activo
 
 
     const handleChange = (e : React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => { // Esta tipado asi debido a que se ocupa esta funcion se ocupa en esos dos tipos de eleventos, select o input
