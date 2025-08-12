@@ -1,7 +1,7 @@
 import type { Activity } from "../types"
 import { categories } from "../data/categories"
 import { useMemo, type Dispatch } from "react"
-import { PencilSquareIcon } from '@heroicons/react/24/outline'  // Investigar mas sobre esta dependencia de telwindcss que contiene ya inconos para el diesenio
+import { PencilSquareIcon, XCircleIcon } from '@heroicons/react/24/outline'  // Investigar mas sobre esta dependencia de telwindcss que contiene ya inconos para el diesenio
 import type { ActivityActions } from "../reducers/activity-reducer"
 
 type ActivityProps = {
@@ -42,6 +42,14 @@ export default function ActivityList({state, dispatch} : ActivityProps ) {
                     onClick={()=>dispatch({type : "setActiveId", payload : {id : activity.id }})}
                     >
                         <PencilSquareIcon // Importamos el icono 
+                            className="h-8 w-8 text-gray-800 hover:text-white"
+                        />
+                    </button>
+                    <button
+                        className="flex gap-5 items-center"
+                        onClick={() => dispatch({type : 'delete-Activity' , payload : {id:activity.id}})}
+                    >
+                        <XCircleIcon
                             className="h-8 w-8 text-gray-800 hover:text-white"
                         />
                     </button>
