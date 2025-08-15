@@ -3,7 +3,6 @@ import BudgetForm from "./components/BudgetForm"
 import { useBudget } from "./hooks/useBudget"
 import BudgetTracker from "./components/BudgetTracker"
 import ExpenseModal from "./components/ExpenseModal"
-import { MapPinIcon } from "@heroicons/react/24/solid"
 
 function App() {
 
