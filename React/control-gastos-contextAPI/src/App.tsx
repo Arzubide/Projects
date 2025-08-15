@@ -2,6 +2,8 @@ import { useMemo } from "react"
 import BudgetForm from "./components/BudgetForm"
 import { useBudget } from "./hooks/useBudget"
 import BudgetTracker from "./components/BudgetTracker"
+import ExpenseModal from "./components/ExpenseModal"
+import { MapPinIcon } from "@heroicons/react/24/solid"
 
 function App() {
 
@@ -26,6 +28,13 @@ function App() {
                 // Si el state es igual a 0 retornamos nuestro componente
                 <BudgetForm/>}
         </div>
+        {isValidBudget && (
+            <main className="max-w-3xl mx-auto py-10">
+              <ExpenseModal/>
+            </main>
+        )} {/* Validacion solo para mostrar cuando se tenga un presupuesto ingresado */}
+        
+        
       </>
     )
 }
