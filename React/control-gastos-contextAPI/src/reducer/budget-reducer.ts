@@ -2,7 +2,8 @@ import { __unstable__loadDesignSystem } from "tailwindcss"
 
 export type BudgetActions = 
     {type : 'add-budget', payload : {budget : number}} |
-    {type : 'show-modal'}
+    {type : 'show-modal'} |
+    {type: 'close-modal'}
 
 export type BudetState = {
     budget : number
@@ -29,6 +30,13 @@ export const BudgetReducer = (
         return {
             ...state,
             modal: true
+        }
+    }
+
+    if (action.type === 'close-modal') {
+        return {
+            ...state,
+            modal: false
         }
     }
     return state
