@@ -1,7 +1,10 @@
 import { useMemo, useState } from "react"
+import { useBudet } from "../hooks/useBudget"
 
 
 export default function BudgetForm() {
+
+    const {dispatch} = useBudet()
 
     const [budget, setBudget] = useState(0)
 
@@ -13,8 +16,14 @@ export default function BudgetForm() {
         return isNaN(budget) || budget<=0 // retornamos true o false
     }, [budget])
 
+    const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => { // Funcion para guardar lo que ingreso el usuario en el formulario
+        e.preventDefault()
+        dispatch({type: 'add-budget', payload : {budget}})
+    
+    }
+
     return (
-        <form className="space-y-3"> 
+        <form className="space-y-3" onSubmit={handleSubmit}> 
             <div className="flex flex-col space-y-5">
                 <label htmlFor="budget" className="text-4xl text-blue-600 font-bold text-center">
                     Definir presupuesto:
