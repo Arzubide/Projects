@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react"
-import { useBudet } from "../hooks/useBudget"
+import { useBudget } from "../hooks/useBudget"
 
 
 export default function BudgetForm() {
 
-    const {dispatch} = useBudet()
+    const {dispatch} = useBudget()
 
     const [budget, setBudget] = useState(0)
 
