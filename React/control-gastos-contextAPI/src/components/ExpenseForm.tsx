@@ -3,12 +3,18 @@ import DatePicker from 'react-date-picker'; // Sacado de https://www.npmjs.com/p
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+import { useState } from "react";
+import type { DraftExpense } from "../types";
 
 export default function ExpenseForm() {
 
+    const [expense, setExpense] = useState<DraftExpense>({
+       amount : 0,
+       expenseName : '',
+       category : '',
+       date : new Date()
+
+    })
 
     return (
         <>
@@ -21,21 +27,35 @@ export default function ExpenseForm() {
               <label 
                 htmlFor="expenseName" className="text-xl">
               Nombre de gasto: </label>
-              <input type="text" id="expenseName" name="expenseName" className="py-2 shadow-2xl bg-slate-100 rounded-xl placeholder:text-center" placeholder="Añande el nombre del gasto"/>
+              <input 
+                type="text" 
+                id="expenseName" 
+                name="expenseName" 
+                className="py-2 shadow-2xl bg-slate-100 rounded-xl placeholder:text-center" 
+                placeholder="Añande el nombre del gasto"
+                value={expense.expenseName}
+              />
             </div>
 
             <div className="flex flex-col gap-2">
               <label 
                 htmlFor="amount" className="text-xl">
               Cantidad: </label>
-              <input type="number" id="amount" name="amount" className="py-2 shadow-2xl bg-slate-100 rounded-xl placeholder:text-center" placeholder="Añade la cantidad del gasto"/>
+              <input 
+                type="number" 
+                id="amount" 
+                name="amount" 
+                className="py-2 shadow-2xl bg-slate-100 rounded-xl placeholder:text-center" 
+                placeholder="Añade la cantidad del gasto"
+                value={expense.amount}
+              />
             </div>
             
             <div className="flex flex-col gap-2">
               <label 
                 htmlFor="category" className="text-xl">
               Categoria: </label>
-              <select id="category" name="category" className="py-2 shadow-2xl bg-slate-100 rounded-xl">
+              <select id="category" name="category" className="py-2 shadow-2xl bg-slate-100 rounded-xl" value={expense.category}>
                 <option value="" className="text-center"> -- Seleccione alguna categoria -- </option>
                 {categories.map( category => (
                   <option value={category.id} id={category.id} key={category.id} className="text-center">{category.name}</option>
@@ -50,6 +70,7 @@ export default function ExpenseForm() {
               <DatePicker
                 id="date"
                 className="bg-amber-50 text-center "
+                value={expense.date}
               />
             </div>
 
