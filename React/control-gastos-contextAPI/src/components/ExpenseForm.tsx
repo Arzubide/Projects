@@ -4,7 +4,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
 import { useState } from "react";
-import type { DraftExpense } from "../types";
+import type { DraftExpense, Value } from "../types";
 
 export default function ExpenseForm() {
 
@@ -15,6 +15,23 @@ export default function ExpenseForm() {
        date : new Date()
 
     })
+
+    const handleChangeDate = (value : Value) => {
+        setExpense({
+          ...expense,
+          date : value
+        })
+    }
+
+    const handlechange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+
+        const {name , value} = e.target // Name y value hace referencia a los name y value de cada input
+        const isAmountField = ['amount'].includes(name) // De esta manera detectamos si estamos escribiendo en el imput amount, retorna true o false
+        setExpense({
+          ...expense,
+          [name] : isAmountField ? +value : value
+        })
+    }
 
     return (
         <>
@@ -34,6 +51,7 @@ export default function ExpenseForm() {
                 className="py-2 shadow-2xl bg-slate-100 rounded-xl placeholder:text-center" 
                 placeholder="Añande el nombre del gasto"
                 value={expense.expenseName}
+                onChange={handlechange}
               />
             </div>
 
@@ -48,6 +66,7 @@ export default function ExpenseForm() {
                 className="py-2 shadow-2xl bg-slate-100 rounded-xl placeholder:text-center" 
                 placeholder="Añade la cantidad del gasto"
                 value={expense.amount}
+                onChange={handlechange}
               />
             </div>
             
@@ -55,7 +74,7 @@ export default function ExpenseForm() {
               <label 
                 htmlFor="category" className="text-xl">
               Categoria: </label>
-              <select id="category" name="category" className="py-2 shadow-2xl bg-slate-100 rounded-xl" value={expense.category}>
+              <select id="category" name="category" className="py-2 shadow-2xl bg-slate-100 rounded-xl" value={expense.category} onChange={handlechange}>
                 <option value="" className="text-center"> -- Seleccione alguna categoria -- </option>
                 {categories.map( category => (
                   <option value={category.id} id={category.id} key={category.id} className="text-center">{category.name}</option>
@@ -71,6 +90,7 @@ export default function ExpenseForm() {
                 id="date"
                 className="bg-amber-50 text-center "
                 value={expense.date}
+                onChange={handleChangeDate}
               />
             </div>
 
