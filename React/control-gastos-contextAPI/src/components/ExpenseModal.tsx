@@ -3,6 +3,7 @@ import { useBudget } from '../hooks/useBudget'
 import { Fragment } from 'react'
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
 import { Dialog, Transition } from '@headlessui/react'
+import ExpenseForm from './ExpenseForm'
 
 export default function ExpenseModal() {
     const {state ,dispatch} = useBudget() // Se importa state porque inicialmente tiene un valor predeterminado que es false
@@ -14,7 +15,7 @@ export default function ExpenseModal() {
                 type="button"
                 onClick={() => dispatch({type: 'show-modal'})}
             >
-            <PlusCircleIcon className='w-16 h-16 text-blue-600 rounded-full cursor-pointer' />
+            <PlusCircleIcon className='w-16 h-16 text-blue-600 rounded-full cursor-pointer hover:text-blue-800' />
             </button>
         </div>
 
@@ -44,8 +45,8 @@ export default function ExpenseModal() {
                     leaveTo="opacity-0 scale-95"
                 >
                     <Dialog.Panel className="w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-        
-
+                        {/* Aqui va el contenido del formulario */}
+                        <ExpenseForm/>
         
                     </Dialog.Panel>
                 </Transition.Child>
