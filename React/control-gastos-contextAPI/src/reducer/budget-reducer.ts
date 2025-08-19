@@ -6,7 +6,8 @@ export type BudgetActions =
     {type : 'add-budget', payload : {budget : number}} |
     {type : 'show-modal'} |
     {type: 'close-modal'} |
-    {type : 'add-expense', payload : {expense : DraftExpense}}
+    {type : 'add-expense', payload : {expense : DraftExpense}} |
+    {type : 'delete-expense', payload : {id : Expense['id']}}
 
 export type BudetState = {
     budget : number
@@ -60,6 +61,13 @@ export const BudgetReducer = (
             ...state,
             expenses : [...state.expenses, expense], // Hacemos copia de los gastos registrados y agregamos el nuevo gasto registrado
             modal : false
+        }
+    }
+
+    if (action.type === 'delete-expense') {
+        return {
+            ...state,
+            expenses : state.expenses.filter(expense => expense.id != action.payload.id)
         }
     }
     return state
