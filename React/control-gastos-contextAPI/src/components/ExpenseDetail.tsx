@@ -13,11 +13,16 @@ import { formatDate } from "../helpers";
 import type { Expense } from "../types";
 import AmountDisplay from "./AmountDisplay";
 import { categories } from "../data/categories";
+import { useBudget } from '../hooks/useBudget';
+
 type ExpenseDetailProps = {
     expense : Expense
 }
+
 export default function ExpenseDetail({expense} : ExpenseDetailProps) {
     
+    const {dispatch} = useBudget()
+
     const categoryInfo = useMemo(() => categories.filter(cat => cat.id === expense.category)[0] ,[expense]) // expense.category almacena un string del 1-7
     // agregamos el [0] para traer el contenido de la posicion en lugar de devolverlos todo el arreglo
 
@@ -34,8 +39,8 @@ export default function ExpenseDetail({expense} : ExpenseDetailProps) {
     const trailingActions = () => ( // Funcion que define el comportamiento de derecha a izquierda
         <TrailingActions>
             <SwipeAction
-            // destructive={true}
-            onClick={() => {}}
+            destructive={true}
+            onClick={() => dispatch({type : 'delete-expense', payload : {id : expense.id}})}
             >
                 Eliminar
             </SwipeAction>
