@@ -3,6 +3,7 @@ import BudgetForm from "./components/BudgetForm"
 import { useBudget } from "./hooks/useBudget"
 import BudgetTracker from "./components/BudgetTracker"
 import ExpenseModal from "./components/ExpenseModal"
+import ExpenseList from "./components/ExpenseList"
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     const {state} = useBudget()
 
     const isValidBudget = useMemo(() => state.budget > 0 , [state.budget])
+    const isExpensesAdded = useMemo(() => state.expenses.length > 0, [state.expenses])
 
     return (
       <>
@@ -30,6 +32,7 @@ function App() {
         {isValidBudget && (
             <main className="max-w-3xl mx-auto py-10">
               <ExpenseModal/>
+              {isExpensesAdded ? <ExpenseList/> : <p className="text-center font-bold pt-4 text-gray-600">No hay gastos registrados</p>}
             </main>
         )} {/* Validacion solo para mostrar cuando se tenga un presupuesto ingresado */}
         
