@@ -58,7 +58,8 @@ export const BudgetReducer = (
 
         return {
             ...state,
-            expenses : [...state.expenses, expense] // Hacemos copia de los gastos registrados y agregamos el nuevo gasto registrado
+            expenses : [...state.expenses, expense], // Hacemos copia de los gastos registrados y agregamos el nuevo gasto registrado
+            modal : false
         }
     }
     return state

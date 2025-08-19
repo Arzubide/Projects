@@ -17,7 +17,6 @@ export default function ExpenseForm() {
        expenseName : '',
        category : '',
        date : new Date()
-
     })
 
     const [error, setError] = useState('')
@@ -49,6 +48,14 @@ export default function ExpenseForm() {
 
         // Si todo esta correcto agregamos el nuevo gasto
         dispatch({type : 'add-expense' , payload : {expense}})
+
+        // Reiniciamos el formulario
+        setExpense({
+          amount : 0,
+          expenseName : '',
+          category : '',
+          date : new Date()
+        })
 
     }
 
