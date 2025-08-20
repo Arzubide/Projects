@@ -3,14 +3,14 @@ import DatePicker from 'react-date-picker'; // Sacado de https://www.npmjs.com/p
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { DraftExpense, Value } from "../types";
 import ErrorMesage from "./ErrorMesage";
 import { useBudget } from "../hooks/useBudget";
 
 export default function ExpenseForm() {
 
-  const {dispatch} = useBudget()
+    const {dispatch, state} = useBudget() 
 
     const [expense, setExpense] = useState<DraftExpense>({
        amount : 0,
@@ -18,6 +18,15 @@ export default function ExpenseForm() {
        category : '',
        date : new Date()
     })
+
+    useEffect(() => {
+
+      if (state.editingId) {
+          const editingExpense = state.expenses.filter(currenteExpense => currenteExpense.id === state.editingId)[0] // Traemos todo el contendio del gasto que se quiera editar
+          setExpense(editingExpense)
+      }
+
+    }, [state.editingId]) // Cada que cambie el state con editingid hara lo anterior 
 
     const [error, setError] = useState('')
 
@@ -46,9 +55,16 @@ export default function ExpenseForm() {
           return // Agregamos el return para que se ejecute el siguiente codigo una vez termine de hacer la comprobacion
         }
 
-        // Si todo esta correcto agregamos el nuevo gasto
-        dispatch({type : 'add-expense' , payload : {expense}})
+        // Agregar o actualizar el gasto
+        if (state.editingId) {
+            // Si existe algo solo editamos
+            dispatch({type : 'edit-expense', payload : {expense : {id : state.editingId, ...expense}}}) // Debido a que el expense no tiene id (se definio como draftExpense) le damos el id que le hace falta y le pasamos el resto con la copia que ya tiene
+        }else {
+          // Agregamos un nuevo gasto
+            dispatch({type : 'add-expense' , payload : {expense}})
+        }
 
+        state.editingId = ''
         // Reiniciamos el formulario
         setExpense({
           amount : 0,
