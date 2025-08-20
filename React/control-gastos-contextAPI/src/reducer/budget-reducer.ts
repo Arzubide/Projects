@@ -18,10 +18,20 @@ export type BudetState = {
     editingId: Expense['id']
 }
 
+const localStorageInitialBudget = () : number  => {
+    const storageBudget = localStorage.getItem('budget')
+    return storageBudget ? +storageBudget : 0
+}
+
+const localStorageExpenses = () : Expense[] =>{
+    const expense = localStorage.getItem('expense')
+    return expense ? JSON.parse(expense) : []
+}
+
 export const InitialState : BudetState = {
-    budget : 0,
+    budget : localStorageInitialBudget(),
     modal: false, // Indicamos que el modal estara oculto predeterminadamente
-    expenses : [],
+    expenses : localStorageExpenses(),
     editingId : ''
 }
 
