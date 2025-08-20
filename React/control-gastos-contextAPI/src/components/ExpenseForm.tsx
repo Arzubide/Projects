@@ -80,7 +80,10 @@ export default function ExpenseForm() {
           <form className="space-y-5" onSubmit={handleSubmit}>
             <legend
               className="border-b-4 border-blue-500 text-center uppercase font-bold text-2xl py-2 "
-            >Nuevo gasto</legend>
+            >
+              {state.editingId ? `Actualizar gasto` : `Nuevo gasto`}
+              
+            </legend>
 
             {error && <ErrorMesage> {/* && es como un ternario, solo que aqui unicamente validamos si existe algo en error */}
               {/* Aqui vemos que el componente tiene etiqueta de apertura y cierre, esto se hace para que lo que le pasemos lo rederice el componente, aqui tambien cambia la sintaxis dentro del componente */}
@@ -141,7 +144,7 @@ export default function ExpenseForm() {
               />
             </div>
 
-            <input type="submit" value="Registrar gasto" className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-2xl hover:bg-blue-800" />
+            <input type="submit" value={state.editingId ? `Actualizar` : `Agregar gasto`} className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-2xl hover:bg-blue-800" />
           </form>
         </>
     )
