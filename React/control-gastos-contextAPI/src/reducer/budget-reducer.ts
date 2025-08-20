@@ -7,18 +7,21 @@ export type BudgetActions =
     {type : 'show-modal'} |
     {type: 'close-modal'} |
     {type : 'add-expense', payload : {expense : DraftExpense}} |
-    {type : 'delete-expense', payload : {id : Expense['id']}}
+    {type : 'delete-expense', payload : {id : Expense['id']}} |
+    {type : 'get-expense-by-id', payload : {id : Expense['id']}}
 
 export type BudetState = {
     budget : number
     modal : boolean
     expenses : Expense[]
+    editingId: Expense['id']
 }
 
 export const InitialState : BudetState = {
     budget : 0,
     modal: false, // Indicamos que el modal estara oculto predeterminadamente
-    expenses : []
+    expenses : [],
+    editingId : ''
 }
 
 const createExpenseID = (draftExpense : DraftExpense) : Expense => { //La funncion recibe un draftExpense (expens sin id) y retornamos un expense (draftExpense : DraftExpense) : Expense
@@ -32,6 +35,7 @@ export const BudgetReducer = (
     state : BudetState = InitialState,
     action : BudgetActions
 ) => {
+
     if (action.type === 'add-budget') {
         return {
             ...state,
@@ -70,5 +74,13 @@ export const BudgetReducer = (
             expenses : state.expenses.filter(expense => expense.id != action.payload.id)
         }
     }
+
+    if (action.type === 'get-expense-by-id') {
+        return{
+            ...state,
+            editingId : action.payload.id // Escribimos en editingId lo que obtine la accion 
+        }
+    }
+
     return state
 }
