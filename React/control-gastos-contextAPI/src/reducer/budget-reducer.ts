@@ -8,7 +8,8 @@ export type BudgetActions =
     {type: 'close-modal'} |
     {type : 'add-expense', payload : {expense : DraftExpense}} |
     {type : 'delete-expense', payload : {id : Expense['id']}} |
-    {type : 'get-expense-by-id', payload : {id : Expense['id']}}
+    {type : 'get-expense-by-id', payload : {id : Expense['id']}} |
+    {type : 'edit-expense', payload : {expense : Expense}}
 
 export type BudetState = {
     budget : number
@@ -53,7 +54,8 @@ export const BudgetReducer = (
     if (action.type === 'close-modal') {
         return {
             ...state,
-            modal: false
+            modal: false,
+            editingId : '' // Siempre reiniciamos el modal cada vez que se cierre
         }
     }
 
@@ -78,7 +80,16 @@ export const BudgetReducer = (
     if (action.type === 'get-expense-by-id') {
         return{
             ...state,
-            editingId : action.payload.id // Escribimos en editingId lo que obtine la accion 
+            editingId : action.payload.id, // Escribimos en editingId lo que obtine la accion 
+            modal : true // Abrimos el modal para mostrar la informacion
+        }
+    }
+
+    if (action.type === 'edit-expense') {
+        return {
+            ...state,
+            expenses : state.expenses.map(expense => expense.id === action.payload.expense.id ? action.payload.expense : expense),
+            modal : false
         }
     }
 
