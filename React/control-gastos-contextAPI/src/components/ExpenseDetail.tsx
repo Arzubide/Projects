@@ -30,7 +30,7 @@ export default function ExpenseDetail({expense} : ExpenseDetailProps) {
     // Funciones de swipeable-list
     const leadingActions = () => ( // Funcion que define el comportamiento de izqiuierda a derecha
         <LeadingActions>
-            <SwipeAction onClick={() => {}}>
+            <SwipeAction onClick={() => dispatch({type : 'get-expense-by-id', payload : {id : expense.id}})}>
                 Actualizar
             </SwipeAction>
         </LeadingActions>
