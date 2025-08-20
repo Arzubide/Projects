@@ -1,9 +1,14 @@
+import { useMemo } from "react"
 import { useBudget } from "../hooks/useBudget"
 import AmountDisplay from "./AmountDisplay"
 
 export default function BudgetTracker() {
 
     const {state} = useBudget()
+
+    const spent = useMemo(() => state.expenses.reduce((total, expense) => total + expense.amount,0), [state])
+
+    const available = useMemo(() => state.budget - spent,[state]) 
 
     return (
         <>
@@ -18,11 +23,11 @@ export default function BudgetTracker() {
                     />
                     <AmountDisplay
                         label = "Disponible"
-                        amount = {200}
+                        amount = {available}
                     />
                     <AmountDisplay
                         label = "Gastado"
-                        amount = {200}
+                        amount = {spent}
                     />
                     <button
                         type="button"
