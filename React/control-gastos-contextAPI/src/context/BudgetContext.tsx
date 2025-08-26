@@ -1,9 +1,11 @@
-import { useReducer, createContext, type ReactNode} from "react"
+import { useReducer, createContext, type ReactNode, useMemo} from "react"
 import { InitialState, BudgetReducer, type BudetState, type BudgetActions} from "../reducer/budget-reducer"
 
 type BudgetContextProps = {
     state : BudetState,
     dispatch : React.ActionDispatch<[action: BudgetActions]> // Codigo de curso react.dispatch<BudgetActions>
+    spent : number,
+    available : number
 }
 
 type BudgetProviderProps = {
@@ -17,10 +19,14 @@ export const BudgetProvider = ({children} : BudgetProviderProps) => { // Definim
     // Provider es de donde vienen los datos
     const [state, dispatch] = useReducer(BudgetReducer ,InitialState)
 
+    // Ponemos aqui la logica de calculo de saldos.
+    const spent = useMemo(() => state.expenses.reduce((total, expense) => total + expense.amount,0), [state])
+    const available = useMemo(() => state.budget - spent,[state]) 
+
     return(
          
         <BudgetContext.Provider
-            value={{state, dispatch}} // De esta manera se comunica el context junto con provider, ahora ya podemos tener state y dispatch 
+            value={{state, dispatch, spent, available}} // De esta manera se comunica el context junto con provider, ahora ya podemos tener state y dispatch 
         > {/* De estea manera rodeamos a nuestra aplicacion y poder acceder al state y dipatch */}
             {children}
         </BudgetContext.Provider>
