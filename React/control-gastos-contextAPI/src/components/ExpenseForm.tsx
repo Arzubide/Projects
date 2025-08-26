@@ -10,7 +10,9 @@ import { useBudget } from "../hooks/useBudget";
 
 export default function ExpenseForm() {
 
-    const {dispatch, state} = useBudget() 
+    const {dispatch, state, available} = useBudget() 
+    const [previousAmount, setPreviousAmount] = useState(0)
+
 
     const [expense, setExpense] = useState<DraftExpense>({
        amount : 0,
@@ -24,6 +26,7 @@ export default function ExpenseForm() {
       if (state.editingId) {
           const editingExpense = state.expenses.filter(currenteExpense => currenteExpense.id === state.editingId)[0] // Traemos todo el contendio del gasto que se quiera editar
           setExpense(editingExpense)
+          setPreviousAmount(editingExpense.amount) // Congelamos el precio de cada gasto
       }
 
     }, [state.editingId]) // Cada que cambie el state con editingid hara lo anterior 
@@ -55,6 +58,12 @@ export default function ExpenseForm() {
           return // Agregamos el return para que se ejecute el siguiente codigo una vez termine de hacer la comprobacion
         }
 
+        // Validamos qu eno me pase del limite de credito
+        if ((expense.amount - previousAmount) > available) { // Valor nuevo ingresado - valor que tenia anteriormente > saldo disponoble
+          setError('El gasto esta fuera de tu presupuesto')
+          return 
+        }
+
         // Agregar o actualizar el gasto
         if (state.editingId) {
             // Si existe algo solo editamos
@@ -72,6 +81,7 @@ export default function ExpenseForm() {
           category : '',
           date : new Date()
         })
+        setPreviousAmount(0)
 
     }
 
