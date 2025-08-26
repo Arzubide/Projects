@@ -5,6 +5,7 @@ import 'react-circular-progressbar/dist/styles.css'
 
 export default function BudgetTracker() {
 
+    const {dispatch} = useBudget()
     const {state, available, spent} = useBudget()
     const bar = +((available*100)/state.budget)
     return (
@@ -18,7 +19,7 @@ export default function BudgetTracker() {
                             trailColor : '#F5F5F5',
                             textColor : '#3b82f6'
                         })}
-                        text={`${bar}%`}
+                        text={`${bar.toFixed(2)}%`}
                     />
                 </div>
                 <div className="flex flex-col justify-center items-center gap-8">
@@ -37,7 +38,7 @@ export default function BudgetTracker() {
                     <button
                         type="button"
                         className="bg-pink-600 w-full p-2 text-white uppercase font-bold rounded-full cursor-pointer hover:bg-pink-800"
-                        onClick={()=> {}}
+                        onClick={()=> dispatch({type : 'reset-app'})}
                     >
                         Resetear app
                     </button>
