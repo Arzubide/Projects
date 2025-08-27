@@ -1,5 +1,5 @@
 import { __unstable__loadDesignSystem } from "tailwindcss"
-import type { DraftExpense, Expense } from "../types"
+import type { Category, DraftExpense, Expense } from "../types"
 import {v4 as uuidv4} from 'uuid'
 
 export type BudgetActions = 
@@ -10,13 +10,15 @@ export type BudgetActions =
     {type : 'delete-expense', payload : {id : Expense['id']}} |
     {type : 'get-expense-by-id', payload : {id : Expense['id']}} |
     {type : 'edit-expense', payload : {expense : Expense}} |
-    {type : 'reset-app'}
+    {type : 'reset-app'} |
+    {type : 'add-filter-category', payload : {id : Category['id']}}
 
 export type BudetState = {
     budget : number
     modal : boolean
     expenses : Expense[]
     editingId: Expense['id']
+    currentCategory : Category['id']
 }
 
 const localStorageInitialBudget = () : number  => {
@@ -33,7 +35,8 @@ export const InitialState : BudetState = {
     budget : localStorageInitialBudget(),
     modal: false, // Indicamos que el modal estara oculto predeterminadamente
     expenses : localStorageExpenses(),
-    editingId : ''
+    editingId : '',
+    currentCategory : ''
 }
 
 const createExpenseID = (draftExpense : DraftExpense) : Expense => { //La funncion recibe un draftExpense (expens sin id) y retornamos un expense (draftExpense : DraftExpense) : Expense
@@ -110,6 +113,13 @@ export const BudgetReducer = (
             modal: false, 
             expenses : [],
             editingId : ''
+        }
+    }
+
+    if (action.type === 'add-filter-category') {
+        return {
+            ...state,
+            currentCategory : action.payload.id
         }
     }
 
