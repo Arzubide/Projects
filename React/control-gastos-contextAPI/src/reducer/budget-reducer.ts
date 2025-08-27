@@ -109,6 +109,7 @@ export const BudgetReducer = (
 
     if (action.type === 'reset-app') {
         return {
+            ...state,
             budget : 0,
             modal: false, 
             expenses : [],
