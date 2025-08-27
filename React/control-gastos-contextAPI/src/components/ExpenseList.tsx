@@ -1,5 +1,6 @@
 import { useBudget } from "../hooks/useBudget"
 import ExpenseDetail from "./ExpenseDetail"
+import FilterByCategory from "./FilterByCategory"
 
 export default function ExpenseList() {
     const {state} = useBudget()
@@ -9,6 +10,8 @@ export default function ExpenseList() {
                 Listado de gastos
             </p>
             
+            <FilterByCategory/>
+
             {state.expenses.map((expense) => (
                 <ExpenseDetail
                     key={expense.id}

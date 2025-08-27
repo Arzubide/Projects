@@ -37,8 +37,9 @@ function App() {
         </div>
         {isValidBudget && (
             <main className="max-w-3xl mx-auto py-10">
+              
               <ExpenseModal/>
-              {isExpensesAdded ? <ExpenseList/> : <p className="text-center font-bold pt-4 text-gray-600">No hay gastos registrados</p>}
+              {isExpensesAdded ?  <ExpenseList/> : <p className="text-center font-bold pt-4 text-gray-600">No hay gastos registrados</p>}
             </main>
         )} {/* Validacion solo para mostrar cuando se tenga un presupuesto ingresado */}
         
