@@ -1,9 +1,12 @@
 import { useForm } from 'react-hook-form'
 import Error from './Error'
 import type { draftPatientData } from '../types'
+import { usePatientStore } from '../store/store'
 
 export default function PatientForm() {
   
+    const {addPatient} = usePatientStore()
+
     const {register, handleSubmit, formState : {errors}} = useForm<draftPatientData>() 
     // register = This method allows you to register an input or select element and apply validation rules to React Hook Form
     // handleSubmit = This function will receive the form data if form validation is successful.
@@ -13,7 +16,8 @@ export default function PatientForm() {
 
     const registerPatient = (data : draftPatientData) => {
         // Si todas las validaciones pasan, se ejecuta esta funcion
-        console.log(data)
+        addPatient(data) // Comunicamos el estado global (store.ts) con el formulario
+        
     }
 
     return (
