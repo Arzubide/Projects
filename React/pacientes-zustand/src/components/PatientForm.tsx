@@ -39,7 +39,7 @@ export default function PatientForm() {
                         placeholder="Nombre del Paciente"
                         {...register('name', { // Forma de agregar useForm a un campo de nuestro formulario
                             // Dentro de los corchetes va los requerimientos que se solicita
-                            required : 'error message',
+                            required : 'El nombre del paciente es obligatorio',
                             minLength : {
                                 value : 8,
                                 message : 'Minimo 8 caracteres'
@@ -68,7 +68,18 @@ export default function PatientForm() {
                         className="w-full p-3  border border-gray-100"  
                         type="text" 
                         placeholder="Nombre del Propietario" 
+                        {...register('caretaker', { // Forma de agregar useForm a un campo de nuestro formulario
+                            // Dentro de los corchetes va los requerimientos que se solicita
+                            required : 'El nombre del propietario es obligatorio',
+                            
+                        })}
                     />
+
+                    {errors.caretaker && ( // Mostramos el error unicamente cuando exista un error accediento al nombre del error que le asignamos
+                        <Error>
+                            {errors.caretaker?.message as String} {/* Se agrega as string para remover el error que sale por TypeScrpt */}
+                        </Error>
+                    )}
                 </div>
 
                 <div className="mb-5">
@@ -79,8 +90,21 @@ export default function PatientForm() {
                     id="email"
                     className="w-full p-3  border border-gray-100"  
                     type="email" 
-                    placeholder="Email de Registro" 
+                    placeholder="Email de Registro"
+                    {...register("email", {
+                        required: "El Email es Obligatorio",
+                        pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: 'Email No Válido'
+                        }
+                    })} 
                 />
+
+                {errors.email && (
+                    <Error>
+                        {errors.email.message as string}
+                    </Error>
+                )}
                 </div>
 
                 <div className="mb-5">
@@ -91,7 +115,17 @@ export default function PatientForm() {
                         id="date"
                         className="w-full p-3  border border-gray-100"  
                         type="date" 
+                        {...register('date', { // Forma de agregar useForm a un campo de nuestro formulario
+                            // Dentro de los corchetes va los requerimientos que se solicita
+                            required : 'La fecha es obligatorio',
+                            
+                        })}
                     />
+                    {errors.date && (
+                        <Error>
+                            {errors.date.message as string}
+                        </Error>
+                    )}
                 </div>
                 
                 <div className="mb-5">
@@ -101,8 +135,28 @@ export default function PatientForm() {
                     <textarea  
                         id="symptoms"
                         className="w-full p-3  border border-gray-100"  
-                        placeholder="Síntomas del paciente" 
+                        placeholder="Síntomas del paciente"
+                        {...register('symptoms', { // Forma de agregar useForm a un campo de nuestro formulario
+                            // Dentro de los corchetes va los requerimientos que se solicita
+                            required : 'Los sintomas son obligatorios',
+                            minLength : {
+                                value : 10,
+                                message : 'Minimo 10 caracteres'
+                            }
+                            
+                        })}
                     ></textarea>
+                    {errors.symptoms && (
+                        <Error>
+                            {errors.symptoms.message as string}
+                        </Error>
+                    )}
+
+                    {errors.minLength && (
+                        <Error>
+                            {errors.minLength.message as string}
+                        </Error>
+                    )}
                 </div>
 
                 <input
