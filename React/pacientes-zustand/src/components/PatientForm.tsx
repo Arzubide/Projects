@@ -1,17 +1,19 @@
 import { useForm } from 'react-hook-form'
 import Error from './Error'
+import type { draftPatientData } from '../types'
 
 export default function PatientForm() {
   
-    const {register, handleSubmit, formState : {errors}} = useForm() 
+    const {register, handleSubmit, formState : {errors}} = useForm<draftPatientData>() 
     // register = This method allows you to register an input or select element and apply validation rules to React Hook Form
     // handleSubmit = This function will receive the form data if form validation is successful.
     // formState : {errors} = accedemos solamente a los errores y podemos mostrarlos
+    // <draftPatientData> = Se agrega para que los datos coincidan con handleSubmit 
 
 
-    const registerPatient = () => {
+    const registerPatient = (data : draftPatientData) => {
         // Si todas las validaciones pasan, se ejecuta esta funcion
-        console.log('data, e')
+        console.log(data)
     }
 
     return (
@@ -48,15 +50,10 @@ export default function PatientForm() {
                     />
                     {errors.name && ( // Mostramos el error unicamente cuando exista un error
                         <Error>
-                            {errors.name?.message as String} {/* Se agrega as string para remover el error que sale por TypeScrpt */}
+                            {errors.name?.message} 
                         </Error>
                     )}
 
-                    {errors.min && ( // Mostramos el error unicamente cuando exista un error
-                        <Error>
-                            {errors.name?.message as String} {/* Se agrega as string para remover el error que sale por TypeScrpt */}
-                        </Error>
-                    )}
                 </div>
 
                 <div className="mb-5">
@@ -77,7 +74,7 @@ export default function PatientForm() {
 
                     {errors.caretaker && ( // Mostramos el error unicamente cuando exista un error accediento al nombre del error que le asignamos
                         <Error>
-                            {errors.caretaker?.message as String} {/* Se agrega as string para remover el error que sale por TypeScrpt */}
+                            {errors.caretaker?.message } 
                         </Error>
                     )}
                 </div>
@@ -123,7 +120,7 @@ export default function PatientForm() {
                     />
                     {errors.date && (
                         <Error>
-                            {errors.date.message as string}
+                            {errors.date.message}
                         </Error>
                     )}
                 </div>
@@ -146,17 +143,14 @@ export default function PatientForm() {
                             
                         })}
                     ></textarea>
-                    {errors.symptoms && (
+
+                    {errors.symptoms && ( // Esto mostrará el mensaje de error tanto si falta el campo (required) como si no cumple el minLength.
                         <Error>
-                            {errors.symptoms.message as string}
+                            {errors.symptoms.message}
                         </Error>
                     )}
 
-                    {errors.minLength && (
-                        <Error>
-                            {errors.minLength.message as string}
-                        </Error>
-                    )}
+                    
                 </div>
 
                 <input
