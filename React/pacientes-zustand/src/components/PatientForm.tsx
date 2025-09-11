@@ -47,7 +47,7 @@ export default function PatientForm() {
                             // Dentro de los corchetes va los requerimientos que se solicita
                             required : 'El nombre del paciente es obligatorio',
                             minLength : {
-                                value : 8,
+                                value : 5,
                                 message : 'Minimo 8 caracteres'
                             }
                         })}
