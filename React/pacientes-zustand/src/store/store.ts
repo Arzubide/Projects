@@ -7,6 +7,7 @@ import {v4 as uidv4} from 'uuid'
 type PatientSate ={
     patients : PatientData[]
     addPatient : (data : draftPatientData) => void
+    deletePatient : (id : PatientData['id']) => void
 }
 
 const createPatient = (patient : draftPatientData) : PatientData => { // Recibe un paciente de tipo draft y retorna un paciente 
@@ -25,6 +26,11 @@ export const usePatientStore = create<PatientSate>((set)=>({ // SET permite actu
         const newPatien = createPatient(data) // le pasamos el paciente a la funcion y guradamos el valor en newPatient
         set((state)=>({ // STATE representa el estado actual, en este caso accedemos al estado de patients que es nuestro valor iniciado
             patients : [...state.patients, newPatien] // seteamos la copia de los pacientes y le agregamos la nueva informacion del formulario
+        }))
+    },
+    deletePatient : (id) => {
+        set((state) => ({
+            patients : state.patients.filter( patient => patient.id !== id) // Accedemos la lista de pacientes y retornamos los pacientes que sean diferentes del ID a eliminar
         }))
     }
 
