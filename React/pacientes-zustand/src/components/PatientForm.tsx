@@ -7,10 +7,11 @@ export default function PatientForm() {
   
     const {addPatient} = usePatientStore()
 
-    const {register, handleSubmit, formState : {errors}} = useForm<draftPatientData>() 
+    const {register, handleSubmit, formState : {errors}, reset} = useForm<draftPatientData>() 
     // register = This method allows you to register an input or select element and apply validation rules to React Hook Form
     // handleSubmit = This function will receive the form data if form validation is successful.
     // formState : {errors} = accedemos solamente a los errores y podemos mostrarlos
+    // reset: resetea el formulario
     // <draftPatientData> = Se agrega para que los datos coincidan con handleSubmit 
 
 
@@ -18,6 +19,7 @@ export default function PatientForm() {
         // Si todas las validaciones pasan, se ejecuta esta funcion
         addPatient(data) // Comunicamos el estado global (store.ts) con el formulario
         
+        reset() // Una vez que se registra el paciente, se resetea el formulario 
     }
 
     return (
