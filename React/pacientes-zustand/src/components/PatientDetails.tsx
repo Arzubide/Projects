@@ -8,7 +8,7 @@ type PatientDetailsProps = {
 
 export default function PatientDetails({paciente} : PatientDetailsProps) {
 
-   const {deletePatient} = usePatientStore() // Llamos la funcion para eliminar a los pacientes desde zustand
+   const {deletePatient, getPatientbyId} = usePatientStore() // Llamos la funcion para eliminar a los pacientes desde zustand
 
     return (
             <div className="mx-5 my-5 px-5 py-5 bg-white shadow-2xl rounded-2xl">
@@ -46,6 +46,7 @@ export default function PatientDetails({paciente} : PatientDetailsProps) {
                     <button
                         type="button"
                         className="py-2 px-10 bg-indigo-600 hover:bg-indigo-800 text-white font-bold uppercase rounded-2xl"
+                        onClick={() => getPatientbyId(paciente.id)}
                     >
                         Editar
                     </button>
