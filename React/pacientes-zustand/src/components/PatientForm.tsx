@@ -2,23 +2,39 @@ import { useForm } from 'react-hook-form'
 import Error from './Error'
 import type { draftPatientData } from '../types'
 import { usePatientStore } from '../store/store'
+import { useEffect } from 'react'
 
 export default function PatientForm() {
   
-    const {addPatient} = usePatientStore()
+    const {addPatient,activeId, patients, updatePatient} = usePatientStore()
 
-    const {register, handleSubmit, formState : {errors}, reset} = useForm<draftPatientData>() 
+    const {register, handleSubmit, setValue,formState : {errors}, reset} = useForm<draftPatientData>() 
     // register = This method allows you to register an input or select element and apply validation rules to React Hook Form
     // handleSubmit = This function will receive the form data if form validation is successful.
+    // setValue : Permite setear un valor por default al formulario
     // formState : {errors} = accedemos solamente a los errores y podemos mostrarlos
     // reset: resetea el formulario
     // <draftPatientData> = Se agrega para que los datos coincidan con handleSubmit 
 
+    useEffect(()=>{
+        // Efect para mostrar los datos en el formulario al momento de actualizar algun paciente
+        if(activeId){
+            const activePatient = patients.filter(patients => patients.id === activeId )[0] 
+            setValue('name', activePatient.name)
+            setValue('email', activePatient.email)
+            setValue('caretaker', activePatient.caretaker)
+            setValue('symptoms', activePatient.symptoms)
+            setValue('date', activePatient.date)
+        }
+    }, [activeId]) 
 
     const registerPatient = (data : draftPatientData) => {
         // Si todas las validaciones pasan, se ejecuta esta funcion
-        addPatient(data) // Comunicamos el estado global (store.ts) con el formulario
-        
+        if(activeId) {
+            updatePatient(data)
+        } else {
+            addPatient(data) // Comunicamos el estado global (store.ts) con el formulario
+        }
         reset() // Una vez que se registra el paciente, se resetea el formulario 
     }
 
