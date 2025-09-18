@@ -10,6 +10,7 @@ type PatientSate ={
     addPatient : (data : draftPatientData) => void
     deletePatient : (id : PatientData['id']) => void
     getPatientbyId : (id : PatientData['id']) => void
+    updatePatient : (data : draftPatientData) => void
 }
 
 const createPatient = (patient : draftPatientData) : PatientData => { // Recibe un paciente de tipo draft y retorna un paciente 
@@ -39,5 +40,15 @@ export const usePatientStore = create<PatientSate>((set)=>({ // SET permite actu
             activeId : id // Seteamos el id que obtivimos en el estado global
         }))
     },
-
+    updatePatient: (data) => {
+        set((state) => ({ // State accedemos al estado actual que se declara, en este caso nuestro estado inicial es PatientSate, y state hace referencia a PatientSate
+            // Actualiza el paciente cuyo id coincide con activeId, reemplazando sus datos con los nuevos (data)
+            patients: state.patients.map(patient =>
+                patient.id === state.activeId
+                    ? { id: state.activeId, ...data }
+                    : patient
+            ),
+            activeId: '' // Formateamos activeId
+        }))
+    }
 })) 
