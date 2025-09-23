@@ -3,9 +3,12 @@ import Error from './Error'
 import type { draftPatientData } from '../types'
 import { usePatientStore } from '../store/store'
 import { useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function PatientForm() {
   
+
     const {addPatient,activeId, patients, updatePatient} = usePatientStore()
 
     const {register, handleSubmit, setValue,formState : {errors}, reset} = useForm<draftPatientData>() 
@@ -32,8 +35,28 @@ export default function PatientForm() {
         // Si todas las validaciones pasan, se ejecuta esta funcion
         if(activeId) {
             updatePatient(data)
+            toast.info('Paciente actualizado correctamente!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         } else {
             addPatient(data) // Comunicamos el estado global (store.ts) con el formulario
+            toast.success('Paciente agregado correctamente!', { // Disenio para la notificacion de guardado, se coloca aqui debido a que si se entra en esta condicion se realizara la accion
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
         }
         reset() // Una vez que se registra el paciente, se resetea el formulario 
     }
@@ -180,6 +203,24 @@ export default function PatientForm() {
                     className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
                     value='Guardar Paciente'
                 />
+
+                {Object.keys(errors).length === 0 && ( // En dado caso que no exista errores, se ejecuta la notificacion
+                    <div>
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick={false}
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="colored"
+                        />
+                    </div>
+                )}
+                
             </form> 
         </div>
     )

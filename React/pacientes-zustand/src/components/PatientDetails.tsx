@@ -1,6 +1,8 @@
 import type { PatientData } from "../types"
 import PatientDetailItem from "./PatientDetailItem"
 import { usePatientStore } from "../store/store"
+import { toast } from 'react-toastify';
+
 
 type PatientDetailsProps = {
     paciente : PatientData
@@ -9,6 +11,20 @@ type PatientDetailsProps = {
 export default function PatientDetails({paciente} : PatientDetailsProps) {
 
    const {deletePatient, getPatientbyId} = usePatientStore() // Llamos la funcion para eliminar a los pacientes desde zustand
+
+   const handleDelete = (id: string) => {
+       deletePatient(id);
+       toast.error('Paciente eliminado correctamente!', {
+           position: "top-right",
+           autoClose: 5000,
+           hideProgressBar: false,
+           closeOnClick: false,
+           pauseOnHover: true,
+           draggable: true,
+           progress: undefined,
+           theme: "colored",
+       });
+   };
 
     return (
             <div className="mx-5 my-5 px-5 py-5 bg-white shadow-2xl rounded-2xl">
@@ -54,7 +70,7 @@ export default function PatientDetails({paciente} : PatientDetailsProps) {
                     <button
                         type="button"
                         className="py-2 px-10 bg-red-600 hover:bg-red-800 text-white font-bold uppercase rounded-2xl"
-                        onClick={() => deletePatient(paciente.id)} // le pasamos la fucnion de eliminar al boton
+                        onClick={() => handleDelete(paciente.id)} // le pasamos la fucnion de eliminar al boton
                     >
                         Eliminar
                     </button>
