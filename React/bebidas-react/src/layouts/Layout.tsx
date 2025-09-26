@@ -1,8 +1,13 @@
 import Header from "../components/Header";
+import { Outlet } from "react-router-dom";
 
 // Layout creado para mostrar componentes que tengan en comun paginas
 export default function Layout() {
     return (
-        <Header/>
+        <>
+            <Header/>
+        
+            <Outlet/> {/*Se agrega Outlet para tambien poder rederizar lo que tenga en las demas paginas aparte del header en este caso */}
+        </>
     )
 }
