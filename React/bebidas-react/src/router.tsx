@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom" // Componentes n
 //Importamos las paginas 
 import IndexPage from "./pages/IndexPage"
 import FavoritesPages from "./pages/FavoritesPages"
+import Layout from "./layouts/Layout"
 
 
 export default function AppRouter() {
@@ -9,11 +10,15 @@ export default function AppRouter() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route
-                    path="/" // Ruta que ingresamos para acceder al elemento
-                    element ={<IndexPage/>} // Pagina que va a cargar
-                />
-                <Route path="/favoritos" element ={<FavoritesPages/>}/>
+                {/* Importamos componente que tienen en comun todas las paginas, tiene que ser de apertura y cierre para agrupar a las rutas que lo tiene en comun*/}
+                <Route element={<Layout/>}>
+                    <Route
+                        path="/" // Ruta que ingresamos para acceder al elemento
+                        element ={<IndexPage/>} // Pagina que va a cargar
+                    />
+                    <Route path="/favoritos" element ={<FavoritesPages/>}/>
+                </Route>
+
             </Routes>
         </BrowserRouter>
     )
