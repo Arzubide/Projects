@@ -15,6 +15,7 @@ export default function AppRouter() {
                     <Route
                         path="/" // Ruta que ingresamos para acceder al elemento
                         element ={<IndexPage/>} // Pagina que va a cargar
+                        index // Indicamos que esta ruta es la pagina principal
                     />
                     <Route path="/favoritos" element ={<FavoritesPages/>}/>
                 </Route>
