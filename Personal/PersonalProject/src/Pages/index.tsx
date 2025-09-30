@@ -1,5 +1,5 @@
 
-export default function index() {
+export default function Index() {
     return (
         <div className="text-2xl">Index</div>
     )
