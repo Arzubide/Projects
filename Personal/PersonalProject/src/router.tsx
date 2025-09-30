@@ -1,5 +1,6 @@
 import { BrowserRouter,Route,Routes } from "react-router-dom"
 import Index from "./Pages"
+import Header from "./Layouts/Header"
 
 
 export default function Approuter() {
@@ -8,7 +9,9 @@ export default function Approuter() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route element={<Index/>} path="/" index/>
+                    <Route element={<Header/>}>
+                        <Route element={<Index/>} path="/" index/>
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </>
