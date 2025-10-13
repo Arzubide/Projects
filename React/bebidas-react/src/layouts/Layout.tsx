@@ -6,8 +6,10 @@ export default function Layout() {
     return (
         <>
             <Header/>
-        
-            <Outlet/> {/*Se agrega Outlet para tambien poder rederizar lo que tenga en las demas paginas aparte del header en este caso */}
+            <main className="container mx-auto py-16">
+                
+                <Outlet/> {/*Se agrega Outlet para tambien poder rederizar lo que tenga en las demas paginas aparte del header en este caso */}
+            </main>
         </>
     )
 }
