@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
@@ -8,8 +9,14 @@ export default function Header() {
                         <img className="w-32" src="/logo.svg" alt="imagen" />
                     </div>
                     
-                    <nav>
-
+                    <nav className="flex gap-2">
+                        {/*to direccion definida en router.tsx*/}
+                        <Link to={"/"} className="text-white font-bold uppercase">  
+                            Incio
+                        </Link>
+                        <Link to={"/favoritos"} className="text-white font-bold uppercase">
+                            Favoritos
+                        </Link>
                     </nav>
                 </div>
             </div>
