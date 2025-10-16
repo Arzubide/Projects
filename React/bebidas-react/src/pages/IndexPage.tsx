@@ -1,6 +1,7 @@
+import { useAppStore } from "../store/useAppStore"
 
 export default function IndexPage() {
-    
+     
     return (
         <>
             <div>
