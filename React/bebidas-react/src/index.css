@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+/* 
+Aquí defines una clase CSS personalizada llamada .headerImage con:
+
+background: url(...) no-repeat → establece la imagen de fondo y evita que se repita
+background-size: cover → la imagen cubre todo el contenedor
+background-position: center → centra la imagen
+ */
+@layer components {
+    .headerImage {
+        background: url(/bg.jpg) no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+}
