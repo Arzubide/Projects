@@ -1,11 +1,23 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { useAppStore } from "../store/useAppStore"; // Contiene las 
 
 export default function Header() {
     
     const userLocation = useLocation() // Esta funcion nos devuelve propiedades del usuario para saber en donde se encuentra navegando
 
     const isHome = useMemo(()=> userLocation.pathname === '/',[userLocation]) // Dectamos si el usuario esta en inicio
+
+    // 1. Obtener la función para cargar categorías
+    const fetchCategories = useAppStore((state) => state.fetchCategories) // Traremos las categorias desde el store de la 11 a la 14
+    // 3. Llamar a la función cuando el componente se monta
+    useEffect(()=>{
+        fetchCategories()// Hace la petición a la API
+    },[])
+
+    // 2. Obtener el array de categorías
+    const categories = useAppStore((c)=> c.categories.drinks)
+    
 
     return (
         <header className={isHome ? 'headerImage' : 'bg-slate-800'}>
@@ -58,7 +70,11 @@ export default function Header() {
                                 className="p-3 w-full rounded-lg focus:outline-none bg-white" 
                             >
                                 <option value="">--- Seleccione ---</option>
-                                {/* Se alimentara las opciones desde la API asociada */}
+                                {categories.map((categorie)=>(
+                                    <option key={categorie.strCategory} value={categorie.strCategory}>
+                                        {categorie.strCategory}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <input type="submit" name="Buscar" id="Buscar" className="cursor-pointer bg-orange-800 hover:bg-orange-900 text-white font-extrabold w-full rounded-2xl p-2 my-2" />
