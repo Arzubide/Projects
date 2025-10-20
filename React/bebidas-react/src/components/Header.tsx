@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAppStore } from "../store/useAppStore"; // Contiene las 
 
@@ -18,6 +18,22 @@ export default function Header() {
     // 2. Obtener el array de categorías
     const categories = useAppStore((c)=> c.categories.drinks)
     
+
+    //Almacenamos los datos ingresados para la busqueda
+    const [searchFilter,setSeacrhFilter] = useState({
+        ingredient : '',
+        category: ''
+    })
+
+    // Funcion que setea los valores de busqueda en nuestro state
+    const handleChange = (e : ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>)=> {
+        setSeacrhFilter({
+            ...searchFilter,
+            [e.target.name] : e.target.value
+            // e.target.name    ← Obtiene el atributo 'name' del elemento
+            // e.target.value   ← Obtiene el valor actual del elemento
+        })
+    }
 
     return (
         <header className={isHome ? 'headerImage' : 'bg-slate-800'}>
@@ -59,15 +75,17 @@ export default function Header() {
                         
                         <div className="space-y-2">
                             <label htmlFor="ingredient" className="block text-white uppercase font-extrabold text-lg">Nombre o ingredientes</label>
-                            <input type="text" name="ingredient" id="ingredient" className="p-3 w-full rounded-lg focus:outline-none bg-white" placeholder="Nombre o ingrediente. Ej. Vodka, Tequila, Cafe, etc"/>
+                            <input type="text" name="ingredient" id="ingredient" className="p-3 w-full rounded-lg focus:outline-none bg-white" placeholder="Nombre o ingrediente. Ej. Vodka, Tequila, Cafe, etc"
+                            onChange={handleChange}/>
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="ingredient" className="block text-white uppercase font-extrabold text-lg">Categoria</label>
+                            <label htmlFor="category" className="block text-white uppercase font-extrabold text-lg">Categoria</label>
                             <select 
-                                name="ingredient" 
-                                id="ingredient" 
+                                name="category" 
+                                id="category" 
                                 className="p-3 w-full rounded-lg focus:outline-none bg-white" 
+                                onChange={handleChange}
                             >
                                 <option value="">--- Seleccione ---</option>
                                 {categories.map((categorie)=>(
