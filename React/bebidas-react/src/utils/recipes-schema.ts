@@ -28,3 +28,14 @@ export const searchFilterSchema = z.object({
     ingredient : z.string,
     category: z.string
 })
+
+//Esquema para los datos de la peticion a la API con las bebidas
+export const bebidasEschema = z.object({
+    drinks : z.array(
+        z.object({
+            idDrink : z.string(),
+            strDrink : z.string(),
+            strDrinkThumb : z.string()
+        })
+    )
+})
