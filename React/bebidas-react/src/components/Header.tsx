@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ChangeEvent } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAppStore } from "../store/useAppStore"; // Contiene las 
 
@@ -33,6 +33,21 @@ export default function Header() {
             // e.target.name    ← Obtiene el atributo 'name' del elemento
             // e.target.value   ← Obtiene el valor actual del elemento
         })
+    }
+
+    //Funcion para enviar el formulario
+    const SearchFilter = useAppStore((state)=>state.searchRecipes) // Funcion que activa el estado de searchFilter
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        //Validacion de datos
+        if (Object.values(searchFilter).includes('')) {
+            console.log('esta vacio el formulario')
+            return
+        }
+        //Consultar las recetas
+        SearchFilter(searchFilter) // Activamos el estado de searchFilter y le pasamos lo que tenemos en nuestro estado
+
     }
 
     return (
@@ -71,7 +86,7 @@ export default function Header() {
                 </div>
 
                 {isHome && ( // El siguiente codigo solo se muestra si el usuario esta en el inico
-                    <form className="my-12 p-5 space-y-2 rounded-2xl md:w-1/2 bg-orange-400 ">
+                    <form className="my-12 p-5 space-y-2 rounded-2xl md:w-1/2 bg-orange-400 " onSubmit={handleSubmit}>
                         
                         <div className="space-y-2">
                             <label htmlFor="ingredient" className="block text-white uppercase font-extrabold text-lg">Nombre o ingredientes</label>
