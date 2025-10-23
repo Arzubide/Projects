@@ -9,7 +9,7 @@ export default function DrinkCard({drink} : DrinkCardProps) {
         <div className="border border-gray-300 rounded-2xl p-3 shadow-2xl mb-15 ml-2.5 mr-2.5">
             <div>
                 <img 
-                    className="rounded-2xl text-center"
+                    className="rounded-2xl text-center hover:scale-118 transition-transform"
                     src={drink.strDrinkThumb}
                     alt="Imagen de bebida" />
             </div>
