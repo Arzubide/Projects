@@ -30,12 +30,12 @@ export const searchFilterSchema = z.object({
 })
 
 //Esquema para los datos de la peticion a la API con las bebidas
+export const drinkSchema = z.object({
+    idDrink : z.string(),
+    strDrink : z.string(),
+    strDrinkThumb : z.string()
+})
+
 export const bebidasEschema = z.object({
-    drinks : z.array(
-        z.object({
-            idDrink : z.string(),
-            strDrink : z.string(),
-            strDrinkThumb : z.string()
-        })
-    )
+    drinks : z.array(drinkSchema)
 })
