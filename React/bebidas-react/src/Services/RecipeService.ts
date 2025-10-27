@@ -1,7 +1,7 @@
 import axios from "axios"
 // Axios es una libreria de JavaScript para hacer peticiones HTTP
-import { bebidasEschema, CategoriesAPIREsponseSchema } from "../utils/recipes-schema"
-import type { SearchFilter } from "../types"
+import { bebidasEschema, CategoriesAPIREsponseSchema, ingredientsList } from "../utils/recipes-schema"
+import type { Drink, SearchFilter } from "../types"
 
 export async function getCategories() {
     const url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list' // API de donde sacamos las categorias
@@ -24,6 +24,20 @@ export async function getRecipies(filters:SearchFilter) {
 
     if (result.success) {
         return result.data 
+    }
+
+}
+
+export async function getRecipiebyId(id : Drink['idDrink']) {
+    // Obtenemos el id de la bebida
+
+    const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
+    const {data} = await axios(url)
+    // data ya contiene toda la informacion detalla de la bebida
+    const result = ingredientsList.safeParse(data)
+
+    if (result.success) {
+        return result.data
     }
 
 }
