@@ -1,11 +1,32 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import React from 'react';
 import { useAppStore } from '../store/useAppStore';
+import type { DetailsDrink } from '../types';
 
 export default function Modal() {
-  const modal = useAppStore((state) => state.modal)
-  const closeModal = useAppStore((state) => state.closeModal)
-  const selectedRecipie = useAppStore((state) => state.selectedRecipie)
+    const modal = useAppStore((state) => state.modal)
+    const closeModal = useAppStore((state) => state.closeModal)
+    const selectedRecipie = useAppStore((state) => state.selectedRecipie)
+
+    const renderIngredients = () => { // Funcion para los ingredientes
+        const ingredients: React.ReactElement[] = [] // Indicamos que sera de tipo elemento de html
+        for (let i = 1; i<= 6 ; i++){
+            const ingredient = selectedRecipie[`strIngredient${i}` as keyof DetailsDrink] // lo timpamos con as keyof
+            const mesure = selectedRecipie[`strMeasure${i}` as keyof DetailsDrink]
+
+            if(ingredient && mesure) {
+                ingredients.push(
+                    // almacenamos un elemento HTML junto con su informacion
+                    <li key={i}>
+                      {ingredient} - {mesure}
+                    </li>
+                )
+            }
+        }
+        return ingredients
+    }
+
 
   return (
     <>
@@ -45,10 +66,9 @@ export default function Modal() {
                         </Dialog.Title>
                         <Dialog.Title as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
                             Ingredients
-                            <div>
-                                
-                            </div> 
                         </Dialog.Title>
+                          {/* Mostramos la lista de elementos HTML que tiene los ingredientes y las mediciones */}
+                          {renderIngredients()} 
                         <Dialog.Title as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
                           Instrucciones
                         </Dialog.Title>
