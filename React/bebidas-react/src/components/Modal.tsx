@@ -43,7 +43,6 @@ export default function Modal() {
               >
                 <div className="fixed inset-0 bg-black bg-opacity-70" />
                 </Transition.Child>
-
                 <div className="fixed inset-0 overflow-y-auto">
                   <div className="flex min-h-full items-center justify-center p-4 text-center">
                     <Transition.Child
@@ -56,6 +55,17 @@ export default function Modal() {
                       leaveTo="opacity-0 scale-95"
                     >
                       <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6" >
+                        {/* Botones del modal */}
+                        <div className='grid grid-cols-2'>
+                          <button 
+                          className='shadow-2xl rounded-2xl bg-amber-300 p-3 font-bold hover:bg-amber-500'
+                          // onClick={}
+                          >Add to favourites</button>
+                          <button 
+                            className='ml-2.5 shadow-2xl rounded-2xl bg-red-400 p-3 font-bold hover:bg-red-700'
+                            onClick={closeModal}
+                            >Close</button>
+                        </div>
                         <Dialog.Title as="h3" className="text-gray-900 text-4xl font-extrabold my-5 text-center">
                             {selectedRecipie.strDrink}
                             <img 
