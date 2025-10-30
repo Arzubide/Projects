@@ -14,11 +14,14 @@ export const createFavoriteSlice : StateCreator<favoriteSliceType> = (set,get) =
     handleClickFavorite : (recipie)=> {
         if (get().favorites.some(favorite => favorite.idDrink === recipie.idDrink)) {
             //Comprobamos que el elemento que se añada a favoritos no exista ya en favoritos
-            console.log('ya existe el elemento')
+            set({
+                favorites : get().favorites.filter(favorite => favorite.idDrink !== recipie.idDrink) // Si ya existe, se eliminara de favoritos si le vuelve a dar click
+            })
         }else{
             set({
                 favorites : [...get().favorites, recipie]
             })
         }
+        console.log(get().favorites)
     }  
 })
