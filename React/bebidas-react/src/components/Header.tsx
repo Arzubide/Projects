@@ -42,7 +42,6 @@ export default function Header() {
         e.preventDefault()
         //Validacion de datos
         if (Object.values(searchFilter).includes('')) {
-            console.log('esta vacio el formulario')
             return
         }
         //Consultar las recetas
