@@ -8,6 +8,8 @@ export default function Modal() {
     const modal = useAppStore((state) => state.modal)
     const closeModal = useAppStore((state) => state.closeModal)
     const selectedRecipie = useAppStore((state) => state.selectedRecipie)
+    const handleClickFavorite = useAppStore((state) => state.handleClickFavorite)
+    const favoritesList = useAppStore((state) => state.favorites) //Obtenemos la lista de favoritos
 
     const renderIngredients = () => { // Funcion para los ingredientes
         const ingredients: React.ReactElement[] = [] // Indicamos que sera de tipo elemento de html
@@ -15,7 +17,7 @@ export default function Modal() {
             const ingredient = selectedRecipie[`strIngredient${i}` as keyof DetailsDrink] // lo timpamos con as keyof
             const mesure = selectedRecipie[`strMeasure${i}` as keyof DetailsDrink]
 
-            if(ingredient && mesure) {
+         if(ingredient && mesure) {
                 ingredients.push(
                     // almacenamos un elemento HTML junto con su informacion
                     <li key={i}>
@@ -27,6 +29,14 @@ export default function Modal() {
         return ingredients
     }
 
+ 
+    const isAdded = () => {
+      if (favoritesList.some(drink => drink.idDrink === selectedRecipie.idDrink)) {
+          return true // En dado caso que si exista el elemento el favoritos marcamos que ya estaba agregado
+      }else{
+        return false
+      }
+    }
 
   return (
     <>
@@ -57,10 +67,22 @@ export default function Modal() {
                       <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6" >
                         {/* Botones del modal */}
                         <div className='grid grid-cols-2'>
-                          <button 
-                          className='shadow-2xl rounded-2xl bg-amber-300 p-3 font-bold hover:bg-amber-500'
-                          // onClick={}
-                          >Add to favourites</button>
+                          
+                          {isAdded() ? 
+                            <button 
+                              className='shadow-2xl rounded-2xl bg-orange-500 p-3 font-bold hover:bg-orange-600'
+                              onClick={()=>(handleClickFavorite(selectedRecipie))}
+                            >
+                              Delete of favoritos
+                            </button> 
+                            : 
+                            <button 
+                              className='shadow-2xl rounded-2xl bg-amber-300 p-3 font-bold hover:bg-amber-500'
+                              onClick={()=>(handleClickFavorite(selectedRecipie))}
+                            >
+                              Add to favourites
+                            </button>
+                          }
                           <button 
                             className='ml-2.5 shadow-2xl rounded-2xl bg-red-400 p-3 font-bold hover:bg-red-700'
                             onClick={closeModal}
