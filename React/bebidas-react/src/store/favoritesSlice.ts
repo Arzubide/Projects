@@ -5,6 +5,7 @@ import { createRecipeSlice, type RecipesSliceType } from "./recipeSlice" // Impo
 export type favoriteSliceType = {
     favorites : DetailsDrink[] // Guardaremos la informacion de la receta
     handleClickFavorite : (drink : DetailsDrink) => void
+    loadFromStorage: () => void
 }
 
 
@@ -25,5 +26,17 @@ export const createFavoriteSlice : StateCreator<favoriteSliceType & RecipesSlice
         }
 
         createRecipeSlice(set,get,api).closeModal() // Accedemos al store del otro slice, esto debido a que establecimos comunicacion con el otro slice con:  favoriteSliceType & RecipesSliceType, [],[],favoriteSliceType
-    }  
+
+        localStorage.setItem('favorites', JSON.stringify(get().favorites)) // localstorage
+    },
+
+    // Cargar desde local storage a favoritos
+    loadFromStorage : ()=>{
+        const loadStorage = localStorage.getItem('favorites')
+        if (loadStorage) {
+            set({
+                favorites : JSON.parse(loadStorage)
+            })
+        }
+    }
 })
