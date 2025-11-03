@@ -1,5 +1,6 @@
 import type { StateCreator } from "zustand"
 import type { DetailsDrink } from "../types"
+import { createRecipeSlice, type RecipesSliceType } from "./recipeSlice" // Importamos el slice a este slice
 
 export type favoriteSliceType = {
     favorites : DetailsDrink[] // Guardaremos la informacion de la receta
@@ -8,7 +9,7 @@ export type favoriteSliceType = {
 
 
 
-export const createFavoriteSlice : StateCreator<favoriteSliceType> = (set,get) => ({
+export const createFavoriteSlice : StateCreator<favoriteSliceType & RecipesSliceType, [],[],favoriteSliceType> = (set,get,api) => ({
     // Metodo get nos sirve para obtener los valores dentro de nuestro store
     favorites : [],
     handleClickFavorite : (recipie)=> {
@@ -22,6 +23,7 @@ export const createFavoriteSlice : StateCreator<favoriteSliceType> = (set,get) =
                 favorites : [...get().favorites, recipie]
             })
         }
-        console.log(get().favorites)
+
+        createRecipeSlice(set,get,api).closeModal() // Accedemos al store del otro slice, esto debido a que establecimos comunicacion con el otro slice con:  favoriteSliceType & RecipesSliceType, [],[],favoriteSliceType
     }  
 })
