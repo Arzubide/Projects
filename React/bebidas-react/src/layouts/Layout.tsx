@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Modal from "../components/Modal";
 import { useEffect } from "react";
 import { useAppStore } from "../store/useAppStore";
+import Notification from "../components/Notification"
 
 // Layout creado para mostrar componentes que tengan en comun paginas
 export default function Layout() {
@@ -18,6 +19,7 @@ export default function Layout() {
             </main>
 
             <Modal/>
+            <Notification/>
         </>
     )
 }
