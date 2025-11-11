@@ -38,11 +38,16 @@ export default function Header() {
     //Funcion para enviar el formulario
     const SearchFilter = useAppStore((state)=>state.searchRecipes) // Funcion que activa el estado de searchFilter
 
+    const notification = useAppStore(state => state.showNotification)
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         //Validacion de datos
         if (Object.values(searchFilter).includes('')) {
-            return
+            return notification({
+                text : 'Todos los campos son obligatorios',
+                error : true
+            })
         }
         //Consultar las recetas
         SearchFilter(searchFilter) // Activamos el estado de searchFilter y le pasamos lo que tenemos en nuestro estado
