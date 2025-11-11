@@ -1,7 +1,7 @@
 import type { StateCreator } from "zustand"
 
 type Notification = {
-    texto : string
+    text : string
     error: boolean
     show: boolean
 }
@@ -13,5 +13,9 @@ export type notificationSliceType = {
 
 
 export const createNotificationSlice : StateCreator<notificationSliceType> = (set,get) => ({
-    notification: {} as Notification
+    notification: {
+        text : '',
+        error: false,
+        show: false
+    }
 })
