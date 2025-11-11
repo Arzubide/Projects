@@ -1,7 +1,9 @@
+import { lazy, Suspense } from "react" // Librerias de optimicacion de paginas
 import { BrowserRouter, Route, Routes } from "react-router-dom" // Componentes necesarios cada vez que se crea un router
 //Importamos las paginas 
 import IndexPage from "./pages/IndexPage"
-import FavoritesPages from "./pages/FavoritesPages"
+const FavoritesPages = lazy(()=> import("./pages/FavoritesPages")) // lo mismo de la linea de abajo, pero esto optimiza
+    // import FavoritesPages from "./pages/FavoritesPages" 
 import Layout from "./layouts/Layout"
 
 
@@ -17,7 +19,11 @@ export default function AppRouter() {
                         element ={<IndexPage/>} // Pagina que va a cargar
                         index // Indicamos que esta ruta es la pagina principal
                     />
-                    <Route path="/favoritos" element ={<FavoritesPages/>}/>
+                    <Route path="/favoritos" element ={
+                        <Suspense fallback='Cargando...'>
+                            <FavoritesPages/>
+                        </Suspense>
+                    }/>
                 </Route>
 
             </Routes>
