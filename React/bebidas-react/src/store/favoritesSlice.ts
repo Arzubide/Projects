@@ -1,6 +1,7 @@
 import type { StateCreator } from "zustand"
 import type { DetailsDrink } from "../types"
 import { createRecipeSlice, type RecipesSliceType } from "./recipeSlice" // Importamos el slice a este slice
+import { createNotificationSlice } from "./notificationSlice"
 
 export type favoriteSliceType = {
     favorites : DetailsDrink[] // Guardaremos la informacion de la receta
@@ -19,9 +20,17 @@ export const createFavoriteSlice : StateCreator<favoriteSliceType & RecipesSlice
             set({
                 favorites : get().favorites.filter(favorite => favorite.idDrink !== recipie.idDrink) // Si ya existe, se eliminara de favoritos si le vuelve a dar click
             })
+            createNotificationSlice(set).showNotification({
+                text : 'Se ha eliminado correctamente de favoritos', 
+                error: false
+            })
         }else{
             set({
                 favorites : [...get().favorites, recipie]
+            })
+            createNotificationSlice(set).showNotification({
+                text : 'Se ha agregado correctamente a favoritos', 
+                error: false
             })
         }
 
