@@ -1,7 +1,13 @@
 {
     "compilerOptions": {
-        "outDir": "./dist", // IOndicamos a donde guardara los archivo de salida
-        "rootDir": "./src", // Indica cuales archivo compilara
-        
-    }
+        "outDir": "./rest_api_node_ts_server/dist", // Indicamos a donde guardara los archivo de salida
+        "rootDir": "./rest_api_node_ts_server/src", // Indica cuales archivo compilara
+        "lib": ["ESNext"], //Indicamos la version de Js a la cual se compilaran los archivos 
+        "strict": false, // 
+        "sourceMap": true, //Generamos los mapas de los arhivos ts
+        // Los source maps permiten: Depurar código TypeScript directamente en el navegador o Node.js
+        "esModuleInterop": true, // Facilita importar módulos CommonJS (formato Node.js tradicional) usando sintaxis ES6
+        "declaration": true //Genera los archivos de definicion de los modulos ts
+    },
+    "include": ["./rest_api_node_ts_server/src/**/*.ts"] // Indicamos que compilara todos los archivos que se encuentren en ese directorio con terminacion .ts
 }
