@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist", // IOndicamos a donde guardara los archivo de salida
+        "rootDir": "./src", // Indica cuales archivo compilara
+        
+    }
+}
