@@ -1,31 +1,12 @@
 import express from "express"
+import router from "./router"
 
 const servidor = express() // Creamos el servidor
-// Dentro del servidor existen distintas peticiones, get, post, delete, put, patch
+// Dentro del servidor existen distintas peticiones, get, post, delete, put, patch (router.ts)
 
-//Routing
-servidor.get('/', (req, res)=>{ // Siempre se pasan los parametros request (lo que enviamos a la pagina) (req) y response (respuestas de la pagina) (res)
-    // res tiene metodos como 
-    // send: envia datos a la pantalla
-    // json: eviamos datos json
-    res.send("Hola mundo desde GET")
-}) 
+//Routing - Conectamos el router a un prefijo de URL
+servidor.use('/', router) // Use es una función que se ejecuta entre que llega una petición HTTP y se envía la respuesta.
 
-// servidor.post('/', (req,res)=>{
-//     console.log("Desde POST ")  
-// })
-
-// servidor.put('/', (req,res)=>{
-//     console.log("Desde PUT ")  
-// })
-
-// servidor.patch('/', (req,res)=>{
-//     console.log("Desde PATCH ")  
-// })
-
-// servidor.delete('/', (req,res)=>{
-//     console.log("Desde DELETE ")  
-// })
 
 
 export default servidor 
