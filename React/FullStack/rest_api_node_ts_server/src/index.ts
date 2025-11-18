@@ -1,6 +1,7 @@
 import servidor from "./servidor"
 
-servidor.listen(4000, ()=>{
-    // console.log('listen from port 4000')
+const port = process.env.PORT || 4000 // process.env.PORT es el puerto que asigna una vez que esta en produccion
+servidor.listen(port, ()=>{
+    console.log(`listen from port ${port}`)
     
 })
