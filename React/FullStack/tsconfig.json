@@ -7,7 +7,9 @@
         "sourceMap": true, //Generamos los mapas de los arhivos ts
         // Los source maps permiten: Depurar código TypeScript directamente en el navegador o Node.js
         "esModuleInterop": true, // Facilita importar módulos CommonJS (formato Node.js tradicional) usando sintaxis ES6
-        "declaration": true //Genera los archivos de definicion de los modulos ts
+        "declaration": true, //Genera los archivos de definicion de los modulos ts
+        "experimentalDecorators": true, // confiiguracion para que sirva el ORM de sequelize con ts
+        "emitDecoratorMetadata": true // confiiguracion para que sirva el ORM de sequelize con ts
     },
     "include": ["./rest_api_node_ts_server/src/**/*.ts"] // Indicamos que compilara todos los archivos que se encuentren en ese directorio con terminacion .ts
 }
