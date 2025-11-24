@@ -2,7 +2,10 @@
     "compilerOptions": {
         "outDir": "./rest_api_node_ts_server/dist", // Indicamos a donde guardara los archivo de salida
         "rootDir": "./rest_api_node_ts_server/src", // Indica cuales archivo compilara
-        "lib": ["ESNext"], //Indicamos la version de Js a la cual se compilaran los archivos 
+        "lib": ["ESNext"], //Indicamos la version de Js a la cual se compilaran los archivos
+        "target": "ESNext", // Configuraciones necesarias para hacer peticiones
+        "moduleResolution": "NodeNext", // Configuraciones necesarias para hacer peticiones
+        "module": "NodeNext", // Configuraciones necesarias para hacer peticiones
         "strict": false, // 
         "sourceMap": true, //Generamos los mapas de los arhivos ts
         // Los source maps permiten: Depurar código TypeScript directamente en el navegador o Node.js
