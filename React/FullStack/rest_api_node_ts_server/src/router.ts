@@ -1,4 +1,5 @@
 import {Router} from "express"
+import {createProduct} from "./Handlers/products"; // Importamos la funcion del metodo POST
 
 const router = Router() // Accedemos a todas las funciones del router de express
 
@@ -10,9 +11,7 @@ router.get('/', (req, res)=>{ // Siempre se pasan los parametros request (lo que
     res.send("Hola mundo desde GET")
 }) 
 
-router.post('/', (req,res)=>{
-    console.log("Desde POST ")  
-})
+router.post('/', createProduct ) // createProduct va a ser de metodo POST
 
 router.put('/', (req,res)=>{
     console.log("Desde PUT ")  
