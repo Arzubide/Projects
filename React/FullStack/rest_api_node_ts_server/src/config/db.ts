@@ -7,7 +7,7 @@ dotenv.config() // accedemos a todas las configuraciones
 
 export const dataBase = new Sequelize(process.env.DATA_BASE_EXTERNAL!, {
   dialect: 'postgres', // expresamos que bd es 
-  models : [__dirname + '/../models/**/*.ts'] // Todos los archivos ts en models se consideraran modelos
+  models : [__dirname + '/../Models/**/*.ts'] // Todos los archivos ts en models se consideraran modelos
 })// accedemos a la variable que creamos en env 
  // process.env.DATA_BASE_EXTERNAL!
 
