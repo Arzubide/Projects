@@ -15,8 +15,12 @@ async function conectDB() {
 
 conectDB()
 
+//Instancia de express
 const servidor = express() // Creamos el servidor
 // Dentro del servidor existen distintas peticiones, get, post, delete, put, patch (router.ts)
+
+//Leer datos de formulario
+servidor.use(express.json()) // De esta manera podemos leer datos JSON con express
 
 //Routing - Conectamos el router a un prefijo de URL
 servidor.use('/api/products', router) // Use es una función que se ejecuta entre que llega una petición HTTP y se envía la respuesta.
