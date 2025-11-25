@@ -27,8 +27,12 @@ export const createProduct = async (req : Request , res:Response) => {
     //     return res.status(400).send({errors: errors.array()}) // Cancelamos el POST
     // }
 
-    //2da forma de almacenar productos en la BD
-    const product = await Product.create(req.body)
-    res.json(product)
+    try { // try catch utilizado para manejar otro tipo de erorres
+        //2da forma de almacenar productos en la BD
+        const product = await Product.create(req.body)
+        res.json(product)
+    }catch(err){
+        console.log(err)
+    }
 
 }
