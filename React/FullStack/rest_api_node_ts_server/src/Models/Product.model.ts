@@ -8,18 +8,18 @@ class Product extends Model {
     @Column({
         type: DataType.STRING(100)
     })
-    name: string
+    declare name: string
 
     @Column({
         type: DataType.FLOAT(6,2)
     })
-    price: number
+    declare price: number
 
     @Default(false) // Inicialmente availability sera false si no es declarado explicitamente
     @Column({
         type: DataType.BOOLEAN
     })
-    availability: boolean
+    declare availability: boolean
 }
 // Todo el codigo anterior equivale a:
 // 
