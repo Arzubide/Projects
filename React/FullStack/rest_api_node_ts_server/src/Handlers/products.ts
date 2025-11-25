@@ -1,6 +1,18 @@
 import {Request,Response} from "express"
 import Product from "../Models/Product.model";
-import {check, validationResult} from "express-validator" // Librerias para las validaciones
+
+export const getProduct = async (req: Request, res: Response) => {
+    try {
+        // Accedemos a la base de datos y a su vez accedemos a los metodos de la base de datos, en este caso accedemos a todos, se ocupan find... para acceder a la BD
+        const product = await Product.findAll({
+            attributes : {exclude : ['createdAt', 'updatedAt', 'availability']}, // De esta manera filtramos los datos que no queremos que se muestren al momento de hacer la peticion
+        })
+        res.json({data : product}) // Mandamos los datos de la BD
+    } catch(error) {
+        console.log(error)
+    }
+}
+
 
 export const createProduct = async (req : Request , res:Response) => {
     // console.log(req.body) Vemos los datos que se obtienen
