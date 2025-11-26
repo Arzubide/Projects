@@ -13,6 +13,26 @@ export const getProduct = async (req: Request, res: Response) => {
     }
 }
 
+export const getProductById = async (req: Request, res: Response) => {
+    try{
+        const idProduct = req.params.id // Obtenemos el valor que es pasado a traves de la URL
+        const product = await Product.findByPk(idProduct) // Buscamos en la BD el producto con ese PK, en este caso es el id
+        //Otra forma de encontrar un producto
+        // const productt = await Product.findOne({
+        //     where : {'id' : idProduct}
+        // })
+
+        if (!product) {
+            // En dado caso que no exista el producto
+            res.status(404).send('Product not found')
+        }
+
+        res.json({data : product}) // Retornamos en JSON el producto con ese ID
+
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 export const createProduct = async (req : Request , res:Response) => {
     // console.log(req.body) Vemos los datos que se obtienen
