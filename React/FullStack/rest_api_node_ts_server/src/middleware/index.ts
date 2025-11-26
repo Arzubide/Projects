@@ -1,6 +1,11 @@
 import express from "express";
-import {body, validationResult} from 'express-validator'
+import {body,param, validationResult} from 'express-validator'
 import {Default} from "sequelize-typescript";
+
+export const validationById = [ // Validacion para los parametros de la url
+    param('id'). // Se utiliza param para los parametros de una URL
+        isInt()
+]
 
 export const validation = [
     // creamos un array de validaciones para usarse desde el router
