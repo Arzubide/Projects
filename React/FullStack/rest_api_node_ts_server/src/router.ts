@@ -22,12 +22,15 @@ router.post('/',
 ) // createProduct va a ser de metodo POST
 
 router.put('/:id',
+    validationById,
     validation, // Validaciones para la acutualizacion del producto
     handleInputError,
     updateProduct
 )
 
 router.patch('/:id',
+    validationById,
+    handleInputError,
     updateAvailableProduct
 )
 

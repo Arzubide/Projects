@@ -115,6 +115,8 @@ export const updateAvailableProduct = async (req : Request , res:Response) => {
         product.availability = !product.dataValues.availability // De esta manera cada vez que llamemos este edpoint se actualizara automaticamente
         await product.save()
 
+        res.json({data : product})
+
     } catch (e) {
         console.log(e)
     }
