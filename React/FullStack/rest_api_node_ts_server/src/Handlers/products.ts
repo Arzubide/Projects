@@ -1,6 +1,18 @@
 import {Request,Response} from "express"
 import Product from "../Models/Product.model";
 
+// Función helper para buscar y validar la existencia de un producto
+const findProductById = async (id: string, res: Response) => {
+    const product = await Product.findByPk(id);
+    
+    if (!product) {
+        res.status(404).send('Product not found');
+        return null;
+    }
+    
+    return product;
+}
+
 export const getProduct = async (req: Request, res: Response) => {
     try {
         // Accedemos a la base de datos y a su vez accedemos a los metodos de la base de datos, en este caso accedemos a todos, se ocupan find... para acceder a la BD
@@ -15,19 +27,19 @@ export const getProduct = async (req: Request, res: Response) => {
 
 export const getProductById = async (req: Request, res: Response) => {
     try{
-        const idProduct = req.params.id // Obtenemos el valor que es pasado a traves de la URL
-        const product = await Product.findByPk(idProduct) // Buscamos en la BD el producto con ese PK, en este caso es el id
+        const idProduct = req.params.id; // Obtenemos el valor que es pasado a traves de la URL
+        const product = await findProductById(idProduct, res);
+        
+        if (!product) {
+            return; // Si el producto no existe, la función helper ya envió la respuesta de error
+        }
+        
         //Otra forma de encontrar un producto
         // const productt = await Product.findOne({
         //     where : {'id' : idProduct}
         // })
 
-        if (!product) {
-            // En dado caso que no exista el producto
-            res.status(404).send('Product not found')
-        }
-
-        res.json({data : product}) // Retornamos en JSON el producto con ese ID
+        res.json({data : product}); // Retornamos en JSON el producto con ese ID
 
     } catch (e) {
         console.log(e)
@@ -67,4 +79,26 @@ export const createProduct = async (req : Request , res:Response) => {
         console.log(err)
     }
 
+}
+
+export const updateProduct = async (req : Request , res:Response) => {
+    try {
+        // Comprobamos si el producto existe
+        const idProduct = req.params.id; // Obtenemos el valor que es pasado a traves de la URL
+        const product = await findProductById(idProduct, res); // Funcion que verifica la existencia
+
+        if (!product) {
+            return; // Si el producto no existe, la función helper ya envió la respuesta de error
+        }
+
+        // Actualizacion del producto
+        // Sobre la misma instancia de product
+        await product.update(req.body) // Actuzalizamos el producto que teniamos
+        await product.save() // Guardamos en la BD
+
+        res.json({data : product})
+
+    } catch (e) {
+        console.log(e)
+    }
 }
