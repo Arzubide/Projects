@@ -1,5 +1,5 @@
 import {Router} from "express"
-import {createProduct, getProduct, getProductById} from "./Handlers/products"; // Importamos la funcion del metodo POST
+import {createProduct, getProduct, getProductById, updateProduct} from "./Handlers/products"; // Importamos la funcion del metodo POST
 import {handleInputError, validation, validationById} from "./middleware";
 
 const router = Router() // Accedemos a todas las funciones del router de express
@@ -20,13 +20,18 @@ router.post('/',
     handleInputError, // middle para mostrar los errores
     createProduct ) // createProduct va a ser de metodo POST
 
-router.put('/', (req,res)=>{
-    console.log("Desde PUT ")  
-})
+router.put('/:id',
+    validation, // Validaciones para la acutualizacion del producto
+    handleInputError,
+    updateProduct,
+    )
 
 router.patch('/', (req,res)=>{
     console.log("Desde PATCH ")  
 })
+
+// La diferencia entre PUT Y PATCH, PUT: remplaza/actualizar completamente un recurso, PATCH modificar unicamente el valor que indicas
+
 
 router.delete('/', (req,res)=>{
     console.log("Desde DELETE ")  
